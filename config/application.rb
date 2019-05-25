@@ -6,10 +6,13 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module KidcareTaskaV3
+module Eip19
   class Application < Rails::Application
     config.load_defaults 5.2
     config.assets.paths << Rails.root.join("vendor","assets", "fonts")
+    config.action_dispatch.default_headers = {
+    'X-Frame-Options' => 'ALLOWALL'
+    }
     #config.assets.paths << File.join(Rails.root, '/vendor/webarch_core')
     #config.assets.paths << File.join(Rails.root, '/vendor/agency')
     #config.assets.enabled = true
