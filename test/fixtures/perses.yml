@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  ic: MyString
+  ph: MyString
+  inc: MyString
+  gdr: MyString
+  dun: MyString
+  dob: MyString
+
+two:
+  name: MyString
+  ic: MyString
+  ph: MyString
+  inc: MyString
+  gdr: MyString
+  dun: MyString
+  dob: MyString

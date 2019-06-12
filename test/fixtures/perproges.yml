@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  perse_id: 1
+  proge_id: 1
+  stat: MyString
+
+two:
+  perse_id: 1
+  proge_id: 1
+  stat: MyString

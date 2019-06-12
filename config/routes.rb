@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   #~~PAGES
   get '/eipblank', to: 'pages#eipblank'
 
+  #~~PROGE
+  get '/progeindex', to: 'proges#index'
+
+  #~~PERSE
+  get '/perseindex', to: 'perses#index'
+
 
   ######## OLD FROM KIDCARE ###############
 

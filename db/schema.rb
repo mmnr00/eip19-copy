@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_131051) do
+ActiveRecord::Schema.define(version: 2019_06_12_222656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -334,6 +334,26 @@ ActiveRecord::Schema.define(version: 2019_05_13_131051) do
     t.integer "notf"
   end
 
+  create_table "perproges", force: :cascade do |t|
+    t.integer "perse_id"
+    t.integer "proge_id"
+    t.string "stat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perses", force: :cascade do |t|
+    t.string "name"
+    t.string "ic"
+    t.string "ph"
+    t.string "inc"
+    t.string "gdr"
+    t.string "dun"
+    t.string "dob"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "prntdetails", force: :cascade do |t|
     t.string "name"
     t.string "ic_1"
@@ -349,6 +369,16 @@ ActiveRecord::Schema.define(version: 2019_05_13_131051) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
+  end
+
+  create_table "proges", force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.string "venue"
+    t.time "start"
+    t.time "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ptns_mmbs", force: :cascade do |t|
@@ -479,6 +509,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_131051) do
     t.string "ts_phone_1"
     t.string "ts_phone_2"
     t.integer "college_id"
+    t.string "category"
     t.string "dun"
     t.string "jkm"
     t.string "post"
@@ -486,7 +517,6 @@ ActiveRecord::Schema.define(version: 2019_05_13_131051) do
     t.string "income"
     t.date "dob"
     t.string "gender"
-    t.string "category"
     t.string "email"
   end
 
