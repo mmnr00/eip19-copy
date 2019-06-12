@@ -1,18 +1,18 @@
 git add -A
-git commit -m "tsk"
+git commit -m "eip"
 git push
 
-git checkout master_n
-git merge 1fbc
+git checkout master_e
+git merge 1wip
 git push
 
-git checkout production_n
-git merge master_n
+git checkout prod_e
+git merge master_e
 git push
 
-git diff HEAD master_n
-git diff HEAD 1fbc
-git checkout 1fbc
+git diff HEAD master_e
+git diff HEAD 1wip
+git checkout 1wip
 
 heroku maintenance:on --app kidcare-prod
 dropdb prod-bcup -U MustakhimRehan

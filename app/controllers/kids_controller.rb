@@ -5,7 +5,7 @@ class KidsController < ApplicationController
 	#before_action :set_kid_bill, only: [:bill_view]
 	before_action :set_all
 	before_action :authenticate_parent!, only: [:new], unless: -> {current_admin.present?}
-	before_action :check_bill, only: [:bill_view, :bill_pdf]
+	#before_action :check_bill, only: [:bill_view, :bill_pdf]
 	#before_action	:authenticate!, only: [:bill_view]
 	#before_action :rep_responsible, only: [:bill_view]
 	#before_action :authenticate_parent! || :authenticate_admin!
@@ -321,7 +321,7 @@ class KidsController < ApplicationController
 	def check_bill
 		payment = Payment.find(params[:payment]) 
 		#check payment status
-		if !payment.paid 
+		if !payment.paid && Rails.env.production?
 			url_bill = "#{ENV['BILLPLZ_API']}bills/#{payment.bill_id}"
       data_billplz = HTTParty.get(url_bill.to_str,
               :body  => { }.to_json, 
@@ -332,6 +332,8 @@ class KidsController < ApplicationController
       data = JSON.parse(data_billplz.to_s)
       if data["id"].present? && (data["paid"] == true)
       	payment.paid = data["paid"]
+      	payment.mtd = "BILLPLZ"
+      	payment.updated_at = data["paid_at"]
       	payment.save
       end
 		end
