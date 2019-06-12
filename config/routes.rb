@@ -23,6 +23,12 @@ Rails.application.routes.draw do
   devise_for :owners#, :controllers => { :passwords => 'passwords' }
 	root 'welcomes#index2'
 
+  #~~PAGES
+  get '/eipblank', to: 'pages#eipblank'
+
+
+  ######## OLD FROM KIDCARE ###############
+
 
   # For dtails on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
    #WELCOME

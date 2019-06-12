@@ -14,13 +14,13 @@ git diff HEAD master_e
 git diff HEAD 1wip
 git checkout 1wip
 
-heroku maintenance:on --app kidcare-prod
-dropdb prod-bcup -U MustakhimRehan
-heroku pg:pull DATABASE_URL prod-bcup --app kidcare-prod
-git push prod-heroku production_n:master
-#heroku run rake db:migrate --app kidcare-prod
-heroku restart --app kidcare-prod
-heroku maintenance:off --app kidcare-prod
+heroku maintenance:on --app eip19-prod
+#dropdb eip-bcup -U MustakhimRehan
+#heroku pg:pull DATABASE_URL eip-bcup --app eip19-prod
+git push prod-heroku prod_e:master
+#heroku run rake db:migrate --app eip19-prod
+heroku restart --app eip19-prod
+heroku maintenance:off --app eip19-prod
 
 disc = (24.0/28.0).to_f
 

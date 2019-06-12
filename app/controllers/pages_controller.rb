@@ -5,6 +5,12 @@ class PagesController < ApplicationController
 
 	#layout "dsb-admin-eg"
 
+	def eipblank
+		render action: "eipblank", layout: "eipblank"
+	end
+
+	## OLD FROM KIDCARE
+
 	def index
 	end
 
