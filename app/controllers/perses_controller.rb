@@ -28,6 +28,7 @@ class PersesController < ApplicationController
 
 	def edit
 		@perse = Perse.find(params[:id])
+		render action: "edit", layout: "eipblank"
 	end
 
 	def update

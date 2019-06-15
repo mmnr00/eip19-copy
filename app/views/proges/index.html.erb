@@ -1,1 +1,23 @@
-ProgEs Index
+<h1>
+  ProgEs Index
+  <%= link_to "NEW", new_proge_path, class: 'btn btn-sm btn-success active' %>
+</h1>
+
+<br>
+
+<% @proges_index.each do |prg| %>
+  
+  <%= prg.name %><br>
+  <%= prg.date %><br>
+  <%= prg.venue %><br>
+  <%= prg.start %><br>
+  <%= prg.end %><br>
+
+  <%= link_to "VIEW", proge_path(prg), class: 'btn btn-sm btn-success active' %>
+  <%= link_to "EDIT", edit_proge_path(prg), class: 'btn btn-sm btn-success active' %>
+  <%= link_to "DELETE", proge_path(prg), method: :delete, :data => {:confirm => 'Are you sure?'}, class: 'btn btn-sm btn-success active' %><br><br>
+  <%= link_to "REGISTER", proge_path(prg), class: 'btn btn-sm btn-info active' %>
+  <%= link_to "ATTENDANCE", edit_proge_path(prg), class: 'btn btn-sm btn-danger active' %>
+  <hr>
+
+<% end %>
