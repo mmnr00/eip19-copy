@@ -1,0 +1,35 @@
+<%= render partial: "shared/flash_messages", flash: flash %>
+<% if @perse.present? %>
+  <% @perse.each do |prs| %>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="frontside">
+        <div class="card">
+          <div class="card-body text-center">
+            <h6 class="card-title"><%= prs.name %></h6>
+            <p class="card-text">
+              <%= prs.ic %>
+            </p>
+              <% if prs.proges.where(id: params[:proge]).present? %>
+                <%= link_to regconf_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-danger active" do %>
+                  <i class="fa fa-user-plus"></i> ALREADY REGISTERED
+                <% end %>
+              <% else %>
+                <%= link_to regproge_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-info active" do %>
+                  <i class="fa fa-user-plus"></i> REGISTER
+                <% end %>
+              <% end %>
+              <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
+                <i class="fa fa-edit"></i> EDIT
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %> 
+<% end %> 
+
+  
+
+
+
+

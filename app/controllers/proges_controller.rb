@@ -1,5 +1,34 @@
 class ProgesController < ApplicationController
 
+	def schperse
+		@proge = Proge.find(params[:proge])
+		render action: "schperse", layout: "eipblank"
+	end
+
+	def findperse
+		if params[:ic].blank?
+      flash.now[:danger] = "Maklumat tidak lengkap"
+    else
+      @perse = Perse.where(ic: params[:ic])
+      flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah" unless @perse.present?
+    end
+		respond_to do |format|
+      format.js { render partial: 'proges/result' } 
+    end
+	end
+
+	def regproge
+		Perproge.create(perse_id: params[:perse],
+										proge_id: params[:proge],
+										stat: "REG")
+		redirect_to progeindex_path
+	end
+
+	def regconf
+		@perproge = Perproge.where(proge_id: params[:proge], perse_id: params[:perse]).first
+		render action: "regconf", layout: "eipblank"
+	end
+
 	def index
 		@proges_index = Proge.all
 		render action: "index", layout: "eipblank"

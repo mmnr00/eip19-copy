@@ -30,6 +30,11 @@ Rails.application.routes.draw do
 
   #~~PROGE
   get '/progeindex', to: 'proges#index'
+  get '/schperse', to: 'proges#schperse'
+  get '/findperse', to: 'proges#findperse'
+  get '/regproge', to: 'proges#regproge'
+  get '/regconf', to: 'proges#regconf'
+  
 
   #~~PERSE
   get '/perseindex', to: 'perses#index'
