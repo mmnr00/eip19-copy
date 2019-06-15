@@ -1,4 +1,7 @@
-<h1>PersEs Index</h1>
+<h1>
+  PersEs Index
+  <%= link_to "NEW", new_perse_path, class: 'btn btn-sm btn-success active' %>
+</h1>
 
 <br>
 
@@ -8,6 +11,9 @@
   <%= prs.ic %><br>
   <%= prs.ph %><br>
 
+  <%= link_to "VIEW", perse_path(prs), class: 'btn btn-sm btn-success active' %>
+  <%= link_to "EDIT", edit_perse_path(prs), class: 'btn btn-sm btn-success active' %>
+  <%= link_to "DELETE", "#", class: 'btn btn-sm btn-success active' %>
   <hr>
 
 <% end %>

@@ -5,6 +5,11 @@ class PersesController < ApplicationController
 		render action: "index", layout: "eipblank"
 	end
 
+	def show
+		@perse = Perse.find(params[:id])
+		render action: "show", layout: "eipblank"
+	end
+
 	def new
 		@perse = Perse.new
 		render action: "new", layout: "eipblank"
@@ -22,9 +27,17 @@ class PersesController < ApplicationController
 	end
 
 	def edit
+		@perse = Perse.find(params[:id])
 	end
 
 	def update
+		@perse = Perse.find(params[:id])
+		if @perse.update(perse_params)
+			redirect_to perseindex_path
+		else
+			render @perse.errors.full_messages
+			render :new
+		end
 	end
 
 	private
