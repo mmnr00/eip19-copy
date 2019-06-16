@@ -21,7 +21,7 @@ class ProgesController < ApplicationController
 		Perproge.create(perse_id: params[:perse],
 										proge_id: params[:proge],
 										stat: "REG")
-		redirect_to progeindex_path
+		redirect_to regconf_path(proge: params[:proge], perse: params[:perse])
 	end
 
 	def regconf
@@ -77,6 +77,13 @@ class ProgesController < ApplicationController
 	end
 
 	private
+
+	def perse_params
+		params.require(:perse).permit(:name, 
+																	:ic, 
+																	:ph, 
+																	:inc)
+	end
 
 	def proge_params
 		params.require(:proge).permit(:name, 
