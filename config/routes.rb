@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get '/regconf', to: 'proges#regconf'
   get 'editreg', to: 'proges#editreg'
   patch 'updreg', to: 'proges#updreg'
+  get 'newreg', to: 'proges#newreg'
+  post 'crtreg', to: 'proges#crtreg'
   
 
   #~~PERSE

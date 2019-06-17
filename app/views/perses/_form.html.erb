@@ -11,6 +11,10 @@
     ctr= "proges"
     act= "updreg"
     btn = "UPDATE AND REGISTER"
+  elsif actn == "newreg"
+    ctr= "proges"
+    act= "crtreg"
+    btn = "CREATE AND REGISTER"
   end
 
 %>
@@ -42,7 +46,7 @@
           </div>
           <div class="row">
             <div class="col-sm-8 col-12">
-              <%= f.text_field :ic, class: "form-control", placeholder: "e.g. 870829015436 (no dash)", autofocus: true, required: true %>
+              <%= f.text_field :ic, class: "form-control", placeholder: "e.g. 870829015436 (no dash)", value: params[:ic],  autofocus: true, required: true %>
             </div>
           </div>
         </div>

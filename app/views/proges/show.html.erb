@@ -5,3 +5,10 @@
 <%= @proge.venue %><br>
 <%= @proge.start %><br>
 <%= @proge.end %><br>
+<h5> TOTAL REG: <%= @proge.perses.count %> </h5>
+REGISTRATIONS: <br>
+<ol>
+  <% @proge.perses.each do |prs| %>
+    <li><%= prs.name %></li>
+  <% end %>
+</ol>

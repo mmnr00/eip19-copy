@@ -28,7 +28,7 @@
   <% end %> 
 <% elsif @perse.blank? && params[:ic].present? %>
 
-  <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
+  <%= link_to newreg_path(proge: params[:proge], ic: params[:ic]), class:"btn btn-sm btn-success active" do %>
     <i class="fa fa-edit"></i> CLICK HERE TO REGISTER
   <% end %>
 <% end %> 

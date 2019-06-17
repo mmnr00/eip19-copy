@@ -49,6 +49,26 @@ class ProgesController < ApplicationController
 		end
 	end
 
+	def newreg
+		@perse = Perse.new
+		@proge = Proge.find(params[:proge])
+		render action: "newreg", layout: "eipblank"
+	end
+
+	def crtreg
+		@perse = Perse.new(perse_params)
+		@proge = Proge.find(params[:perse][:proge])
+		if @perse.save
+			Perproge.create(perse_id: @perse.id,
+											proge_id: @proge.id,
+											stat: "REG")
+			redirect_to regconf_path(proge: @proge.id, perse: @perse.id)
+		else
+			render @perse.errors.full_messages
+			render :new
+		end
+	end
+
 	def index
 		@proges_index = Proge.all
 		render action: "index", layout: "eipblank"
