@@ -7,14 +7,14 @@ class ProgesController < ApplicationController
 
 	def findperse
 		if params[:ic].blank?
-      flash.now[:danger] = "Maklumat tidak lengkap"
-    else
-      @perse = Perse.where(ic: params[:ic])
-      flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah" unless @perse.present?
-    end
-		respond_to do |format|
-      format.js { render partial: 'proges/result' } 
-    end
+			flash.now[:danger] = "Please key in"
+		else
+	    @perse = Perse.where("ic like?", "%#{params[:ic]}%")
+	    flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah" unless @perse.present?
+	  end
+  	respond_to do |format|
+		  format.js { render partial: 'proges/result' } 
+		end   
 	end
 
 	def regproge
@@ -27,6 +27,26 @@ class ProgesController < ApplicationController
 	def regconf
 		@perproge = Perproge.where(proge_id: params[:proge], perse_id: params[:perse]).first
 		render action: "regconf", layout: "eipblank"
+	end
+
+	def editreg
+		@perse = Perse.find(params[:id])
+		@proge = Proge.find(params[:proge])
+		render action: "editreg", layout: "eipblank"
+	end
+
+	def updreg
+		@perse = Perse.find(params[:perse][:id])
+		@proge = Proge.find(params[:perse][:proge])
+		if @perse.update(perse_params)
+			Perproge.create(perse_id: @perse.id,
+											proge_id: @proge.id,
+											stat: "REG")
+			redirect_to regconf_path(proge: @proge.id, perse: @perse.id)
+		else
+			render @perse.errors.full_messages
+			render :new
+		end
 	end
 
 	def index

@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get '/findperse', to: 'proges#findperse'
   get '/regproge', to: 'proges#regproge'
   get '/regconf', to: 'proges#regconf'
+  get 'editreg', to: 'proges#editreg'
+  patch 'updreg', to: 'proges#updreg'
   
 
   #~~PERSE

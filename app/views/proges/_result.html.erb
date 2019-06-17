@@ -11,14 +11,14 @@
             </p>
               <% if prs.proges.where(id: params[:proge]).present? %>
                 <%= link_to regconf_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-danger active" do %>
-                  <i class="fa fa-user-plus"></i> ALREADY REGISTERED
+                  <i class="fa fa-user-plus"></i> VIEW CONFIRMATION 
                 <% end %>
               <% else %>
                 <%= link_to regproge_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-info active" do %>
                   <i class="fa fa-user-plus"></i> REGISTER
                 <% end %>
               <% end %>
-              <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
+              <%= link_to editreg_path(id: prs.id, proge: params[:proge]), class:"btn btn-sm btn-success active" do %>
                 <i class="fa fa-edit"></i> EDIT
               <% end %>
           </div>
@@ -26,6 +26,11 @@
       </div>
     </div>
   <% end %> 
+<% elsif @perse.blank? && params[:ic].present? %>
+
+  <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
+    <i class="fa fa-edit"></i> CLICK HERE TO REGISTER
+  <% end %>
 <% end %> 
 
   

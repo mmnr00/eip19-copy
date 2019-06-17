@@ -1,6 +1,25 @@
+<% 
+  if actn == "new"
+    ctr= "perses"
+    act= "create"
+    btn = "CREATE"
+  elsif actn == "edit"
+    ctr= "perses"
+    act= "update"
+    btn= "UPDATE"
+  elsif actn == "editreg"
+    ctr= "proges"
+    act= "updreg"
+    btn = "UPDATE AND REGISTER"
+  end
+
+%>
+
+
+
 <div class='row'>
   <div class='col-lg-8 col-12'>
-    <%= form_for(@perse, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for(@perse,:url => {:controller => "#{ctr}", :action => "#{act}"}, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
         
         <div class="form-group"> <!-- name -->
           <div class="row">
@@ -41,10 +60,13 @@
           </div>
         </div>
 
+        <%= f.hidden_field :id, value: params[:id] %>
+        <%= f.hidden_field :proge, value: params[:proge] %>
+
         <div class="form-group">
           <div class="row">
             <div class="col-sm-offset-2 col-sm-10 col-4">
-              <%= f.submit :"UPDATE PROFILE",  class: 'btn btn-primary btn-lg' %>
+              <%= f.submit :"#{btn}",  class: 'btn btn-primary btn-lg' %>
             </div>
           </div>
         </div>
