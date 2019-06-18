@@ -15,15 +15,24 @@
     ctr= "proges"
     act= "crtreg"
     btn = "CREATE AND REGISTER"
+  elsif actn == "cfmatt"
+    ctr= "proges"
+    act= "updatt"
+    btn = "CONFIRM"
   end
 
+  if params[:ic].present?
+    icval = params[:ic]
+  else
+    icval = @perse.ic
+  end
 %>
-
 
 
 <div class='row'>
   <div class='col-lg-8 col-12'>
     <%= form_for(@perse,:url => {:controller => "#{ctr}", :action => "#{act}"}, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
+
         
         <div class="form-group"> <!-- name -->
           <div class="row">
@@ -46,7 +55,7 @@
           </div>
           <div class="row">
             <div class="col-sm-8 col-12">
-              <%= f.text_field :ic, class: "form-control", placeholder: "e.g. 870829015436 (no dash)", value: params[:ic],  autofocus: true, required: true %>
+              <%= f.text_field :ic, class: "form-control", placeholder: "e.g. 870829015436 (no dash)",value: icval,  autofocus: true, required: true %>
             </div>
           </div>
         </div>
@@ -66,6 +75,7 @@
 
         <%= f.hidden_field :id, value: params[:id] %>
         <%= f.hidden_field :proge, value: params[:proge] %>
+        <%= f.hidden_field :perproge, value: params[:perproge] %>
 
         <div class="form-group">
           <div class="row">

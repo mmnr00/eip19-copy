@@ -9,6 +9,6 @@
 REGISTRATIONS: <br>
 <ol>
   <% @proge.perses.each do |prs| %>
-    <li><%= prs.name %></li>
+    <li><%= "#{prs.name} (#{prs.ic})" %></li>
   <% end %>
 </ol>

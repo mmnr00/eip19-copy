@@ -17,8 +17,8 @@
   <%= link_to "VIEW", proge_path(prg), class: 'btn btn-sm btn-success active' %>
   <%= link_to "EDIT", edit_proge_path(prg), class: 'btn btn-sm btn-success active' %>
   <%= link_to "DELETE", proge_path(prg), method: :delete, :data => {:confirm => 'Are you sure?'}, class: 'btn btn-sm btn-success active' %><br><br>
-  <%= link_to "REGISTER", schperse_path(proge: prg.id), class: 'btn btn-sm btn-info active' %>
-  <%= link_to "ATTENDANCE", edit_proge_path(prg), class: 'btn btn-sm btn-danger active' %>
+  <%= link_to "REGISTER", schperse_path(proge: prg.id, typ: "reg"), class: 'btn btn-sm btn-info active' %>
+  <%= link_to "ATTENDANCE", schperse_path(proge: prg.id, typ: "att"), class: 'btn btn-sm btn-danger active' %>
   <hr>
 
 <% end %>

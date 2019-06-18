@@ -9,27 +9,52 @@
             <p class="card-text">
               <%= prs.ic %>
             </p>
-              <% if prs.proges.where(id: params[:proge]).present? %>
-                <%= link_to regconf_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-danger active" do %>
-                  <i class="fa fa-user-plus"></i> VIEW CONFIRMATION 
+              <% if params[:typ] == "reg" %>
+                <% if prs.proges.where(id: params[:proge]).present? %>
+                  <%= link_to regconf_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-danger active" do %>
+                    <i class="fa fa-user-plus"></i> VIEW CONFIRMATION 
+                  <% end %>
+                <% else %>
+                  <%= link_to regproge_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-info active" do %>
+                    <i class="fa fa-user-plus"></i> REGISTER
+                  <% end %>
+                  <%= link_to editreg_path(id: prs.id, proge: params[:proge]), class:"btn btn-sm btn-success active" do %>
+                    <i class="fa fa-edit"></i> EDIT
+                  <% end %>
                 <% end %>
-              <% else %>
-                <%= link_to regproge_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-info active" do %>
-                  <i class="fa fa-user-plus"></i> REGISTER
+
+              <% elsif params[:typ] == "att"%>
+
+                <% if @perproge.present? %>
+                  <% if @perproge.stat == "REG" %>
+                    <%= link_to cfmatt_path(id: prs.id, perproge: @perproge.id, proge: params[:proge]), class:"btn btn-sm btn-success active" do %>
+                      <i class="fa fa-edit"></i> REGISTERED. PLEASE CLICK HERE TO CONFIRM. 
+                    <% end %>
+                  <% elsif @perproge.stat == "ATT" || @perproge.stat == "BOTH" %>
+                    ATTENDANCE CONFIRMED
+                  <% end %>
+                <% else %>
+                  <%= link_to cfmatt_path, class:"btn btn-sm btn-success active" do %>
+                    <i class="fa fa-edit"></i> NO REGISTRATION FOUND. CLICK HERE TO REGISTER AND CONFIRM.  
+                  <% end %>
                 <% end %>
+
               <% end %>
-              <%= link_to editreg_path(id: prs.id, proge: params[:proge]), class:"btn btn-sm btn-success active" do %>
-                <i class="fa fa-edit"></i> EDIT
-              <% end %>
+              
           </div>
         </div>
       </div>
     </div>
   <% end %> 
-<% elsif @perse.blank? && params[:ic].present? %>
+<% elsif @perse.blank? && params[:ic].present? && params[:typ] == "reg" %>
 
   <%= link_to newreg_path(proge: params[:proge], ic: params[:ic]), class:"btn btn-sm btn-success active" do %>
     <i class="fa fa-edit"></i> CLICK HERE TO REGISTER
+  <% end %>
+<% elsif @perse.blank? && params[:ic].present? && params[:typ] == "att" %>
+
+  <%= link_to newreg_path(proge: params[:proge], ic: params[:ic]), class:"btn btn-sm btn-success active" do %>
+    <i class="fa fa-edit"></i> CLICK HERE TO REGISTER AS WALK IN
   <% end %>
 <% end %> 
 

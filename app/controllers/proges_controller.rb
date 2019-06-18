@@ -9,8 +9,19 @@ class ProgesController < ApplicationController
 		if params[:ic].blank?
 			flash.now[:danger] = "Please key in"
 		else
-	    @perse = Perse.where("ic like?", "%#{params[:ic]}%")
-	    flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah" unless @perse.present?
+			if params[:typ] == "att"
+				@perse = Perse.where(ic: params[:ic])
+				if @perse.present?
+					@perproge = Perproge.where(perse_id: @perse.first.id,
+																	proge_id: params[:proge]).first
+				else
+					flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah"
+				end
+			else
+		    #@perse = Perse.where("ic like?", "%#{params[:ic]}%")
+		    @perse = Perse.where(ic: params[:ic])
+		    flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah" unless @perse.present?
+		  end
 	  end
   	respond_to do |format|
 		  format.js { render partial: 'proges/result' } 
@@ -67,6 +78,29 @@ class ProgesController < ApplicationController
 			render @perse.errors.full_messages
 			render :new
 		end
+	end
+
+	def cfmatt
+		@perse = Perse.find(params[:id])
+		@proge = Proge.find(params[:proge])
+		@perproge = Perproge.find(params[:perproge])
+		render action: "cfmatt", layout: "eipblank"
+	end
+
+	def updatt
+		@perse = Perse.find(params[:perse][:id])
+		@proge = Proge.find(params[:perse][:proge])
+		@perproge = Perproge.find(params[:perse][:perproge])
+		if @perse.update(perse_params)
+			@perproge.stat = "BOTH"
+			@perproge.save
+		end
+		redirect_to attconf_path(id: @perproge.id)
+	end
+
+	def attconf
+		@perproge = Perproge.find(params[:id])
+		render action: "attconf", layout: "eipblank"
 	end
 
 	def index

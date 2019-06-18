@@ -34,10 +34,13 @@ Rails.application.routes.draw do
   get '/findperse', to: 'proges#findperse'
   get '/regproge', to: 'proges#regproge'
   get '/regconf', to: 'proges#regconf'
-  get 'editreg', to: 'proges#editreg'
-  patch 'updreg', to: 'proges#updreg'
-  get 'newreg', to: 'proges#newreg'
-  post 'crtreg', to: 'proges#crtreg'
+  get '/editreg', to: 'proges#editreg'
+  patch '/updreg', to: 'proges#updreg'
+  get '/newreg', to: 'proges#newreg'
+  post '/crtreg', to: 'proges#crtreg'
+  get '/cfmatt', to: 'proges#cfmatt'
+  patch '/updatt', to: 'proges#updatt'
+  get '/attconf', to: 'proges#attconf'
   
 
   #~~PERSE
