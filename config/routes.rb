@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   post '/crtreg', to: 'proges#crtreg'
   get '/cfmatt', to: 'proges#cfmatt'
   patch '/updatt', to: 'proges#updatt'
+  get '/regatt', to: 'proges#regatt'
+  patch '/newexsatt', to: 'proges#newexsatt'
   get '/attconf', to: 'proges#attconf'
   
 

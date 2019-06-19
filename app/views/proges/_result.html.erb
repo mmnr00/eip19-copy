@@ -34,7 +34,7 @@
                     ATTENDANCE CONFIRMED
                   <% end %>
                 <% else %>
-                  <%= link_to cfmatt_path, class:"btn btn-sm btn-success active" do %>
+                  <%= link_to regatt_path(id: prs.id, proge: params[:proge]), class:"btn btn-sm btn-success active" do %>
                     <i class="fa fa-edit"></i> NO REGISTRATION FOUND. CLICK HERE TO REGISTER AND CONFIRM.  
                   <% end %>
                 <% end %>

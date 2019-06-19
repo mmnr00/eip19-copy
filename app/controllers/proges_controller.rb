@@ -98,6 +98,25 @@ class ProgesController < ApplicationController
 		redirect_to attconf_path(id: @perproge.id)
 	end
 
+	def regatt
+		@perse = Perse.find(params[:id])
+		@proge = Proge.find(params[:proge])
+		#@perproge = Perproge.find(params[:perproge])
+		render action: "regatt", layout: "eipblank"
+	end
+
+	def newexsatt
+		@perse = Perse.find(params[:perse][:id])
+		@proge = Proge.find(params[:perse][:proge])
+		#@perproge = Perproge.find(params[:perse][:perproge])
+		if @perse.update(perse_params)
+			@perproge = Perproge.create(perse_id: @perse.id,
+																	proge_id: @proge.id,
+																	stat: "ATT")
+		end
+		redirect_to attconf_path(id: @perproge.id)
+	end
+
 	def attconf
 		@perproge = Perproge.find(params[:id])
 		render action: "attconf", layout: "eipblank"
