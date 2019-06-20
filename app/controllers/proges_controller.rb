@@ -117,6 +117,26 @@ class ProgesController < ApplicationController
 		redirect_to attconf_path(id: @perproge.id)
 	end
 
+	def newatt
+		@perse = Perse.new
+		@proge = Proge.find(params[:proge])
+		render action: "newatt", layout: "eipblank"
+	end
+
+	def crtnewatt
+		@perse = Perse.new(perse_params)
+		@proge = Proge.find(params[:perse][:proge])
+		if @perse.save
+			@perproge = Perproge.create(perse_id: @perse.id,
+											proge_id: @proge.id,
+											stat: "ATT")
+			redirect_to attconf_path(id: @perproge.id)
+		else
+			render @perse.errors.full_messages
+			render :new
+		end
+	end
+
 	def attconf
 		@perproge = Perproge.find(params[:id])
 		render action: "attconf", layout: "eipblank"

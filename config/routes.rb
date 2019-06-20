@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get '/regatt', to: 'proges#regatt'
   patch '/newexsatt', to: 'proges#newexsatt'
   get '/attconf', to: 'proges#attconf'
+  get '/newatt', to: 'proges#newatt'
+  post '/crtnewatt', to: 'proges#crtnewatt'
   
 
   #~~PERSE

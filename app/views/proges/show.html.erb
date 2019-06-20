@@ -5,10 +5,29 @@
 <%= @proge.venue %><br>
 <%= @proge.start %><br>
 <%= @proge.end %><br>
-<h5> TOTAL REG: <%= @proge.perses.count %> </h5>
-REGISTRATIONS: <br>
-<ol>
-  <% @proge.perses.each do |prs| %>
-    <li><%= "#{prs.name} (#{prs.ic})" %></li>
+
+<% if params[:tp] == "reg" || params[:tp] == "summ" %>
+  <h5> TOTAL REG: <%= (prg = Perproge.where(proge_id: @proge.id).where.not(stat: "ATT")).count %> </h5>
+  REGISTRATIONS: <br>
+  <ol>
+    <% prg.each do |proge| %>
+      <li><%= "#{proge.perse.name} (#{proge.perse.ic})" %></li>
+    <% end %>
+  </ol>
+  <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
+    <i class="fa fa-excel"></i> DOWNLOAD REGISTRATION LIST
   <% end %>
-</ol>
+<% end %>
+
+<% if params[:tp] == "att" || params[:tp] == "summ" %>
+  <h5> TOTAL ATT: <%= (prg = Perproge.where(proge_id: @proge.id).where.not(stat: "REG")).count %> </h5>
+  ATTENDANCE: <br>
+  <ol>
+    <% prg.each do |proge| %>
+      <li><%= "#{proge.perse.name} (#{proge.perse.ic})" %></li>
+    <% end %>
+  </ol>
+  <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
+    <i class="fa fa-excel"></i> DOWNLOAD ATTENDANCE LIST
+  <% end %>
+<% end %>
