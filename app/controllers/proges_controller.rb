@@ -142,6 +142,29 @@ class ProgesController < ApplicationController
 		render action: "attconf", layout: "eipblank"
 	end
 
+	## ~ Extract List
+	def namelistxls
+		@proge = Proge.find(params[:proge])
+		if params[:tp] == "reg"
+			@tp = "REGISTRATION"
+			@prg = Perproge.where(proge_id: @proge.id).where.not(stat: "ATT")
+		elsif params[:tp] == "att"
+			@tp = "ATTENDANCE"
+			@prg = Perproge.where(proge_id: @proge.id).where.not(stat: "REG")
+		end
+		@proge = Proge.find(params[:proge])
+		respond_to do |format|
+      #format.html
+      format.xlsx{
+                  response.headers['Content-Disposition'] = 'attachment; filename="Name List.xlsx"'
+      }
+    end
+	end
+
+	
+
+	## ~ Extract List
+
 	def index
 		@proges_index = Proge.all
 		render action: "index", layout: "eipblank"

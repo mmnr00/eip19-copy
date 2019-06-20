@@ -1,0 +1,61 @@
+wb = xlsx_package.workbook
+col_widths= [5,20,5,25,20,20,20,20]
+wb.styles do |style|
+  header_1 = style.add_style(sz: 20, b: true)
+  dlt_cell = style.add_style(bg_color: "FF0000",
+                            b: true,
+                            fg_color: "FFFFFF",
+                            sz: 13,
+                            alignment: { horizontal: :center })
+  inp_cell = style.add_style(bg_color: "3232ff",
+                            b: true,
+                            fg_color: "FFFFFF",
+                            sz: 13,
+                            alignment: { horizontal: :center })
+  highlight_cell = style.add_style(bg_color: "EFC376",
+                                  b: true,
+                                  border: Axlsx::STYLE_THIN_BORDER,
+                                  sz: 15,
+                                   alignment: { horizontal: :center })
+  border_cell = style.add_style(border: Axlsx::STYLE_THIN_BORDER) 
+  border_cell_eg = style.add_style(border: Axlsx::STYLE_THIN_BORDER,
+                                  bg_color: "cce5cc",
+                                  i: true)       
+  wb.add_worksheet(name: "NAMELIST") do |sheet|
+    sheet.add_row ["","#{@tp} LIST FOR #{@proge.name}"]
+    sheet.add_row [""]
+    sheet.add_row ["NO",
+                  "NAME",
+                  "NRIC",
+                  "PHONE NO"]
+    sheet.rows[0].style = header_1
+    sheet.rows[2].style = highlight_cell
+    counter = 1
+    row =2
+    @prg.each do |prg|
+      sheet.add_row [counter, 
+                    prg.perse.name, 
+                    prg.perse.ic, 
+                    prg.perse.ph], style: [nil, border_cell]
+      sheet.rows[row+counter].style = border_cell
+      counter = counter +1
+    end
+
+    
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

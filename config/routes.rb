@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get '/attconf', to: 'proges#attconf'
   get '/newatt', to: 'proges#newatt'
   post '/crtnewatt', to: 'proges#crtnewatt'
+  get '/namelistxls', to: 'proges#namelistxls'
   
 
   #~~PERSE

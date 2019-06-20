@@ -14,8 +14,8 @@
       <li><%= "#{proge.perse.name} (#{proge.perse.ic})" %></li>
     <% end %>
   </ol>
-  <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
-    <i class="fa fa-excel"></i> DOWNLOAD REGISTRATION LIST
+  <%= link_to namelistxls_path(format: :xlsx, tp: "reg", proge: @proge.id), class: "btn btn-sm btn-info active" do %>
+    <i class="fa fa-file-excel"></i> REGISTRATION LIST
   <% end %>
 <% end %>
 
@@ -27,7 +27,7 @@
       <li><%= "#{proge.perse.name} (#{proge.perse.ic})" %></li>
     <% end %>
   </ol>
-  <%= link_to root_path, class:"btn btn-sm btn-success active" do %>
-    <i class="fa fa-excel"></i> DOWNLOAD ATTENDANCE LIST
+  <%= link_to namelistxls_path(format: :xlsx, tp: "att", proge: @proge.id), class: "btn btn-sm btn-info active" do %>
+    <i class="fa fa-file-excel"></i> ATTENDANCE LIST
   <% end %>
 <% end %>
