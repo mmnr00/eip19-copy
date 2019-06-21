@@ -1,5 +1,5 @@
 wb = xlsx_package.workbook
-col_widths= [5,20,5,25,20,20,20,20]
+col_widths= [5,40,15,15,20,20,20,20]
 wb.styles do |style|
   header_1 = style.add_style(sz: 20, b: true)
   dlt_cell = style.add_style(bg_color: "FF0000",
@@ -35,13 +35,13 @@ wb.styles do |style|
     @prg.each do |prg|
       sheet.add_row [counter, 
                     prg.perse.name, 
-                    prg.perse.ic, 
-                    prg.perse.ph], style: [nil, border_cell]
+                    "#{prg.perse.ic[0..5]}-#{prg.perse.ic[6..7]}-#{prg.perse.ic[8..11]}", 
+                    "#{prg.perse.ph[0..2]}-#{prg.perse.ph[3..11]}"], style: [nil, border_cell]
       sheet.rows[row+counter].style = border_cell
       counter = counter +1
     end
 
-    
+   sheet.column_widths *col_widths 
   end
 end
 
