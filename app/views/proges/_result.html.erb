@@ -11,15 +11,15 @@
             </p>
               <% if params[:typ] == "reg" %>
                 <% if prs.proges.where(id: params[:proge]).present? %>
-                  <%= link_to regconf_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-danger active" do %>
-                    <i class="fa fa-user-plus"></i> VIEW CONFIRMATION 
+                  <%= link_to regconf_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-success" do %>
+                    <i class="fa fa-check-circle"></i> VIEW CONFIRMATION 
                   <% end %>
                 <% else %>
                   <%= link_to regproge_path(perse: prs.id, proge: params[:proge]), class:"btn btn-sm btn-info active" do %>
                     <i class="fa fa-user-plus"></i> REGISTER
                   <% end %>
                   <%= link_to editreg_path(id: prs.id, proge: params[:proge]), class:"btn btn-sm btn-success active" do %>
-                    <i class="fa fa-edit"></i> EDIT
+                    <i class="fa fa-edit"></i> UPDATE PROFILE
                   <% end %>
                 <% end %>
 
@@ -37,7 +37,7 @@
                   <% end %>
                 <% else %>
                   <%= link_to regatt_path(id: prs.id, proge: params[:proge]), class:"btn btn-sm btn-success" do %>
-                    <i class="fa fa-edit"></i> NO REGISTRATION FOUND. CLICK HERE TO REGISTER AND CONFIRM.  
+                    <i class="fa fa-edit"></i> NOT REGISTRED. CLICK TO ATTEND.
                   <% end %>
                 <% end %>
 

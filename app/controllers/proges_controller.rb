@@ -15,7 +15,7 @@ class ProgesController < ApplicationController
 					@perproge = Perproge.where(perse_id: @perse.first.id,
 																	proge_id: params[:proge]).first
 				else
-					flash.now[:danger] = "NO REGISTRATION. PLEASE KEY IN"
+					flash.now[:danger] = "NO RECORD. PLEASE CLICK BELOW TO REGISTER"
 				end
 			else
 		    #@perse = Perse.where("ic like?", "%#{params[:ic]}%")
