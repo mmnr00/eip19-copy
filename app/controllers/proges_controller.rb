@@ -15,12 +15,12 @@ class ProgesController < ApplicationController
 					@perproge = Perproge.where(perse_id: @perse.first.id,
 																	proge_id: params[:proge]).first
 				else
-					flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah"
+					flash.now[:danger] = "NO REGISTRATION. PLEASE KEY IN"
 				end
 			else
 		    #@perse = Perse.where("ic like?", "%#{params[:ic]}%")
 		    @perse = Perse.where(ic: params[:ic])
-		    flash.now[:danger] = "Tiada rekod. Sila daftar di ruangan dibawah" unless @perse.present?
+		    flash.now[:danger] = "NO RECORD. PLEASE CLICK BELOW TO REGISTER" unless @perse.present?
 		  end
 	  end
   	respond_to do |format|
@@ -218,7 +218,10 @@ class ProgesController < ApplicationController
 		params.require(:perse).permit(:name, 
 																	:ic, 
 																	:ph, 
-																	:inc)
+																	:inc,
+																	:gdr,
+																	:dun,
+																	:dob)
 	end
 
 	def proge_params
