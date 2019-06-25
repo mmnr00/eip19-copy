@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_222656) do
+ActiveRecord::Schema.define(version: 2019_06_25_034207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,37 @@ ActiveRecord::Schema.define(version: 2019_06_12_222656) do
     t.string "description"
     t.date "start"
     t.date "end"
+  end
+
+  create_table "ekids", force: :cascade do |t|
+    t.string "name"
+    t.string "ic"
+    t.string "gdr"
+    t.date "dob"
+    t.string "addr"
+    t.string "mph"
+    t.string "fname"
+    t.string "fage"
+    t.string "fph"
+    t.string "femail"
+    t.string "fedu"
+    t.string "fwork"
+    t.string "fworktp"
+    t.string "mname"
+    t.string "mage"
+    t.string "memail"
+    t.string "medu"
+    t.string "mwork"
+    t.string "mworktp"
+    t.string "phist"
+    t.string "phisttp"
+    t.string "pinc"
+    t.string "ref"
+    t.string "refloc"
+    t.string "prbtp"
+    t.string "kage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "expenses", force: :cascade do |t|

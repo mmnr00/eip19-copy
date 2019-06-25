@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  ic: MyString
+  gdr: MyString
+  dob: 2019-06-25
+  addr: MyString
+  mph: MyString
+  fname: MyString
+  fage: MyString
+  fph: MyString
+  femail: MyString
+  fedu: MyString
+  fwork: MyString
+  fworktp: MyString
+  mname: MyString
+  mage: MyString
+  mph: MyString
+  memail: MyString
+  medu: MyString
+  mwork: MyString
+  mworktp: MyString
+  phist: MyString
+  phisttp: MyString
+  pinc: MyString
+  ref: MyString
+  refloc: MyString
+  prbtp: MyString
+  kage: MyString
+
+two:
+  name: MyString
+  ic: MyString
+  gdr: MyString
+  dob: 2019-06-25
+  addr: MyString
+  mph: MyString
+  fname: MyString
+  fage: MyString
+  fph: MyString
+  femail: MyString
+  fedu: MyString
+  fwork: MyString
+  fworktp: MyString
+  mname: MyString
+  mage: MyString
+  mph: MyString
+  memail: MyString
+  medu: MyString
+  mwork: MyString
+  mworktp: MyString
+  phist: MyString
+  phisttp: MyString
+  pinc: MyString
+  ref: MyString
+  refloc: MyString
+  prbtp: MyString
+  kage: MyString

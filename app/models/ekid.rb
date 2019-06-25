@@ -1,0 +1,2 @@
+class Ekid < ApplicationRecord
+end
