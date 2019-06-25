@@ -7,8 +7,27 @@
 #   )
 # end
 
-$newborn = ["Bayi Longlai Atau Kejang","Menangis Tanpa Henti","Melengkungkan Belakangnya"]
+$newborn = ["Bayi Longlai Atau Kejang",
+						"Menangis Tanpa Henti",
+						"Melengkungkan Belakangnya",
+						"Tidak Bertindak Balas Kepada Bunyi",
+						"Tidak menunjukkan minat atau menyambut rangsangan untuk bermain",
+						"Tidak berselera untuk makan",
+						"Tidak membunyikan suara",
+						"Tidak respon kepada orang-orang yang rapat dengannya (ibubapa, adik-beradik)"]
+
+$empat = ["Tidak membuat bunyi-bunyi atau membebel (Mumbling)",			
+				"Tidak memberi tindakbalas kepada ibubapa atau penjaga",			
+				"Tidak belajar berguling ketika main di atas lantai",			
+				"Tidak memberi balasan kepada rangsangan",			
+				"Tidak bermain dengan kaki atau mengalihkan barang antara tangan"]
+
 $addfo = ["Nama Pakar Kanak - Kanak (Jika Ada)","No Telefon Pakar","Maklumat Adik Beradik"]
+
+
+
+
+
 
 
 
