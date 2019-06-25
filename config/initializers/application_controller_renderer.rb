@@ -6,6 +6,13 @@
 #     https: false
 #   )
 # end
+
+$newborn = ["Bayi Longlai Atau Kejang","Menangis Tanpa Henti","Melengkungkan Belakangnya"]
+$addfo = ["Nama Pakar Kanak - Kanak (Jika Ada)","No Telefon Pakar","Maklumat Adik Beradik"]
+
+
+
+### OLD KIDCARE
 $my_time = Time.now.in_time_zone('Singapore')
 
 $trial = 30

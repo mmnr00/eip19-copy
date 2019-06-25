@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :tsklvs, only:[:new, :create, :destroy, :update, :edit]
   resources :perses, only:[:new,:show,:create, :destroy, :update, :edit]
   resources :proges, only:[:new,:show,:create, :destroy, :update, :edit]
+  resources :ekids, only:[:new,:show,:create, :destroy, :update, :edit]
+  resources :pkids, only:[:new,:show,:create, :destroy, :update, :edit]
   #resources :teachers, only:[:show]
   #resources :taska_teachers, only:[:create,:destroy]
   devise_for :parents
@@ -50,6 +52,11 @@ Rails.application.routes.draw do
 
   #~~PERSE
   get '/perseindex', to: 'perses#index'
+
+  #~~EKID
+
+  #~~PKID
+
 
 
   ######## OLD FROM KIDCARE ###############

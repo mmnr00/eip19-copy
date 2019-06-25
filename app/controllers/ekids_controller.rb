@@ -1,0 +1,2 @@
+class EkidsController < ApplicationController
+end
