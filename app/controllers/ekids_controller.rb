@@ -8,7 +8,7 @@ class EkidsController < ApplicationController
 	def create
 		@ekid = Ekid.new(ekid_params)
 		if @ekid.save 
-			redirect_to edit_ekid_path(@ekid)
+			redirect_to new_pkid_path(ekid: @ekid.id)
 		else
 			render @ekid.errors.full_messages
 			render :new

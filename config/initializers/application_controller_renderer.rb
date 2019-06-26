@@ -17,10 +17,36 @@ $newborn = ["Bayi Longlai Atau Kejang",
 						"Tidak respon kepada orang-orang yang rapat dengannya (ibubapa, adik-beradik)"]
 
 $empat = ["Tidak membuat bunyi-bunyi atau membebel (Mumbling)",			
-				"Tidak memberi tindakbalas kepada ibubapa atau penjaga",			
-				"Tidak belajar berguling ketika main di atas lantai",			
-				"Tidak memberi balasan kepada rangsangan",			
-				"Tidak bermain dengan kaki atau mengalihkan barang antara tangan"]
+					"Tidak memberi tindakbalas kepada ibubapa atau penjaga",			
+					"Tidak belajar berguling ketika main di atas lantai",			
+					"Tidak memberi balasan kepada rangsangan",			
+					"Tidak bermain dengan kaki atau mengalihkan barang antara tangan"]
+
+$lapan = ["Tidak menyahut atau membalas rangsangan ibubapa atau penjaga",
+					"Tidak membebel (mumbling) atau menghasilkan bunyi",
+					"Tidak mula duduk, merangkak atau menarik diri untuk berdiri",
+					"Tidak berminat untuk memegang barang mainan",
+					"Masih tidak boleh makan makanan pejal atau biasa"]
+
+$duabelas = ["Tidak menggunakan perkataan atau aksi untuk berkomunikasi seperti mengangkat kedua tangan bila hendak diangkat",
+						"Tidak mahu bergerak kearah sekeliling",
+						"Tidak respon kepada yang lain",
+						"Tidak menarik perhatian orang yang rapat dengannya"]
+
+$duaempat =["Tidak berminat untuk bermain",
+						"Kerap jatuh atau melanggar sesuatu tanpa sebab",
+						"Sukar menggunakan objek kecil",
+						"Tidak memahami arahan",
+						"Tidak menggunakan perkataan yang banyak",
+						"Tidak menggabungkan perkataan dalam frasa yang bermakna",
+						"Tidak berminat untuk bermain atau berinteraksi dengan yang lain",
+						"Tidak berminat untuk makan"]
+
+$tigaenam = ["Tidak difahami oleh yang lain",
+						"Menpunyai masalah gagap yang menganggu kelancaran bertutur",
+						"Tidak boleh berbual",
+						"Tidak memahami arahan",
+						"Tidak bermain dengan anak-anak lain"]
 
 $addfo = ["Nama Pakar Kanak - Kanak (Jika Ada)","No Telefon Pakar","Maklumat Adik Beradik"]
 

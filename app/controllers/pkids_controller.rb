@@ -1,7 +1,9 @@
 class PkidsController < ApplicationController
 	def new
 		@pkid = Pkid.new
-		@age = 4
+		@ekid = Ekid.find(params[:ekid])
+		dob = @ekid.dob
+		@age = (Date.today.year*12+Date.today.month) - (dob.year*12+dob.month)
 		render action: "new", layout: "eipblank"
 	end
 
