@@ -9,18 +9,21 @@ class PkidsController < ApplicationController
 
 	def create
 		@pkid = form_input(0,params[:pkid])
-		redirect_to edit_pkid_path(@pkid)
+		redirect_to ekidconf_path(id: @pkid.ekid)
 	end
 
 	def edit
 		@pkid = Pkid.find(params[:id])
+		@ekid = Ekid.find(params[:ekid])
+		dob = @ekid.dob
+		@age = (Date.today.year*12+Date.today.month) - (dob.year*12+dob.month)
 		render action: "edit", layout: "eipblank"
 	end
 
 	def update
 		@pkid = Pkid.find(params[:id])
 		@pkid = form_input(@pkid.id,params[:pkid])
-		redirect_to edit_pkid_path(@pkid)
+		redirect_to ekidconf_path(id: @pkid.ekid)
 	end
 
 	private
@@ -38,7 +41,7 @@ class PkidsController < ApplicationController
 		par[:addfo].each do |k,v|
 			@pkid.addfo[k]=v
 		end
-		@pkid.ekid_id = 1
+		@pkid.ekid_id = par[:ekid]
 		@pkid.save
 		return @pkid
 	end

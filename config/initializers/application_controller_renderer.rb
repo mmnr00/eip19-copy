@@ -50,6 +50,62 @@ $tigaenam = ["Tidak difahami oleh yang lain",
 
 $addfo = ["Nama Pakar Kanak - Kanak (Jika Ada)","No Telefon Pakar","Maklumat Adik Beradik"]
 
+$health = ["Cacar Air",
+					"Campak",
+					"Scarlet Fever/Demam Scarlet",
+					"Rheumatic Fever/Demam",
+					"Pneumonia/Radang Paru-paru",
+					"Influenza",
+					"Asthma/Lelah",
+					"Hay Fever/Demam Alergi",
+					"Encephalitis",
+					"Mumps/ Beguk",
+					"Meningitis",
+					"Whooping cough/ Batuk kokol",
+					"High fevers/ Demam panas",
+					"Ear aches/ Sakit telinga",
+					"Lain-lain penyakit yang tiada diatas",
+					"Pembedahan",
+					"Kecederaan",
+					"Pendengaran"]
+
+$birth = ["Tempoh Bersalin (Jam)",
+					"Berapa Bulan",
+					"Cara Melahirkan:",
+					"Keadaan Luar Biasa Pada atau Sebaik Sahaja Melahirkan"]
+
+$grow = ["Dicapai dalam had normal?",
+"Kelewatan",
+"Senarai Kelewatan Perkembangan yang tertentu",
+"Nama Sekolah Terkini",
+"Tahap Gred Terbaru",
+"Subjek yang senang dikuasai:",
+"Subjek yang lemah atau sukar dikuasai",
+"Masalah yang dialami di sekolah",
+"Penglibatan dalam Rekreasi dan Hobi"]
+
+$physpch = ["Umur bagi perkataan pertama dan sila nyatakan",
+						"Umur bagi kombinasi 2-3 perkataan pertama & sila nyatakan",
+						"Kadar perkembangan pertuturan",
+						"Umur bagi ayat pertama yang dituturkan & sila nyatakan",
+						"Nyatakan perkembangan pertuturan pada masa sekarang:",
+						"Adakah percakapan anak sendang difahami oleh pendengar?",
+						"Bilakah Encik/Puan mula bimbang tentang kelewatan perkembangan percakapan?",
+						"Senaraikan bahasa yang digunakan di rumah",
+						"Pernahkah membuat penilaian perkembangan anak sebelum ini?",
+						"Jika Ya, sila nyatakan maklumat dibawah:",
+						"Mengangkat kepala sendiri 45 darjah",
+						"Pusing badan kanan kiri sendiri",
+						"Duduk sendiri tanpa bantuan",
+						"Merangkak",
+						"Berjalan",
+						"Berlari"]
+
+$agr = ["Saya:",
+"membenarkan pasukan Early Intervention Program untuk menilai dan menjalankan intervensi atau terapi yang diperlukan dan disarankan untuk",
+"Tarikh Pengesahan Kebenaran",
+"Saya faham dengan kenyataan dibawah dan memberikan kebenaran untuk menggunakan maklumat diatas untuk mencapai tujuan program:",
+"Kami memahami bahawa penggunaan data atau maklumat peribadi adalah dianggap sebagai data peribadi sensiif yang tertakluk di bawah Akta Perlindungan Data Peribadi 2010 (Personal Data Protection Act 2010 - PDPA). SILA AMBIL PERHATIAN bahawa dengan memberikan semua maklumat yang terkandung di sini dan maklumat peribadi lain yang diperolehi daripada sebarang komunikasi dan / atau interaksi di antara pihak kami dan pihak anda (Subjek Data) dengan ini memberi persetujuan kepada MBI untuk mengumpul, memproses dan/atau menggunakan data peribadi untuk tujuan yang berkaitan dengan, atau selaras dengan (Early Intervention Program) di bawah inisiatif Smart Selangor (EIP) yang dikendalikan oleh MBI. MBI bersetuju untuk meyimpan data peribadi yang diterima daripada Subjek Data secara sulit dan mengikut peruntukan-peruntukan di bawah PDPA. "]
 
 
 

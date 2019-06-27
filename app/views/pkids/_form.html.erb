@@ -21,20 +21,24 @@
   end
 %>
 
-<%= link_to edit_ekid_path(@ekid), class: "btn btn-sm btn-primary active" do%>
-    <i class="fa fa-arrow-circle-left"></i> KEMBALI KE PROFIL ANAK
-  <% end %>
+<%= link_to edit_ekid_path(@ekid), class: "btn btn-sm btn-warning" do%>
+  <i class="fa fa-arrow-circle-left"></i> KEMBALI KE PROFIL ANAK
+<% end %><br><br>
 
 <div class='row'>
   <div class='col-lg-8 col-12'>
     <%= form_for(:pkid,:url => {:controller => "pkids", :action => "#{act}"}, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
         
-        <h3> Maklumat Perkembangan Anak</h3>
+        <div class="col-sm-12" style="background-color:blue">
+          <font color="white"><h4>MAKLUMAT PERKEMBANGAN <%= @ekid.name.upcase %></h4></font>
+        </div>
         <%
           year = @age/12
           month = @age - year*12
         %>
-        <h5>Umur Anak : <%= year %> Tahun, <%= month %> Bulan</h5>
+        <div class="col-sm-12" style="background-color:green">
+          <font color="white"><h6>Umur: <%= year %> Tahun, <%= month %> Bulan</h6></font>
+        </div>
 
         <%= f.fields_for :devkid do |h| %>
           <% dev.each do |ent| %>
@@ -56,7 +60,10 @@
           <% end %>
         <% end %>
 
-        <h3> Maklumat Tambahan </h3>
+
+        <div class="col-sm-12" style="background-color:blue">
+          <font color="white"><h4>MAKLUMAT TAMBAHAN</h4></font>
+        </div>
 
         <%= f.fields_for :addfo do |h| %>
           <% $addfo.each do |ent| %>
@@ -68,12 +75,138 @@
               </div>
               <div class="row">
                 <div class="col-sm-8 col-12">
-                  <%= h.text_field :"#{ent}", class: "form-control", value: @pkid.addfo[ent], autofocus: true %>
+                  <% if ent == "Maklumat Adik Beradik" %>
+                    <%= h.text_area :"#{ent}", class: "form-control",placeholder: "Wajib Diisi", value: @pkid.addfo[ent], autofocus: true, required: true %>
+                  <% else %>
+                    <%= h.text_field :"#{ent}", class: "form-control", value: @pkid.addfo[ent], autofocus: true %>
+                  <% end %>
                 </div>
               </div>
             </div>
           <% end %>
         <% end %>
+
+        <div class="col-sm-12" style="background-color:blue">
+          <font color="white"><h4>MAKLUMAT KESIHATAN (Sila Isi Yang Berkaitan)</h4></font>
+        </div>
+
+        <%= f.fields_for :health do |h| %>
+          <% $health.each do |ent| %>
+            <div class="form-group"> <!-- name -->
+              <div class="row">
+                <div class="control-label col-sm-8">
+                  <strong><%= ent %></strong>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 col-12">
+                  <%= h.text_area :"#{ent}", class: "form-control",placeholder: "Contoh: 2 Tahun, Serius, Kurang Selera Makan", value: @pkid.health[ent], autofocus: true %>
+                  <font color="grey" size="2">Sila nyatakan umur, tahap keterukan dan perubahan yang dialami.</font>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="col-sm-12" style="background-color:blue">
+          <font color="white"><h4>SEJARAH KELAHIRAN ANAK</h4></font>
+        </div>
+
+        <%= f.fields_for :birth do |h| %>
+          <% $birth.each do |ent| %>
+            <div class="form-group"> <!-- name -->
+              <div class="row">
+                <div class="control-label col-sm-8">
+                  <strong><%= ent %></strong>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 col-12">
+                  <% if ent == "Tempoh Bersalin (Jam)" || ent == "Berapa Bulan"  %>
+                    <%= h.number_field :"#{ent}", class: "form-control", value: @pkid.birth[ent], autofocus: true, required: true %>
+                  <% elsif ent == "Cara Melahirkan:"%>
+                    <%= h.select :"#{ent}", options_for_select(["Normal", 
+                                                              "Bantuan Alat",
+                                                              "Songsang",
+                                                              "Caesarian"], 
+                                                              selected: @pkid.birth[ent]), 
+                        {include_blank: "SILA PILIH"}, {required: true} %>
+                  <% elsif ent == "Keadaan Luar Biasa Pada atau Sebaik Sahaja Melahirkan"%>
+                    <%= h.text_area :"#{ent}", class: "form-control",placeholder: "Nyatakan jika ada", value: @pkid.birth[ent], autofocus: true %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="col-sm-12" style="background-color:blue">
+          <font color="white"><h4>TAHAP PERKEMBANGAN ANAK</h4></font>
+        </div>
+
+        <%= f.fields_for :grow do |h| %>
+          <% $grow.each do |ent| %>
+            <div class="form-group"> <!-- name -->
+              <div class="row">
+                <div class="control-label col-sm-8">
+                  <strong><%= ent %></strong>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 col-12">
+                  <% if ent == "Masalah yang dialami di sekolah" || ent == "Penglibatan dalam Rekreasi dan Hobi"  %>
+                    <%= h.text_area :"#{ent}", class: "form-control",placeholder: "", value: @pkid.grow[ent], autofocus: true %>
+                  <% else %>
+                    <%= h.text_field :"#{ent}", class: "form-control",placeholder: "", value: @pkid.grow[ent], autofocus: true, required: true %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="col-sm-12" style="background-color:blue">
+          <font color="white"><h4>MAKLUMAT PERKEMBANGAN PERTUTURAN DAN FIZIKAL</h4></font>
+        </div>
+
+        <%= f.fields_for :physpch do |h| %>
+          <% $physpch.each do |ent| %>
+            <div class="form-group"> <!-- name -->
+              <div class="row">
+                <div class="control-label col-sm-8">
+                  <strong><%= ent %></strong>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 col-12">
+                  <% if ent == "Umur bagi perkataan pertama dan sila nyatakan" || ent == "Umur bagi ayat pertama yang dituturkan & sila nyatakan" || ent == "Umur bagi kombinasi 2-3 perkataan pertama & sila nyatakan"  %>
+                    <%= h.text_field :"#{ent}", class: "form-control",placeholder: "Contoh: 1 tahun 3 Bulan, nak susu", value: @pkid.physpch[ent],required: true, autofocus: true %>
+                  <% elsif ent == "Kadar perkembangan pertuturan" %>
+                    <%= h.select :"#{ent}", options_for_select(["Cepat", 
+                                                              "Sederhana",
+                                                              "Perlahan",
+                                                              "Caesarian"], 
+                                                              selected: @pkid.physpch[ent]), 
+                        {include_blank: "SILA PILIH"}, {required: true} %>
+                  <% elsif ent == "Mengangkat kepala sendiri 45 darjah" || ent == "Pusing badan kanan kiri sendiri" || ent == "Duduk sendiri tanpa bantuan" || ent == "Merangkak" || ent == "Berjalan" || ent == "Berlari" || ent == "Pernahkah membuat penilaian perkembangan anak sebelum ini?" %>
+                    <%= h.select :"#{ent}", options_for_select(["Ya", 
+                                                              "Tidak"], 
+                                                              selected: @pkid.physpch[ent]), 
+                        {include_blank: "SILA PILIH"}, {required: true} %>
+                  <% elsif ent == "Jika Ya, sila nyatakan maklumat dibawah:" %>
+                    <%= h.text_area :"#{ent}", class: "form-control",placeholder: "Nama Agensi, Tarikh dan Komen", value: @pkid.physpch[ent], autofocus: true %>
+                  <% else %>
+                    <%= h.text_area :"#{ent}", class: "form-control",placeholder: "", value: @pkid.physpch[ent], autofocus: true, required: true %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <!-- COMPLETE PKID-->
+
+        <%= f.hidden_field :ekid, value: params[:ekid] %>
 
         <div class="form-group">
           <div class="row">
@@ -86,6 +219,6 @@
 
     </div>
   </div>
-
+<br><br><br>
   
 

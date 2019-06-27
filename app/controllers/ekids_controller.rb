@@ -1,5 +1,15 @@
 class EkidsController < ApplicationController
 	
+	def index
+		@ekids = Ekid.all
+		render action: "index", layout: "eipblank"
+	end
+
+	def ekidconf
+		@ekid = Ekid.find(params[:id])
+		render action: "ekidconf", layout: "eipblank"
+	end
+
 	def new
 		@ekid = Ekid.new
 		render action: "new", layout: "eipblank"
@@ -23,7 +33,11 @@ class EkidsController < ApplicationController
 	def update
 		@ekid = Ekid.find(params[:id])
 		if @ekid.update(ekid_params)
-			redirect_to edit_ekid_path(@ekid)
+			if (pkid = @ekid.pkid).present?
+				redirect_to edit_pkid_path(pkid,ekid: @ekid.id)
+			else
+				redirect_to new_pkid_path(ekid: @ekid.id)
+			end
 		else
 			render @ekid.errors.full_messages
 			render :edit

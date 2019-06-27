@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   get '/perseindex', to: 'perses#index'
 
   #~~EKID
+  get '/ekidindex', to: 'ekids#index'
+  get '/ekidconf', to: 'ekids#ekidconf'
 
   #~~PKID
   post '/pkids/:id/update', to: 'pkids#update'
