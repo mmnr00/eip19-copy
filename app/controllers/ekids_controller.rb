@@ -7,6 +7,9 @@ class EkidsController < ApplicationController
 
 	def ekidconf
 		@ekid = Ekid.find(params[:id])
+		@diff = (Date.today.year*12+Date.today.month) - (@ekid.dob.year*12+@ekid.dob.month)
+		@year = @diff/12
+		@month = @diff - @year*12
 		render action: "ekidconf", layout: "eipblank"
 	end
 
@@ -63,7 +66,7 @@ class EkidsController < ApplicationController
 																:fworktp,
 																:mname,
 																:mage,
-																:mph,
+																:mmph,
 																:memail,
 																:medu,
 																:mwork,

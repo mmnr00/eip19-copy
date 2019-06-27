@@ -41,6 +41,23 @@ class PkidsController < ApplicationController
 		par[:addfo].each do |k,v|
 			@pkid.addfo[k]=v
 		end
+		par[:health].each do |k,v|
+			@pkid.health[k]=v
+		end
+		par[:birth].each do |k,v|
+			@pkid.birth[k]=v
+		end
+		par[:grow].each do |k,v|
+			@pkid.grow[k]=v
+		end
+		par[:physpch].each do |k,v|
+			@pkid.physpch[k]=v
+		end
+		par[:agr].each do |k,v|
+			@pkid.agr[k]=v
+		end
+		
+		
 		@pkid.ekid_id = par[:ekid]
 		@pkid.save
 		return @pkid

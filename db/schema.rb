@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_233955) do
+ActiveRecord::Schema.define(version: 2019_06_27_074358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 2019_06_25_233955) do
     t.string "sib"
     t.string "prbot"
     t.string "dun"
+    t.string "mmph"
   end
 
   create_table "expenses", force: :cascade do |t|
