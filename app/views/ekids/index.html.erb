@@ -1,8 +1,46 @@
-<h3> EKID INDEX </h3>
+<h3> PERMOHONAN SARINGAN PERCUMA</h3>
 
-<% @ekids.each do |e| %>
-  ID : <%= e.id %><br>
-  NAME : <%= e.name %><br>
-  IC : <%= e.ic %><br>
-  <br>
-<% end %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+
+    <thead>
+      <tr>
+        <th style="background-color:#99cc99">ID</th>
+        <th style="background-color:#99cc99">NAMA ANAK</th>
+        <th style="background-color:#99cc99">NO MYKID</th>
+        <th style="background-color:#99cc99">NO TELEFON</th>
+        <th style="background-color:#99cc99">TARIKH LAHIR</th>
+        <th style="background-color:#99cc99">UMUR</th>
+        <th style="background-color:#99cc99">TARIKH PERMOHONAN</th>
+        <th style="background-color:#99cc99">TINDAKAN</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @ekids.order('created_at DESC').each do |e| %>
+        <tr>
+          <td><%= e.id %></td>
+          <td><%= e.name %></td>
+          <td><%= e.ic %></td>
+          <td><%= e.mph %></td>
+          <td><%= e.dob.strftime('%d-%^b-%y') %></td>
+          <td>
+            <%
+              diff = (Date.today.year*12+Date.today.month) - (e.dob.year*12+e.dob.month)
+              year = diff/12
+              month = diff - year*12
+            %>
+            <%= "#{year} tahun, #{month} bulan" %>
+          </td>
+          <td><%= e.created_at.strftime('%d-%^b-%y') %></td>
+          <td>
+            <%= link_to "EDIT", edit_ekid_path(id: e.id), class: "btn btn-sm btn-warning" %>
+            <%= link_to "PROFILE", ekidconf_path(id: e.id), class: "btn btn-sm btn-info" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+

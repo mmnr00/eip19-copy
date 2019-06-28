@@ -103,7 +103,8 @@ class EkidsController < ApplicationController
 									ref:	@row["ref"],
 									refloc:	@row["refloc"],
 									prbtp:	@row["prbtp"],
-									prbot:	@row["prbot"])
+									prbot:	@row["prbot"],
+									created_at: @row.values[127])
 
       # Start P Kid
       pk = Pkid.new(ekid_id: ek.id)
@@ -137,12 +138,12 @@ class EkidsController < ApplicationController
       (121..125).each do |n|
       	pk.agr[@row.keys[n]] = @row.values[n]
       end
-
+      pk.created_at = @row.values[127]
       pk.save
       
     end
     flash[:success] = "CLASSROOMS ADDED"
-    #redirect_to ekidindex_path
+    redirect_to ekidindex_path
 	end
 
 	def upldekid_work
