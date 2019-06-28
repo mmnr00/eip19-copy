@@ -45,7 +45,7 @@ $duaempat =["Tidak berminat untuk bermain",
 $tigaenam = ["Tidak difahami oleh yang lain",
 						"Mempunyai masalah gagap yang menganggu kelancaran bertutur",
 						"Tidak boleh berbual",
-						"Tidak memahami arahan",
+						"Tidak faham arahan",
 						"Tidak bermain dengan anak-anak lain"]
 
 $addfo = ["Nama Pakar Kanak - Kanak (Jika Ada)","No Telefon Pakar","Maklumat Adik Beradik"]

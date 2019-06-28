@@ -1,0 +1,6 @@
+Choose the file that you had save and click 'Upload' <br><br>
+    <%= form_tag upldekid_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= hidden_field_tag :id, value: 1%>
+      <%= submit_tag "Upload" %>
+    <% end %>

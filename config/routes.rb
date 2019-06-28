@@ -56,6 +56,9 @@ Rails.application.routes.draw do
   #~~EKID
   get '/ekidindex', to: 'ekids#index'
   get '/ekidconf', to: 'ekids#ekidconf'
+  get '/ekidpdf', to: 'ekids#ekidpdf'
+  get '/xlsekid', to: 'ekids#xlsekid'
+  post '/upldekid', to: 'ekids#upldekid'
 
   #~~PKID
   post '/pkids/:id/update', to: 'pkids#update'
