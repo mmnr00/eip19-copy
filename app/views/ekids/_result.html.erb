@@ -1,0 +1,36 @@
+<%= render partial: "shared/flash_messages", flash: flash %>
+<% if @ekid.present? %>
+  <% @ekid.each do |prs| %>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="frontside">
+        <div class="card">
+          <div class="card-body text-center">
+            <h6 class="card-title"><%= prs.name %></h6>
+            <p class="card-text">
+              <%= prs.ic %>
+            </p>
+            <%= link_to edit_ekid_path(id: prs.id), class:"btn btn-sm btn-warning" do %>
+              <i class="fa fa-edit"></i> UBAH
+            <% end %>
+            <%= link_to ekidconf_path(id: prs.id), class:"btn btn-sm btn-info" do %>
+              <i class="fa fa-eye"></i> PROFIL
+            <% end %>
+              
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% elsif @ekid.blank? && params[:ic].present? %>
+
+  <%= link_to new_ekid_path(ic: params[:ic]), class:"btn btn-sm btn-success" do %>
+    <i class="fa fa-edit"></i> KLIK DISINI UNTUK TERUSKAN PENDAFTARAN
+  <% end %>
+<% end %> 
+
+  
+
+
+
+

@@ -1,4 +1,20 @@
 class EkidsController < ApplicationController
+
+	def schekid
+		render action: "schekid", layout: "eipblank"
+	end
+
+	def findekid
+		if params[:ic].blank?
+			flash.now[:danger] = "SILA MASUKKAN INPUT"
+		else
+	    @ekid = Ekid.where(ic: params[:ic])
+	    flash.now[:danger] = "TIADA DALAM REKOD" unless @ekid.present?
+	  end
+  	respond_to do |format|
+		  format.js { render partial: 'ekids/result' } 
+		end 
+	end
 	
 	def index
 		@ekids = Ekid.all

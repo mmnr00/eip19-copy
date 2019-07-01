@@ -27,7 +27,14 @@
         </div>
         <div class="row">
           <div class="col-sm-8 col-12">
-            <%= f.text_field :ic, class: "form-control", placeholder: "cth: 141201035647 (tiada dash)", autofocus: true, required: true %>
+            <% 
+              if @ekid.ic.present?
+                icval = @ekid.ic
+              else
+                icval = params[:ic]
+              end 
+            %>
+            <%= f.text_field :ic, class: "form-control", placeholder: "cth: 141201035647 (tiada dash)", autofocus: true, required: true, value: icval %>
           </div>
         </div>
       </div>
