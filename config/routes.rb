@@ -61,6 +61,8 @@ Rails.application.routes.draw do
   post '/upldekid', to: 'ekids#upldekid'
   get '/schekid', to: 'ekids#schekid'
   get '/findekid', to: 'ekids#findekid'
+  get '/ekidlistxls', to: 'ekids#ekidlistxls'
+  
 
   #~~PKID
   post '/pkids/:id/update', to: 'pkids#update'

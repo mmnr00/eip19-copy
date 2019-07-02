@@ -1,5 +1,15 @@
 class EkidsController < ApplicationController
 
+	def ekidlistxls
+		@ekids = Ekid.all.order('created_at ASC')
+		respond_to do |format|
+      #format.html
+      format.xlsx{
+                  response.headers['Content-Disposition'] = 'attachment; filename="Name List.xlsx"'
+      }
+    end
+	end
+
 	def schekid
 		render action: "schekid", layout: "eipblank"
 	end
