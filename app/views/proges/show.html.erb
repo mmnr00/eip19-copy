@@ -1,33 +1,69 @@
-<h3>SHOW PROGE</h3>
-
-<%= @proge.name %><br>
-<%= @proge.date %><br>
-<%= @proge.venue %><br>
-<%= @proge.start %><br>
-<%= @proge.end %><br>
+<h3><%= @proge.name %></h3>
+<br>
 
 <% if params[:tp] == "reg" || params[:tp] == "summ" %>
-  <h5> TOTAL REG: <%= (prg = Perproge.where(proge_id: @proge.id).where.not(stat: "ATT")).count %> </h5>
-  REGISTRATIONS: <br>
-  <ol>
-    <% prg.each do |proge| %>
-      <li><%= "#{proge.perse.name} (#{proge.perse.ic})" %></li>
-    <% end %>
-  </ol>
+  <h5> TOTAL REGISTRATION: <%= (prg = Perproge.where(proge_id: @proge.id).where.not(stat: "ATT")).count %> </h5>
   <%= link_to namelistxls_path(format: :xlsx, tp: "reg", proge: @proge.id), class: "btn btn-sm btn-info active" do %>
     <i class="fa fa-file-excel"></i> REGISTRATION LIST
   <% end %>
+  <div class="table-responsive">
+  <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th style="background-color:#99cc99">NAME</th>
+        <th style="background-color:#99cc99">NO IC</th>
+        <th style="background-color:#99cc99">PHONE NO</th>
+        <th style="background-color:#99cc99">CONFIRMATION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% prg.each do |proge| %>
+        <tr>
+          <td><%= proge.perse.name %></td>
+          <td><%= proge.perse.ic %></td>
+          <td><%= proge.perse.ph %></td>
+          <td>
+            <%= link_to attconf_path(id: proge.id), class: "btn btn-sm btn-primary active", target: "_blank" do %>
+              <i class="fa fa-eye"></i> VIEW
+            <% end %>
+          </td>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+  </div>
 <% end %>
 
 <% if params[:tp] == "att" || params[:tp] == "summ" %>
-  <h5> TOTAL ATT: <%= (prg = Perproge.where(proge_id: @proge.id).where.not(stat: "REG")).count %> </h5>
-  ATTENDANCE: <br>
-  <ol>
-    <% prg.each do |proge| %>
-      <li><%= "#{proge.perse.name} (#{proge.perse.ic})" %></li>
-    <% end %>
-  </ol>
+  <h5> TOTAL ATTENDANCE: <%= (prg = Perproge.where(proge_id: @proge.id).where.not(stat: "REG")).count %> </h5>
   <%= link_to namelistxls_path(format: :xlsx, tp: "att", proge: @proge.id), class: "btn btn-sm btn-info active" do %>
     <i class="fa fa-file-excel"></i> ATTENDANCE LIST
   <% end %>
+  <div class="table-responsive">
+  <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th style="background-color:#99cc99">NAME</th>
+        <th style="background-color:#99cc99">NO IC</th>
+        <th style="background-color:#99cc99">PHONE NO</th>
+        <th style="background-color:#99cc99">CONFIRMATION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% prg.each do |proge| %>
+        <tr>
+          <td><%= proge.perse.name %></td>
+          <td><%= proge.perse.ic %></td>
+          <td><%= proge.perse.ph %></td>
+          <td>
+            <%= link_to attconf_path(id: proge.id), class: "btn btn-sm btn-primary active", target: "_blank" do %>
+              <i class="fa fa-eye"></i> VIEW
+            <% end %>
+          </td>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+  </div>
 <% end %>
+

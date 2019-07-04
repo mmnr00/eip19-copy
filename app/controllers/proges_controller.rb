@@ -95,6 +95,7 @@ class ProgesController < ApplicationController
 			@perproge.stat = "BOTH"
 			@perproge.save
 		end
+		flash[:success] = "Thank you. Your attendance has been confirmed"
 		redirect_to attconf_path(id: @perproge.id)
 	end
 
