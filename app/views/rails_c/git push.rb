@@ -15,10 +15,11 @@ git diff HEAD 1wip
 git checkout 1wip
 
 heroku maintenance:on --app eip19-prod
-#dropdb eip-bcup -U MustakhimRehan
-#heroku pg:pull DATABASE_URL eip-bcup --app eip19-prod
+dropdb eip-bcup -U MustakhimRehan
+heroku pg:pull DATABASE_URL eip-bcup --app eip19-prod
+
 git push prod-heroku prod_e:master
-heroku run rake db:migrate --app eip19-prod
+#heroku run rake db:migrate --app eip19-prod
 heroku restart --app eip19-prod
 heroku maintenance:off --app eip19-prod
 
