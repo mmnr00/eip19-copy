@@ -1,183 +1,53 @@
+<div class="container">
+  <div class="row">
 
-<% if !@spv %>
-  <%= link_to "REGISTER NEW CENTER", "#{root_url}taskas/new?plan=PAY+PER+USE&reg=PTNS" , class: "btn btn-xs btn-primary active"%>
-<% end %>
-
-</br></br>
-<% if params[:kcadm] == "MUS123" %>
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered" width="100%" cellspacing="0">
-      <thead>
-        <tr>
-          <th style="background-color:#d8b2d8"> ID </th>
-          <th style="background-color:#d8b2d8"> NAME </th>
-          <th style="background-color:#d8b2d8"> BILLING </th>
-          <th style="background-color:#d8b2d8"> DATE </th>
-          <th style="background-color:#d8b2d8"> SUPERVISOR </th>
-          <th style="background-color:#d8b2d8"> PHONE </th>
-          <th style="background-color:#d8b2d8"> SUBDOMAIN </th>
-          <th style="background-color:#d8b2d8"> BANK </th>
-          <th style="background-color:#d8b2d8"> ACC NAME </th>
-          <th style="background-color:#d8b2d8"> ACC NO </th>
-          <th style="background-color:#d8b2d8"> SSM </th>
-          <th style="background-color:#d8b2d8"> EMAIL </th>
-          <th style="background-color:#d8b2d8"> BILLPLZ </th>
-          <th style="background-color:#d8b2d8"> BILLPLZ 2 </th>
-          <th style="background-color:#d8b2d8"> ACTION </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% 
-          tot_kid = 0 
-          tot_pay = 0.00
-        %>
-        <% @admin_taska.order('created_at DESC').each do |tsk|%>
-          <%
-            num_kid = tsk.kids.where.not(classroom_id: nil).count
-            
-            unpaid_plan = tsk.payments.where(name: "TASKA PLAN", paid: false).present?
-            if num_kid > 0 && !unpaid_plan 
-              color = "#cce5cc"
-              if tsk.plan == "PAY PER USE"
-                tsk_pay = num_kid * 2.8 * tsk.discount
-              else
-                tsk_pay = $package_price[tsk.plan] * tsk.discount
-              end
-              tot_pay += tsk_pay
-              tot_kid += num_kid #only active taska
-            else
-              color = nil 
-            end
-          %>
-          <tr style="background-color:<%= color %>">
-            <td><%= tsk.id %></td>
-            <td><%= tsk.name %></td>
-            <td>
-              <%= "#{tsk.plan} (#{$package_child[tsk.plan]})"  %><br>
-              KIDS NO : <%= num_kid %><br>
-              BILL: RM <%= tsk_pay %><br>
-              <%= "#{(tsk.expire.to_date - Time.now.to_date).to_i} DAYS" %><br>
-              <%= link_to "CREATE BILL", bill_taska1_monthly_path(pwd:"kidcare@124",id:tsk.id,mth:"",yr:""), class: "btn btn-sm btn-primary", target: "_blank" %>
-            </td>
-            <td><%= tsk.created_at.strftime("%d-%m-%y") %></td>
-            <td><%= tsk.supervisor %></td>
-            <td><%= "#{tsk.phone_1}-#{tsk.phone_2}" %></td>
-            <td><%= tsk.subdomain %></td>
-            <td><%= tsk.bank_name %></td>
-            <td><%= tsk.acc_name %></td>
-            <td><%= tsk.acc_no %></td>
-            <td><%= tsk.ssm_no %></td>
-            <td><%= tsk.email %></td>
-            <td><%= tsk.collection_id %></td>
-            <td><%= tsk.collection_id2 %></td>
-            <td>
-              <%= link_to "VIEW", taska_path(tsk), class: "btn btn-sm btn-primary", target: "_blank" %>
-              <%= link_to "EDIT", edit_taska_path(tsk, plan: tsk.plan), class: "btn btn-sm btn-success", target: "_blank" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% else %>
-  <% if @admin_taska.count > 0 %>
-    <div class="container">
-    <div class="row">
-    <% @admin_taska.order('name ASC').each do |taska|%>
-      <% status = (taska.expire.to_date - $my_time.to_date).to_i %>
-      <% trial = !(taska.payments.where(name: "TASKA PLAN").count > 1) %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="frontside">
-          <div class="card">
-            <% if status >= 0 %>
-              <% if status >= $expire %>
-                <div class="col-sm-12" style="padding-top: 10px; background-color:#66b266">
-                  <h6 align="center"><font color="white">ACTIVE</font></h6>
-                </div>
-              <% else %>
-                <div class="col-sm-12" style="padding-top: 10px; background-color:#E0A025">
-                  <h6 align="center"><font color="white">EXPIRING IN <%= status %> DAYS</font></h6>
-                </div>
-              <% end %>
-            <% else %>
-              <div class="col-sm-12" style="padding-top: 10px; background-color:#F2635F">
-                  <h6 align="center"><font color="white">EXPIRED</font></h6>
-              </div>
-            <% end %>
-            <div class='col-lg-12 well'><br>
-              <div class="row">
-                <div class="pull-right">
-                  <% image = taska.fotos.where(foto_name: "CENTER LOGO").first %>
-                  <% if image.present? && image.picture.present? %>
-                    <%= image_tag(image.picture.url, size: "50x50") %>
-                  <% end %>
-                </div>&nbsp&nbsp&nbsp&nbsp
-                <h6 align="center"><%= taska.name %></h6>
-                <br>
-
-              </div><br>
-            </div>
-            <div class='col-lg-12'><br>
-              <%= taska.address_1 %><br>
-              <%= taska.address_2 %><br>
-              <%= taska.city %><br>
-              <%= taska.postcode %>&nbsp<%= taska.states %><br><br> 
-            </div>
-            <!-- ACCESS DASHBOARD -->
-            <% if status >= 0 %>
-              <div class="col-sm-12" style="padding-top: 10px; background-color:#0093D1">
-                <%= link_to taska_path(taska) do %>
-                  <h5 align="center"><font color="white">GO TO DASHBOARD</font></h5>
-                <% end %>
-              </div>
-            <% else %>
-              <div class="col-sm-12" style="padding-top: 10px; background-color:#F2635F">
-                <%= link_to taska_path(taska) do %>
-                  <h5 align="center"><font color="white">GO TO DASHBOARD</font></h5>
-                <% end %>
-              </div>
-            <% end %>
-
-            <!-- ACTIVATE BILLS -->
-            <% unpaid = taska.payments.where(name: "TASKA PLAN").where(paid: false) %>
-            <% if trial %>
-              <% if unpaid.present? %>
-                <div class="col-sm-12" style="padding-top: 10px; background-color:green">
-                  <%= link_to view_invoice_taska_path(taska: taska, payment: unpaid.first) do %>
-                    <h6 align="center"><font color="white">ACTIVATE PLAN</font></h6>
-                  <% end %>
-                </div>
-              <% end %>
-            <% else %>
-              <% if unpaid.present? %>
-                <div class="col-sm-12" style="padding-top: 10px; background-color:#834C24">
-                  <%= link_to view_invoice_taska_path(taska: taska, payment: unpaid.first) do %>
-                    <h6 align="center"><font color="white">RENEW PLAN</font></h6>
-                  <% end %>
-                </div>
-              <% end %>
-            <% end %>
-            
-
-          </div>
-        </div>
+    <div class="col-md-3">
+      <div class="card-counter primary">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers"><%= @ekids.where(stat: "NEW").count %></span>
+        <span class="count-name">
+          <a href="/ekidindex?stato=NEW", style="color:#fff">New Registrations</a>
+          <br><font style="color:#fff">TOTAL:</font>
+          <br><font style="color:#fff">LIMIT:</font>
+        </span>
       </div>
-    
-    <% end %> 
     </div>
+
+    <div class="col-md-3">
+      <div class="card-counter danger">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers"><%= @ekids.where(stat: "REJECT").count %></span>
+        <span class="count-name">
+          <a href="/ekidindex?stato=REJECT", style="color:#fff">Disqualified/Rejected</a>
+          <br><font style="color:#fff">TOTAL:</font>
+          <br><font style="color:#fff">LIMIT:</font>
+        </span>
+      </div>
     </div>
-  <!-- TASKA EXPIRY-->        
 
-  <% else %>
+    <div class="col-md-3">
+      <div class="card-counter success">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers"><%= @ekids.where(stat: "PENDING").count %></span>
+        <span class="count-name">
+          <a href="/ekidindex?stato=PENDING", style="color:#fff">Pending</a>
+          <br><font style="color:#fff">TOTAL:</font>
+          <br><font style="color:#fff">LIMIT:</font>
+        </span>
+      </div>
+    </div>
 
-    <p> No centres created. Please create one to proceed <p>
+    <div class="col-md-3">
+      <div class="card-counter info">
+        <i class="fa fa-code-fork"></i>
+        <span class="count-numbers"><%= @ekids.where(stat: "CONFIRM").count %></span>
+        <span class="count-name">
+          <a href="/ekidindex?stato=CONFIRM", style="color:#fff">Next Session</a>
+          <br><font style="color:#fff">TOTAL:</font>
+          <br><font style="color:#fff">LIMIT:</font>
+        </span>
+      </div>
+    </div>
 
-  <% end %>
-<% end %>
-<% if params[:kcadm] == "MUS123" %>
-TOTAL NO OF KIDS = <%= tot_kid %><br>
-EXPECTED PAYMENT = RM <%= tot_pay %>
-<% end %>
-
-
-
+  </div>
+</div>

@@ -7,6 +7,8 @@
 #   )
 # end
 
+$admloc = {1=>["srd","sha"],2=>"sha",3=>"srd"}
+
 $newborn = ["Bayi Longlai Atau Kejang",
 						"Menangis Tanpa Henti",
 						"Melengkungkan Belakangnya",

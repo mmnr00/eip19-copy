@@ -16,7 +16,7 @@ git checkout 1wip
 
 heroku maintenance:on --app eip19-prod
 dropdb eip-bcup -U MustakhimRehan
-heroku pg:pull DATABASE_URL eip-bcup --app eip19-prod
+heroku pg:pull DATABASE_URL eip-bcup1 --app eip19-prod
 
 git push prod-heroku prod_e:master
 #heroku run rake db:migrate --app eip19-prod

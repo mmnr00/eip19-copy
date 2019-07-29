@@ -1,4 +1,22 @@
 class EkidsController < ApplicationController
+	before_action :authenticate_admin!, only: [:index]
+
+	def ekidchg
+		ekid = Ekid.find(params[:id])
+		ekid.stat = params[:stat]
+		if params[:loc] == "Shah Alam"
+			loc = "sha"
+		elsif params[:loc] == "Serdang"
+			loc = "srd"
+		end
+		ekid.admloc = loc
+		if ekid.save
+			flash[:success] = "YEAY"
+		else
+			flash[:danger] = "DOWN"
+		end
+		redirect_to ekidindex_path(stato: params[:stato])
+	end
 
 	def ekidlistxls
 		@ekids = Ekid.all.order('created_at ASC')
@@ -27,8 +45,9 @@ class EkidsController < ApplicationController
 	end
 	
 	def index
-		@ekids = Ekid.all
-		render action: "index", layout: "eipblank"
+		@admin = current_admin
+		@ekids = Ekid.where(admloc: $admloc[@admin.id],stat: params[:stato])
+		#render action: "index", layout: "eipblank"
 	end
 
 	def ekidconf
@@ -64,6 +83,12 @@ class EkidsController < ApplicationController
 
 	def create
 		@ekid = Ekid.new(ekid_params)
+		if @ekid.prefloc == "Shah Alam"
+			@ekid.admloc = "sha"
+		elsif @ekid.prefloc == "Serdang"
+			@ekid.admloc = "srd"
+		end
+		@ekid.stat = "new"
 		if @ekid.save 
 			redirect_to new_pkid_path(ekid: @ekid.id)
 		else
@@ -80,6 +105,12 @@ class EkidsController < ApplicationController
 	def update
 		@ekid = Ekid.find(params[:id])
 		if @ekid.update(ekid_params)
+			if @ekid.prefloc == "Shah Alam"
+				@ekid.admloc = "sha"
+			elsif @ekid.prefloc == "Serdang"
+				@ekid.admloc = "srd"
+			end
+			@ekid.save
 			if (pkid = @ekid.pkid).present?
 				redirect_to edit_pkid_path(pkid,ekid: @ekid.id)
 			else
@@ -243,7 +274,8 @@ class EkidsController < ApplicationController
 																:ref,
 																:refloc,
 																:prbtp,
-																:prbot)
+																:prbot,
+																:prefloc)
 	end
 
 

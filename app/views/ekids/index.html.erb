@@ -1,5 +1,40 @@
-<h3> PERMOHONAN SARINGAN PERCUMA</h3>
+<%
+szn = "sm"
+coln = "2"
+szr = "sm"
+colr = "2"
+szp = "sm"
+colp = "2"
+szc = "sm"
+colc = "2"
+ekidis = Ekid.where(admloc: $admloc[@admin.id])
 
+if params[:stato] == "NEW"
+  szn = "lg"
+  coln = "5"
+elsif params[:stato] == "REJECT"
+  szr = "lg"
+  colr = "5"
+elsif params[:stato] == "PENDING"
+  szp = "lg"
+  colp = "5"
+elsif params[:stato] == "CONFIRM"
+  szc = "lg"
+  colc = "5"
+end
+
+%>
+
+<%= link_to "NEW (#{ekidis.where(stat: "NEW").count})", ekidindex_path(stato: "NEW"), class: "btn btn-#{szn} btn-primary col-md-#{coln}" %>
+<%= link_to "REJECTED (#{ekidis.where(stat: "REJECT").count})", ekidindex_path(stato: "REJECT"), class: "btn btn-#{szr} btn-danger col-md-#{colr}" %>
+<%= link_to "PENDING (#{ekidis.where(stat: "PENDING").count})", ekidindex_path(stato: "PENDING"), class: "btn btn-#{szp} btn-success col-md-#{colp}" %>
+<%= link_to "CONFIRM (#{ekidis.where(stat: "CONFIRM").count})", ekidindex_path(stato: "CONFIRM"), class: "btn btn-#{szc} btn-info col-md-#{colc}" %>
+
+
+
+
+
+<br><br>
 <%= link_to ekidlistxls_path(format: :xlsx), class: "btn btn-sm btn-info active" do %>
     <i class="fa fa-file-excel"></i> ATTENDANCE LIST
   <% end %>
@@ -10,31 +45,53 @@
     <thead>
       <tr>
         <th style="background-color:#99cc99">ID</th>
-        <th style="background-color:#99cc99">NAMA ANAK</th>
-        <th style="background-color:#99cc99">NO MYKID</th>
+        <th style="background-color:#99cc99">NAMA ANAK & MYKID</th>
         <th style="background-color:#99cc99">NO TELEFON</th>
-        <th style="background-color:#99cc99">TARIKH LAHIR</th>
-        <th style="background-color:#99cc99">UMUR</th>
+        <th style="background-color:#99cc99">TARIKH LAHIR & UMUR</th>
         <th style="background-color:#99cc99">TARIKH PERMOHONAN</th>
         <th style="background-color:#99cc99">TINDAKAN</th>
-      </tr>
     </thead>
 
     <tbody>
-      <% @ekids.order('created_at DESC').each do |e| %>
+      <% @ekids.order('created_at ASC').each do |e| %>
         <tr>
           <td><%= e.id %></td>
-          <td><%= e.name %></td>
-          <td><%= e.ic %></td>
+          <td>
+            <%= "#{e.name} (#{e.ic})" %><br><br>
+
+            <%= form_tag ekidchg_path, method: :get do %>
+              <div class="row">
+                <div class="col-md-4">
+                  <%= select_tag :stat, options_for_select(
+                      ["NEW","REJECT","PENDING","CONFIRM"], selected: e.stat),
+                      class: "form-control search-box input-lg"%>
+                      <b>CATEGORY</b>
+                  <%= hidden_field_tag :id, e.id %>
+                  <%= hidden_field_tag :stato, params[:stato] %>
+                </div>
+                <div class="col-md-4">
+                  <%= select_tag :loc, options_for_select(
+                      ["Shah Alam","Serdang"], selected: e.prefloc),
+                      class: "form-control search-box input-lg"%>
+                      <b>LOCATION</b>
+                </div>
+                <div class="col-md-4">
+                  <%= button_tag(type: :submit, class: "btn btn-sm btn-primary active", id: "submit_expense") do %>
+                    <i class="fa fa-sync"></i> UPDATE
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+              
+          </td>
           <td><%= e.mph %></td>
-          <td><%= e.dob.strftime('%d-%^b-%y') %></td>
           <td>
             <%
               diff = (Date.today.year*12+Date.today.month) - (e.dob.year*12+e.dob.month)
               year = diff/12
               month = diff - year*12
             %>
-            <%= "#{year} tahun, #{month} bulan" %>
+            <%= "#{e.dob.strftime('%d-%^b-%y')} (#{year} thn, #{month} bln)" %>
           </td>
           <td><%= e.created_at.strftime('%d-%^b-%y') %></td>
           <td>

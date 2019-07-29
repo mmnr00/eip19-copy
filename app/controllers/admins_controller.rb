@@ -3,6 +3,20 @@ class AdminsController < ApplicationController
 
 	def index
 		@admin = current_admin
+		@ekids = Ekid.where(admloc: $admloc[@admin.id])
+		# if @admin.id == 1
+		# 	@ekids = Ekid.all
+		# elsif @admin.id == 2
+		# 	@ekids = Ekid.where(admloc: "sha")
+		# elsif @admin.id == 3
+		# 	@ekids = Ekid.where(admloc: "srd")
+		# end
+		
+		#render action: "index", layout: "eipblank"
+	end
+
+	def indexkcr
+		@admin = current_admin
 		@spv = @admin.spv
 		if Rails.env.production?
 			@admin_taska = current_admin.taskas.where.not(id: [5, 9, 1, 44, 45, 4, 48, 75])
@@ -18,23 +32,6 @@ class AdminsController < ApplicationController
 
 	end
 
-	def index_old
-		@admin = current_admin
-		@admin_taska = current_admin.taskas
-		@admin_taska.each do |taska|
-			@taska_id = taska.id
-			@taska_name = taska.name
-		end
-		#if @admin_taska.count == 1 ; redirect_to taska_path(@taska_id) end
-		#render action: "index", layout: "dsb-admin-overview"
-
-	end
-
-	def webarch
-	end
-
-	def webarchv2
-	end
-
+	
 	
 end
