@@ -1,0 +1,62 @@
+<% 
+  if actn == "new"
+    act= "create"
+    btn = "CREATE"
+  elsif actn == "edit"
+    act= "update"
+    btn= "UPDATE"
+  end
+  if @age <= 4
+    dev = $newborn
+  elsif @age <= 8
+    dev = $empat
+  elsif @age <= 12
+    dev = $lapan
+  elsif @age <= 24
+    dev = $duabelas
+  elsif @age <= 36
+    dev = $duaempat
+  elsif @age > 36
+    dev = $tigaenam
+  end
+%>
+
+<%= link_to edit_ekid_path(@ekid), class: "btn btn-sm btn-warning" do%>
+  <i class="fa fa-arrow-circle-left"></i> KEMBALI KE PROFIL ANAK
+<% end %><br><br>
+
+<div class='row'>
+  <div class='col-lg-8 col-12'>
+    <%= form_for(:pkid,:url => {:controller => "pkids", :action => "#{act}"}, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
+        
+        <div class="col-sm-12" style="background-color:blue">
+          <font color="white"><h4>MAKLUMAT PERKEMBANGAN <%= @ekid.name.upcase %></h4></font>
+        </div>
+        <%
+          year = @age/12
+          month = @age - year*12
+        %>
+        <div class="col-sm-12" style="background-color:green">
+          <font color="white"><h6>Umur: <%= year %> Tahun, <%= month %> Bulan</h6></font>
+        </div>
+
+        
+
+        <!-- COMPLETE PKID-->
+
+        <%= f.hidden_field :ekid, value: params[:ekid] %>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-offset-2 col-sm-10 col-4">
+              <%= f.submit :"HANTAR",  class: 'btn btn-primary btn-lg' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+<br><br><br>
+  
+

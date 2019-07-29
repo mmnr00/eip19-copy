@@ -48,7 +48,7 @@ end
         <th style="background-color:#99cc99">NAMA ANAK & MYKID</th>
         <th style="background-color:#99cc99">NO TELEFON</th>
         <th style="background-color:#99cc99">TARIKH LAHIR & UMUR</th>
-        <th style="background-color:#99cc99">TARIKH PERMOHONAN</th>
+        <th style="background-color:#99cc99" colspan="4">MAKLUMAT LAIN</th>
         <th style="background-color:#99cc99">TINDAKAN</th>
     </thead>
 
@@ -93,7 +93,14 @@ end
             %>
             <%= "#{e.dob.strftime('%d-%^b-%y')} (#{year} thn, #{month} bln)" %>
           </td>
-          <td><%= e.created_at.strftime('%d-%^b-%y') %></td>
+          <td colspan="4">
+            <b>DATE:</b>&nbsp&nbsp<%= e.created_at.strftime('%d-%^b-%y') %><br><br>
+            <b>INCOME (RM):</b>&nbsp&nbsp<%= e.pinc %><br><br>
+            <b>NO OF SIBLINGS: </b>&nbsp&nbsp<%= e.sib %><br><br>
+            <b>REFER BEFORE ?: </b>&nbsp&nbsp<%= e.ref %><br><br>
+            <b>REFER LOCATION: </b>&nbsp&nbsp<%= e.refloc %><br><br>
+              
+          </td>
           <td>
             <%= link_to "EDIT", edit_ekid_path(id: e.id), class: "btn btn-sm btn-warning" %>
             <%= link_to "PROFILE", ekidconf_path(id: e.id), class: "btn btn-sm btn-info" %>
