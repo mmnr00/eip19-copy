@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_033353) do
+ActiveRecord::Schema.define(version: 2019_07_30_124051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2019_07_29_033353) do
     t.string "stat"
     t.string "prefloc"
     t.string "admloc"
+    t.integer "sce_id"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -472,6 +473,15 @@ ActiveRecord::Schema.define(version: 2019_07_29_033353) do
     t.string "wkns"
     t.string "opp"
     t.string "thr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sces", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.string "venue"
+    t.string "loc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
