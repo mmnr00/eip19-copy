@@ -22,6 +22,34 @@
               <b>STATUS : </b>&nbsp&nbsp <%= prs.stat %><br>
               <b>LOCATION : </b>&nbsp&nbsp <%= prs.prefloc %><br>
               <br>
+            <% elsif params[:sce].present? %> <!-- FOR SCREENING SEARCH -->
+            <%
+                diff = (Date.today.year*12+Date.today.month) - (prs.dob.year*12+prs.dob.month)
+                year = diff/12
+                month = diff - year*12
+              %>
+              <b>PHONE NO : </b>&nbsp&nbsp <%= prs.mph %><br>
+              <b>AGE : </b>&nbsp&nbsp <%= "#{year} Years, #{month} Months" %><br>
+              <b>INCOME : </b>&nbsp&nbsp <%= prs.pinc %><br>
+              <b>SIBLINGS : </b>&nbsp&nbsp <%= prs.sib %><br>
+              <b>STATUS : </b>&nbsp&nbsp <%= prs.stat %><br>
+              <b>LOCATION : </b>&nbsp&nbsp <%= prs.prefloc %><br>
+              <br>
+            <%
+              if (prs.stat == "CONFIRM") && (prs.admloc == $admloc[@admin.id]) #&& (!prs.sce_id == params[:sce].to_i)
+                butn = "success"
+                coftx = "CONFIRM ATTENDANCE"
+              elsif prs.sce_id == params[:sce].to_i
+                butn = "info"
+                coftx = "ALREADY REGISTERED"
+              else
+                butn = "danger"
+                coftx = "CHILDREN NOT IN THE FINAL LIST. CONFIRM ATTENDANCE?"
+              end
+            %>
+              <%= link_to confsce_path(id: params[:sce], ekid: prs.id), class:"btn btn-sm btn-#{butn}" do %>
+                <i class="fa fa-edit"></i> <%= "#{coftx}"%>
+              <% end %>
             <% else %> <!-- FOR PARENT SEARCH -->
               <%= link_to edit_ekid_path(id: prs.id), class:"btn btn-sm btn-warning" do %>
                 <i class="fa fa-edit"></i> UBAH
@@ -38,7 +66,7 @@
       </div>
     </div>
   <% end %>
-<% elsif @ekid.blank? && params[:ic].present? && !params[:adm].present? %>
+<% elsif @ekid.blank? && params[:ic].present? && !params[:adm].present? && !params[:sce].present? %>
 
   <%= link_to new_ekid_path(ic: params[:ic]), class:"btn btn-sm btn-success" do %>
     <i class="fa fa-edit"></i> KLIK DISINI UNTUK TERUSKAN PENDAFTARAN

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :proges, only:[:new,:show,:create, :destroy, :update, :edit]
   resources :ekids, only:[:new,:show,:create, :destroy, :update, :edit]
   resources :pkids, only:[:new,:show,:create, :destroy, :edit]
+  resources :sces, only:[:new,:show,:create, :destroy, :update, :edit]
   #resources :teachers, only:[:show]
   #resources :taska_teachers, only:[:create,:destroy]
   devise_for :parents
@@ -67,6 +68,10 @@ Rails.application.routes.draw do
 
   #~~PKID
   post '/pkids/:id/update', to: 'pkids#update'
+
+  #~~SCE
+  get '/confsce', to: 'sces#confsce'
+  get '/rmvsce', to: 'sces#rmvsce'
 
 
 

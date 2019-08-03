@@ -22,7 +22,7 @@ wb.styles do |style|
                                   bg_color: "cce5cc",
                                   i: true)       
   wb.add_worksheet(name: "NAMELIST") do |sheet|
-    sheet.add_row ["","SENARAI PEMOHON SARINGAN PERCUMA"]
+    sheet.add_row ["","SENARAI NAMA SARINGAN PERCUMA"]
     sheet.add_row [""]
     sheet.add_row ["NO",
                   "NAMA",

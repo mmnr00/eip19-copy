@@ -19,7 +19,12 @@ class EkidsController < ApplicationController
 	end
 
 	def ekidlistxls
-		@ekids = Ekid.all.order('created_at ASC')
+		@admin = current_admin
+		if params[:sce].present?
+			@ekids = Ekid.where(sce_id: params[:sce]).order('name ASC')
+		else
+			@ekids = Ekid.where(admloc: $admloc[@admin.id],stat: params[:stato]).order('name ASC')
+		end
 		respond_to do |format|
       #format.html
       format.xlsx{
@@ -33,10 +38,15 @@ class EkidsController < ApplicationController
 	end
 
 	def findekid
+		@admin = current_admin
 		if params[:ic].blank?
 			flash.now[:danger] = "SILA MASUKKAN INPUT"
 		else
-	    @ekid = Ekid.where(ic: params[:ic])
+			if params[:sce].present?
+				@ekid = Ekid.where(ic: params[:ic])
+			else
+	    	@ekid = Ekid.where(ic: params[:ic])
+	  	end
 	    flash.now[:danger] = "TIADA DALAM REKOD" unless @ekid.present?
 	  end
   	respond_to do |format|
