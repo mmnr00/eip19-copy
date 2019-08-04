@@ -1,6 +1,28 @@
 class EkidsController < ApplicationController
 	before_action :authenticate_admin!, only: [:index]
 
+	def ekidsms
+		@ekids = Ekid.where(id: params[:ekidid])
+		@ekids.each do |ek|
+			@client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_KEY"])
+			@client.messages.create(
+				to: "+60#{ek.mph}", 
+				from: ENV["TWILIO_PHONE_NO"], 
+				body: "\n\n MBI Selangor Incorporated 
+				\n Terima kasih kerana mendaftar untuk Program Saringan Percuma anjuran MBI Selangor (INC).
+				\n Tahniah! #{ek.name} telah disenaraipendek untuk proses pemilihan seterusnya. Untuk makluman, program seterusnya akan diadakan pada 14hb July 2019.
+				\n Sila whatsapp maklumat dibawah kepada urusetia Program, Pn Rusmina Sukim di 019-6072688
+				\n 1. Nama Anak
+				\n 2. Umur Anak dan No MyKid
+				\n 3. No yang boleh dihubungi
+				\n TEMPAT ADALAH AMAT TERHAD. SILA HUBUNGI KAMI SEGERA. Terima kasih atas kerjasama anda."
+
+			)
+		end
+		flash[:success] = "SMS Sent to All #{@ekids.count}"
+		redirect_to ekidindex_path(stato: params[:stato])
+	end
+
 	def ekidchg
 		ekid = Ekid.find(params[:id])
 		ekid.stat = params[:stat]

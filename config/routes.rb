@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   get '/findekid', to: 'ekids#findekid'
   get '/ekidlistxls', to: 'ekids#ekidlistxls'
   get '/ekidchg', to: 'ekids#ekidchg'
+  get '/ekidsms', to: 'ekids#ekidsms'
   
 
   #~~PKID
