@@ -10,13 +10,12 @@ class EkidsController < ApplicationController
 				from: ENV["TWILIO_PHONE_NO"], 
 				body: "\n\n MBI Selangor Incorporated 
 				\n Terima kasih kerana mendaftar untuk Program Saringan Percuma anjuran MBI Selangor (INC).
-				\n Tahniah! #{ek.name} telah disenaraipendek untuk proses pemilihan seterusnya. Untuk makluman, program seterusnya akan diadakan pada 14hb July 2019.
+				\n Tahniah! #{ek.name} telah disenaraipendek untuk proses pemilihan seterusnya. Untuk makluman, program seterusnya akan diadakan pada 25 Ogos 2019 di Denai Alam.
 				\n Sila whatsapp maklumat dibawah kepada urusetia Program, Pn Rusmina Sukim di 019-6072688
 				\n 1. Nama Anak
 				\n 2. Umur Anak dan No MyKid
 				\n 3. No yang boleh dihubungi
-				\n TEMPAT ADALAH AMAT TERHAD. SILA HUBUNGI KAMI SEGERA. Terima kasih atas kerjasama anda."
-
+				\n TEMPAT ADALAH AMAT TERHAD. JIKA KAMI TIDAK MENERIMA APA-APA RESPON DARI ANDA DALAM MASA 24 JAM, TEMPAT ANDA AKAN DIGANTIKAN. Terima kasih atas kerjasama anda."
 			)
 		end
 		flash[:success] = "SMS Sent to All #{@ekids.count}"
