@@ -122,8 +122,7 @@
         </div>
         <div class="row">
           <div class="col-sm-8 col-12">
-            <%= f.select :prefloc, options_for_select(["Shah Alam",
-                                                  "Serdang"], 
+            <%= f.select :prefloc, options_for_select(["Shah Alam"], 
                                                   selected: @ekid.prefloc), 
             {include_blank: "SILA PILIH"}, {required: true} %>
             <br>Ujian Saringan akan diadakan disekitar lokasi diatas
