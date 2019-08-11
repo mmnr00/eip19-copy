@@ -63,7 +63,13 @@
             <%= link_to "PROFILE", ekidconf_path(id: sc.id), class: "btn btn-sm btn-info", target: "_blank" %>
             <%= link_to "REMOVE", rmvsce_path(id: @sce.id, ekid: sc.id), data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-danger" %>
           </td>
-          <td>SKID</td>
+          <td>
+            <% if (sk=sc.skid).present? %>
+              <%= link_to "EDIT", edit_skid_path(id: sk.id, ekid: sc.id), class: "btn btn-sm btn-warning"%>
+            <% else %>
+              <%= link_to "CREATE", new_skid_path(ekid: sc.id), class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
           <td>FKID</td>
         </tr>
       <% end %>

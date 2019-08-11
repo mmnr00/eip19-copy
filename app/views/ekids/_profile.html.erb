@@ -202,6 +202,52 @@
       <% end %>
     </tbody>
 
+    <% if (sk=@ekid.skid).present? %>
+      <tbody>
+        <tr>
+          <td style="background-color:#664c51" colspan="2"><font color="white"><h4>MAKLUMAT UJIAN SARINGAN</h4></font></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Adakah anak ini mempunyai lewat perkembangan?</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.dely %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Maklumat Tambahan mengenai lewat perkembangan anak</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.delydesc %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Kelewatan Fizikal?</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.phy %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Kelewatan Kognitif?</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.cog %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Kelewatan Komunikasi?</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.comm %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Kelewatan Sosial/Emosi?</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.soc %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Kelewatan Penyesuaian Diri?</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.adap %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Adakah anak menerima surat rujukan?</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.reflt %></td>
+        </tr>
+        <tr>
+          <td style="background-color:#997379" ><font color="white">Maklumat tambahan untuk surat rujukan</font></td>
+          <td style="background-color:#ffc0cb"><%= sk.otnt %></td>
+        </tr>
+      </tbody>
+    <% end %>
+
     
 
   </table>

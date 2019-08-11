@@ -47,9 +47,15 @@ class ScesController < ApplicationController
 
 	def rmvsce
 		@ekid = Ekid.find(params[:ekid])
-		@ekid.sce_id = nil
-		@ekid.stat = "CONFIRM"
-		@ekid.save
+		if @ekid.skid.present?
+			flash[:danger] = "Please remove screening and feedback data before removal"
+		else
+			@ekid.sce_id = nil
+			@ekid.stat = "CONFIRM"
+			@ekid.save
+			flash[:success] = "Removal Successful"
+		end
+		
 		redirect_to sce_path(@sce)
 	end
 

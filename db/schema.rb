@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_124051) do
+ActiveRecord::Schema.define(version: 2019_08_10_015355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -493,6 +493,21 @@ ActiveRecord::Schema.define(version: 2019_07_30_124051) do
     t.datetime "updated_at", null: false
     t.index ["beradik_id"], name: "index_siblings_on_beradik_id"
     t.index ["kid_id"], name: "index_siblings_on_kid_id"
+  end
+
+  create_table "skids", force: :cascade do |t|
+    t.string "dely"
+    t.string "delydesc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phy"
+    t.string "cog"
+    t.string "comm"
+    t.string "soc"
+    t.string "adap"
+    t.string "reflt"
+    t.string "otnt"
+    t.integer "ekid_id"
   end
 
   create_table "taska_admins", force: :cascade do |t|
