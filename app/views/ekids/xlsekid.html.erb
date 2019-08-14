@@ -1,6 +1,17 @@
 Choose the file that you had save and click 'Upload' <br><br>
-    <%= form_tag upldekid_path, multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= hidden_field_tag :id, value: 1%>
-      <%= submit_tag "Upload" %>
-    <% end %>
+
+<% if params[:ses] == "s118" %>
+  <%= form_tag upldekids118_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= hidden_field_tag :id, value: 1%>
+    <%= submit_tag "Upload s118" %>
+  <% end %>
+<% else %>
+  <%= form_tag upldekid_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= hidden_field_tag :id, value: 1%>
+    <%= submit_tag "Upload" %>
+  <% end %>
+<% end %>
+    
+      

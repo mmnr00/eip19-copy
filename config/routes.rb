@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get '/ekidpdf', to: 'ekids#ekidpdf'
   get '/xlsekid', to: 'ekids#xlsekid'
   post '/upldekid', to: 'ekids#upldekid'
+  post '/upldekids118', to: 'ekids#upldekids118'
   get '/schekid', to: 'ekids#schekid'
   get '/findekid', to: 'ekids#findekid'
   get '/ekidlistxls', to: 'ekids#ekidlistxls'
