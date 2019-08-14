@@ -6,6 +6,12 @@ Choose the file that you had save and click 'Upload' <br><br>
     <%= hidden_field_tag :id, value: 1%>
     <%= submit_tag "Upload s118" %>
   <% end %>
+<% elsif params[:ses] == "s218" %>
+  <%= form_tag upldekids218_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= hidden_field_tag :id, value: 1%>
+    <%= submit_tag "Upload s218" %>
+  <% end %>
 <% else %>
   <%= form_tag upldekid_path, multipart: true do %>
     <%= file_field_tag :file %>

@@ -167,6 +167,93 @@ class EkidsController < ApplicationController
 	def xlsekid
 	end
 
+	def upldekids218
+		xlsx = Roo::Spreadsheet.open(params[:file])
+    header = xlsx.row(xlsx.first_row+2)
+    @header2 = xlsx.row(xlsx.first_row+1)
+    ((xlsx.first_row+3)..(xlsx.last_row)).each do |n|
+      xlsx.row(n)
+      @row = Hash[[header, xlsx.row(n)].transpose]
+      ek = Ekid.create(name: @row["name"],
+      						ic: @row["ic"],
+      						gdr: @row["gdr"],
+      						dob: @row["dob"],
+      						dun:	@row["dun"],
+									addr:	@row["addr"],
+									mph:	@row["mmph"],
+									fname:	@row["fname"],
+									fage:	@row["fage"],
+									fph:	@row["fph"],
+									femail:	@row["femail"],
+									fedu:	@row["fedu"],
+									fwork:	@row["fwork"],
+									fworktp:	@row["fworktp"],
+									mname:	@row["mname"],
+									mage:	@row["mage"],
+									mmph:	@row["mmph"],
+									memail:	@row["memail"],
+									medu:	@row["medu"],
+									mwork:	@row["mwork"],
+									mworktp:	@row["mworktp"],
+									sib:	@row["sib"],
+									phist:	@row["phist"],
+									phisttp:	@row["phisttp"],
+									pinc:	@row["pinc"],
+									ref:	@row["ref"],
+									refloc:	@row["refloc"],
+									prbtp:	@row["prbtp"],
+									prbot:	@row["prbot"],
+									stat: "CONF",
+									prefloc: "Shah Alam",
+									admloc: "sha",
+									sce_id: @row["sce"],
+									created_at: @row["Tarikh Pengesahan Kebenaran"])
+      a=ek.ic
+      ek.dob = Date.new("20#{a[0..1]}".to_i,a[2..3].to_i,a[4..5].to_i)
+      ek.save
+      # Start P Kid
+      pk = Pkid.new(ekid_id: ek.id)
+      #pk = Pkid.new(ekid_id: 9000)
+      (16..19).each do |n|
+      	pk.addfo[@row.keys[n]] = @row.values[n]
+      end
+
+      (20..37).each do |n|
+      	pk.health[@row.keys[n]] = @row.values[n]
+      end
+
+      (38..41).each do |n|
+      	pk.birth[@row.keys[n]] = @row.values[n]
+      end
+
+      (42..50).each do |n|
+      	pk.grow[@row.keys[n]] = @row.values[n]
+      end
+
+      (51..66).each do |n|
+      	pk.physpch[@row.keys[n]] = @row.values[n]
+      end
+
+      (67..71).each do |n|
+      	pk.agr[@row.keys[n]] = @row.values[n]
+      end
+
+
+      (73..107).each do |n|
+      	if @row.values[n].present?
+      		pk.devkid[@row.keys[n]] = @row.values[n]
+      	end
+      end
+
+      pk.created_at = @row["Tarikh Pengesahan Kebenaran"]
+      pk.save
+    end
+    flash[:success] = "SUCCESS"
+    #redirect_to ekidconf_path(id: ek.id)
+    redirect_to admin_index_path
+    #redirect_to ekidindex_path(stato: "CONFIRM")
+	end
+
 	def upldekids118
 		xlsx = Roo::Spreadsheet.open(params[:file])
     header = xlsx.row(xlsx.first_row+2)
