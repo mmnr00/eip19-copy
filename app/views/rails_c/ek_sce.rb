@@ -155,6 +155,11 @@ a=["ADRIANA NATASYA YONG BINTI MOHD FAREEZ",
 "NUR AIRA DARWISYA"]
 
 b=[]
+
+Ekid.where(name: a).each do |ek|
+b<<ek
+end
+
 Ekid.where(name: a).each do |ek|
 b<<ek
 ek.pkid.destroy
