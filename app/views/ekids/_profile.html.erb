@@ -141,15 +141,17 @@
         <td style="background-color:#C65911" ><font color="white">Maklumat perkembangan jika lain-lain</font></td>
         <td style="background-color:#FCE4D6"><%= @ekid.prbot %></td>
       </tr>
-      <% pk.devkid.each do |k,v| %>
-        <tr>
-          <td style="background-color:#C65911" ><font color="white"><%= k %></font></td>
-          <td style="background-color:#FCE4D6"><%= v %></td>
-        </tr>
+      <% if pk.present? %>
+        <% pk.devkid.each do |k,v| %>
+          <tr>
+            <td style="background-color:#C65911" ><font color="white"><%= k %></font></td>
+            <td style="background-color:#FCE4D6"><%= v %></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
 
-
+    <% if pk.present? %>
     <tbody>
       <tr>
         <td style="background-color:#203764" colspan="2"><font color="white"><h4>MAKLUMAT TAMBAHAN</h4></font></td>
@@ -201,6 +203,7 @@
         </tr>
       <% end %>
     </tbody>
+    <% end %>
 
     <% if (sk=@ekid.skid).present? %>
       <tbody>

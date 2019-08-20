@@ -67,7 +67,11 @@ end
         <tr>
           <td><%= e.id %></td>
           <td>
-            <%= "#{e.name} (#{e.ic})" %><br><br>
+            <%= "#{e.name} (#{e.ic})" %>
+            <% if e.pkid.blank? %>
+              <br><b>INCOMPLETE PROFILE</b>
+            <% end %>
+            <br><br>
             
             <%= form_tag ekidchg_path, method: :get do %>
               <div class="row">
