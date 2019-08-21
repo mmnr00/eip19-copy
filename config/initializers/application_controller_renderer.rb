@@ -9,6 +9,11 @@
 
 $admloc = {1=>["srd","sha"],2=>"sha",3=>"srd"}
 
+$statekid = {"NEW" => "PERMOHONAN DITERIMA",
+						 "REJECT" => "PERMOHONAN GAGAL",
+						 "PENDING" => "PERMOHONAN DALAM PROSES",
+						 "CONFIRM" => "PERMOHONAN BERJAYA"}
+
 $newborn = ["Bayi Longlai Atau Kejang",
 						"Menangis Tanpa Henti",
 						"Melengkungkan Belakangnya",

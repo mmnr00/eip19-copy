@@ -63,6 +63,18 @@
                 <% end %>
               <% end %>
             <% else %> <!-- FOR PARENT SEARCH -->
+            <% if prs.pkid.blank? %>
+            <b>PROFIL TIDAK LENGKAP. SILA KLIK 'UBAH'</b> <br><br>
+            <% end %>
+
+            <h6>STATUS : 
+            <% if (sce=prs.sce).present? %>
+              <%= sce.name.upcase %></h6>
+            <% else %>
+              <%= $statekid[prs.stat] %></h6>
+            <% end %>
+
+           
               <%= link_to edit_ekid_path(id: prs.id), class:"btn btn-sm btn-warning" do %>
                 <i class="fa fa-edit"></i> UBAH
               <% end %>
