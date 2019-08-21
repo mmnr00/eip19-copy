@@ -22,7 +22,7 @@ wb.styles do |style|
                                   bg_color: "cce5cc",
                                   i: true)       
   wb.add_worksheet(name: "NAMELIST") do |sheet|
-    sheet.add_row ["","SENARAI NAMA SARINGAN PERCUMA"]
+    sheet.add_row ["","SENARAI NAMA SARINGAN PERCUMA (#{params[:stato]}-#{@ekids.count})"]
     sheet.add_row [""]
     sheet.add_row ["NO",
                   "NAMA",
@@ -46,7 +46,7 @@ wb.styles do |style|
       diff =(Date.today.year*12+Date.today.month) - (ek.dob.year*12+ek.dob.month)
       year = diff/12
       mth = diff - year*12
-      if year < 5
+      if 1==1
         sheet.add_row [counter, 
                       ek.name, 
                       "#{ek.ic[0..5]}-#{ek.ic[6..7]}-#{ek.ic[8..11]}", 
