@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   #~~SCE
   get '/confsce', to: 'sces#confsce'
   get '/rmvsce', to: 'sces#rmvsce'
+  get '/scexls', to: 'sces#scexls'
 
 
 

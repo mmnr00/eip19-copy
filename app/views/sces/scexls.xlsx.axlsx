@@ -1,0 +1,92 @@
+wb = xlsx_package.workbook
+col_widths= [5,40,15,15,8,17,55,18,55,15,18,18,13,30]
+wb.styles do |style|
+  header_1 = style.add_style(sz: 20, b: true)
+  dlt_cell = style.add_style(bg_color: "FF0000",
+                            b: true,
+                            fg_color: "FFFFFF",
+                            sz: 13,
+                            alignment: { horizontal: :center })
+  inp_cell = style.add_style(bg_color: "3232ff",
+                            b: true,
+                            fg_color: "FFFFFF",
+                            sz: 13,
+                            alignment: { horizontal: :center })
+  highlight_cell = style.add_style(bg_color: "EFC376",
+                                  b: true,
+                                  border: Axlsx::STYLE_THIN_BORDER,
+                                  sz: 15,
+                                   alignment: { horizontal: :center })
+  border_cell = style.add_style(border: Axlsx::STYLE_THIN_BORDER) 
+  border_cell_eg = style.add_style(border: Axlsx::STYLE_THIN_BORDER,
+                                  bg_color: "cce5cc",
+                                  i: true)       
+  wb.add_worksheet(name: "NAMELIST") do |sheet|
+    sheet.add_row ["","MAKLUMAT PESERTA SARINGAN PERCUMA"]
+    sheet.add_row [""]
+    sheet.add_row ["NO",
+                  "NAMA",
+                  "MYKID",
+                  "JANTINA",
+                  "UMUR",
+                  "DAERAH",
+                  "NAMA BAPA",
+                  "UMUR BAPA",
+                  "NAMA IBU",
+                  "UMUR IBU",
+                  "NO TELEFON",
+                  "EMAIL",
+                  "BAPA BEKERJA",
+                  "IBU BEKERJA",
+                  "PENDAPATAN",
+                  "BIL BERADIK",
+                  "RUJUKAN",
+                  "TARIKH PERMOHONAN"]
+    sheet.rows[0].style = header_1
+    sheet.rows[2].style = highlight_cell
+    counter = 1
+    row =2
+    @sce.each do |sc|
+	    sc.ekids.each do |ek|
+	      diff =(Date.today.year*12+Date.today.month) - (ek.dob.year*12+ek.dob.month)
+	      year = diff/12
+	      mth = diff - year*12
+	      if 1==1
+	        sheet.add_row [counter, 
+	                      ek.name, 
+	                      "#{ek.ic[0..5]}-#{ek.ic[6..7]}-#{ek.ic[8..11]}", 
+	                      ek.dob.strftime('%d/%m/%Y'),
+	                      "#{year} tahun, #{mth} bulan",
+	                      "#{ek.mph[0..2]}-#{ek.mph[3..11]}",
+	                      ek.fname,
+	                      ek.fph,
+	                      ek.mname,
+	                      ek.mmph,
+	                      ek.pinc,
+	                      ek.sib,
+	                      ek.ref,
+	                      ek.created_at.strftime('%d-%^b-%Y')], style: [nil, border_cell]
+	        sheet.rows[row+counter].style = border_cell
+	        counter = counter +1
+	      end
+	    end
+	  end
+
+   sheet.column_widths *col_widths 
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

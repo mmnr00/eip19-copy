@@ -1,6 +1,18 @@
 class ScesController < ApplicationController
-	before_action :set_sce, except: [:new,:create]
+	before_action :set_sce, except: [:new,:create,:scexls]
 	before_action :set_all
+
+	def scexls
+		@admin = current_admin
+		@sce = Sce.where(id: params[:id])
+
+		respond_to do |format|
+      #format.html
+      format.xlsx{
+                  response.headers['Content-Disposition'] = 'attachment; filename="Screening Data.xlsx"'
+      }
+    end
+	end
 
 	def new
 		@sce = Sce.new

@@ -35,14 +35,15 @@
 </div>
 
 <h4>NO OF CHILDRENS :  <%= @ekids.count %></h4>
-<%= link_to ekidlistxls_path(sce: @sce.id,format: :xlsx), class: "btn btn-sm btn-info active" do %>
-  <i class="fa fa-file-excel"></i> DOWNLOAD LIST
-<% end %>
+<%= link_to "EXTRACT DATA", scexls_path(id: params[:id],format: :xlsx), class: "btn btn-sm btn-info" %>
+  <%= link_to "VIEW REPORT", new_sce_path, class: "btn btn-sm btn-warning" %>
+  <br><br>
 <div class="table-responsive">
   <table class="table table-striped table-bordered" width="100%" cellspacing="0">
 
     <thead>
       <tr>
+        <th style="background-color:#99cc99">ID</th>
         <th style="background-color:#99cc99">NAME</th>
         <th style="background-color:#99cc99">PARENTS INFO</th>
         <th style="background-color:#99cc99">ACTION</th>
@@ -54,6 +55,7 @@
     <tbody>
       <% @ekids.order('name ASC').each do |sc| %>
         <tr>
+          <td><%= sc.id %></td>
           <td><%= "#{sc.name} (#{sc.ic})" %></td>
           <td>
             <%= "#{sc.fname} (#{sc.fph})" %><br><br>
