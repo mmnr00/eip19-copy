@@ -1,5 +1,5 @@
 wb = xlsx_package.workbook
-col_widths= [5,40,15,15,8,17,55,18,55,15,18,18,13,30]
+col_widths= [5,40,14,19,12,15,14,17,50,25,16,29,41,22,13,29,21,18,34,24,23]
 wb.styles do |style|
   header_1 = style.add_style(sz: 20, b: true)
   dlt_cell = style.add_style(bg_color: "FF0000",
@@ -27,21 +27,25 @@ wb.styles do |style|
     sheet.add_row ["NO",
                   "NAMA",
                   "MYKID",
+                  "TARIKH LAHIR",
                   "JANTINA",
                   "UMUR",
                   "DAERAH",
-                  "NAMA BAPA",
-                  "UMUR BAPA",
-                  "NAMA IBU",
-                  "UMUR IBU",
                   "NO TELEFON",
-                  "EMAIL",
+                  "NAMA BAPA",
+                  "NO TELEFON BAPA",
+                  "UMUR BAPA",
+                  "EMAIL BAPA",
+                  "NAMA IBU",
+                  "NO TELEFON IBU",
+                  "UMUR IBU",
+                  "EMAIL IBU",
                   "BAPA BEKERJA",
                   "IBU BEKERJA",
-                  "PENDAPATAN",
-                  "BIL BERADIK",
-                  "RUJUKAN",
-                  "TARIKH PERMOHONAN"]
+                  "PENDAPATAN KELUARGA",
+                  "BIL ADIK BERADIK",
+                  "SIRI SARINGAN"
+                  ]
     sheet.rows[0].style = header_1
     sheet.rows[2].style = highlight_cell
     counter = 1
@@ -56,16 +60,23 @@ wb.styles do |style|
 	                      ek.name, 
 	                      "#{ek.ic[0..5]}-#{ek.ic[6..7]}-#{ek.ic[8..11]}", 
 	                      ek.dob.strftime('%d/%m/%Y'),
+                        ek.gdr,
 	                      "#{year} tahun, #{mth} bulan",
+                        ek.dun,
 	                      "#{ek.mph[0..2]}-#{ek.mph[3..11]}",
 	                      ek.fname,
 	                      ek.fph,
+                        ek.fage,
+                        ek.femail,
 	                      ek.mname,
 	                      ek.mmph,
+                        ek.mage,
+                        ek.memail,
+                        ek.fwork,
+                        ek.mwork,
 	                      ek.pinc,
 	                      ek.sib,
-	                      ek.ref,
-	                      ek.created_at.strftime('%d-%^b-%Y')], style: [nil, border_cell]
+                        ek.sce.name], style: [nil, border_cell]
 	        sheet.rows[row+counter].style = border_cell
 	        counter = counter +1
 	      end
