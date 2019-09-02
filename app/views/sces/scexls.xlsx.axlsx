@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 col_widths= [5,40,14,19,12,15,14,17,50,25,16,29,41,22,13,29,21,18,34,24,26,
             18,18,12,13,17,19,23,23,32]
-col_widths2= [20,10,14,19]
+col_widths2= [20,10,10,10,10,10,10]
 wb.styles do |style|
   header_1 = style.add_style(sz: 20, b: true)
   header_2 = style.add_style(sz: 18, b: true)
@@ -139,6 +139,7 @@ wb.styles do |style|
     counter = 1
     row =2
 
+    #GENDER
     gdr = @ekids.group(:gdr).count 
     sheet.add_row ["JANTINA PESERTA",""]
     sheet.add_row ["JANTINA",
@@ -154,7 +155,15 @@ wb.styles do |style|
       sheet.rows[row+counter].style = border_cell
       counter = counter +1
     end
+    sheet.add_chart(Axlsx::Pie3DChart, :start_at => "D4", :end_at => "H16", :title => "JANTINA PESERTA") do |chart|
+      b = gdr
+      chart.add_series :data => b.values, 
+                       :labels => b.keys
+      chart.d_lbls.show_val = true
+      chart.d_lbls.show_percent = true
+    end
 
+    #DAERAH
     sheet.add_row [""]
     sheet.add_row [""]
     counter = counter +2
@@ -173,7 +182,15 @@ wb.styles do |style|
       sheet.rows[row+counter].style = border_cell
       counter = counter +1
     end
+    sheet.add_chart(Axlsx::Pie3DChart, :start_at => "I4", :end_at => "M15", :title => "DAERAH PESERTA") do |chart|
+      b = dun
+      chart.add_series :data => b.values, 
+                       :labels => b.keys
+      chart.d_lbls.show_val = true
+      chart.d_lbls.show_percent = true
+    end
 
+    #INCOME
     sheet.add_row [""]
     sheet.add_row [""]
     counter = counter +2
@@ -192,7 +209,15 @@ wb.styles do |style|
       sheet.rows[row+counter].style = border_cell
       counter = counter +1
     end
+    sheet.add_chart(Axlsx::Pie3DChart, :start_at => "O4", :end_at => "S15", :title => "PENDAPATAN ISI RUMAH(RM)") do |chart|
+      b = pinc
+      chart.add_series :data => b.values, 
+                       :labels => b.keys
+      chart.d_lbls.show_val = true
+      chart.d_lbls.show_percent = true
+    end
 
+    #DIAGNOSIS
     sheet.add_row [""]
     sheet.add_row [""]
     counter = counter +2
@@ -211,7 +236,15 @@ wb.styles do |style|
       sheet.rows[row+counter].style = border_cell
       counter = counter +1
     end
+    sheet.add_chart(Axlsx::Pie3DChart, :start_at => "D19", :end_at => "H30", :title => "DIAGNOSIS KELEWATAN") do |chart|
+      b = delay
+      chart.add_series :data => b.values, 
+                       :labels => b.keys
+      chart.d_lbls.show_val = true
+      chart.d_lbls.show_percent = true
+    end
 
+    #JENIS KELEWATAN
     sheet.add_row [""]
     sheet.add_row [""]
     counter = counter +2
@@ -224,16 +257,23 @@ wb.styles do |style|
     counter = counter +  1
     sheet.rows[row+counter].style = highlight_cell
     counter = counter +  1
-    delaytp["FIZIKAL"]=@skids.where(phy: "Yes").count
-    delaytp["KOGNITIF"]=@skids.where(cog: "Yes").count
-    delaytp["KOMUNIKASI"]=@skids.where(comm: "Yes").count
-    delaytp["SOSIAL/EMOSI"]=@skids.where(soc: "Yes").count
-    delaytp["PENYESUAIN DIRI"]=@skids.where(adap: "Yes").count
+    delaytp["Fizikal"]=@skids.where(phy: "Yes").count
+    delaytp["Kognitif"]=@skids.where(cog: "Yes").count
+    delaytp["Komunikasi"]=@skids.where(comm: "Yes").count
+    delaytp["Sosial/Emosi"]=@skids.where(soc: "Yes").count
+    delaytp["Penyesuaian Diri"]=@skids.where(adap: "Yes").count
     delaytp.each do |k,v|
       sheet.add_row [k,
                     v]
       sheet.rows[row+counter].style = border_cell
       counter = counter +1
+    end
+    sheet.add_chart(Axlsx::Bar3DChart, :start_at => "O18", :end_at => "V32", :title => "JENIS KELEWATAN") do |chart|
+      b = delaytp
+      chart.add_series :data => b.values, 
+                       :labels => b.keys
+      chart.d_lbls.show_val = true
+      chart.d_lbls.show_percent = true
     end
 
 
