@@ -1,5 +1,6 @@
 wb = xlsx_package.workbook
-col_widths= [5,40,14,19,12,15,14,17,50,25,16,29,41,22,13,29,21,18,34,24,23]
+col_widths= [5,40,14,19,12,15,14,17,50,25,16,29,41,22,13,29,21,18,34,24,26,
+            18,18,12,13,17,19,23,23,32]
 wb.styles do |style|
   header_1 = style.add_style(sz: 20, b: true)
   dlt_cell = style.add_style(bg_color: "FF0000",
@@ -17,6 +18,11 @@ wb.styles do |style|
                                   border: Axlsx::STYLE_THIN_BORDER,
                                   sz: 15,
                                    alignment: { horizontal: :center })
+  kidfo_cell = style.add_style(bg_color: "b2b2ff",
+                                  b: true,
+                                  border: Axlsx::STYLE_THIN_BORDER,
+                                  sz: 17,
+                                   alignment: { horizontal: :center })
   border_cell = style.add_style(border: Axlsx::STYLE_THIN_BORDER) 
   border_cell_eg = style.add_style(border: Axlsx::STYLE_THIN_BORDER,
                                   bg_color: "cce5cc",
@@ -24,6 +30,8 @@ wb.styles do |style|
   wb.add_worksheet(name: "NAMELIST") do |sheet|
     sheet.add_row ["","MAKLUMAT PESERTA SARINGAN PERCUMA"]
     sheet.add_row [""]
+    sheet.add_row ["MAKLUMAT ANAK","","","","","","","","","","","","","","","","","","","",
+                  "MAKLUMAT SARINGAN","","","","","","","","",""]
     sheet.add_row ["NO",
                   "NAMA",
                   "MYKID",
@@ -44,17 +52,27 @@ wb.styles do |style|
                   "IBU BEKERJA",
                   "PENDAPATAN KELUARGA",
                   "BIL ADIK BERADIK",
-                  "SIRI SARINGAN"
-                  ]
+                  "SIRI SARINGAN",
+                  "KELEWATAN?",
+                  "CATATAN",
+                  "FIZIKAL",
+                  "KOGNITIF",
+                  "KOMUNIKASI",
+                  "SOSIAL/EMOSI",
+                  "PENYESUAIN DIRI",
+                  "SURAT RUJUKAN",
+                  "NOTA"]
     sheet.rows[0].style = header_1
-    sheet.rows[2].style = highlight_cell
+    sheet.rows[2].style = kidfo_cell
+    sheet.rows[3].style = highlight_cell
     counter = 1
-    row =2
+    row =3
     @sce.each do |sc|
 	    sc.ekids.each do |ek|
 	      diff =(Date.today.year*12+Date.today.month) - (ek.dob.year*12+ek.dob.month)
 	      year = diff/12
 	      mth = diff - year*12
+        sk = ek.skid
 	      if 1==1
 	        sheet.add_row [counter, 
 	                      ek.name, 
@@ -76,13 +94,23 @@ wb.styles do |style|
                         ek.mwork,
 	                      ek.pinc,
 	                      ek.sib,
-                        ek.sce.name], style: [nil, border_cell]
+                        ek.sce.name,
+                        sk.dely,
+                        sk.delydesc,
+                        sk.phy,
+                        sk.cog,
+                        sk.comm,
+                        sk.soc,
+                        sk.adap,
+                        sk.reflt,
+                        sk.otnt], style: [nil, border_cell]
 	        sheet.rows[row+counter].style = border_cell
 	        counter = counter +1
 	      end
 	    end
 	  end
-
+  sheet.merge_cells sheet.rows[2].cells[(0..19)]
+  sheet.merge_cells sheet.rows[2].cells[(20..29)]
    sheet.column_widths *col_widths 
   end
 end
