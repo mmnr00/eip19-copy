@@ -88,8 +88,7 @@
 <hr>
 <h4>LIST OF SCREENING PROGRAMS</h4>
   <%= link_to "CREATE NEW PROGRAM", new_sce_path, class: "btn btn-sm btn-success" %>
-  <%= link_to "EXTRACT OVERALL DATA", scexls_path(id: Sce.all.ids,format: :xlsx), class: "btn btn-sm btn-info" %>
-  <%= link_to "VIEW OVERALL REPORT", new_sce_path, class: "btn btn-sm btn-warning" %>
+  <%= link_to "EXTRACT OVERALL DATA & REPORT", scexls_path(id: Sce.all.ids,format: :xlsx), class: "btn btn-sm btn-info" %>
   <br><br>
 
 
