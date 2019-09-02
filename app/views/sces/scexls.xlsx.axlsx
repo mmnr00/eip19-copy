@@ -28,7 +28,7 @@ wb.styles do |style|
                                   bg_color: "cce5cc",
                                   i: true)       
   wb.add_worksheet(name: "NAMELIST") do |sheet|
-    sheet.add_row ["","MAKLUMAT PESERTA SARINGAN PERCUMA"]
+    sheet.add_row ["","MAKLUMAT PESERTA SARINGAN PERCUMA (#{Date.today.strftime('%d-%^b-%y')})"]
     sheet.add_row [""]
     sheet.add_row ["MAKLUMAT ANAK","","","","","","","","","","","","","","","","","","","",
                   "MAKLUMAT SARINGAN","","","","","","","","",""]
@@ -68,11 +68,13 @@ wb.styles do |style|
     counter = 1
     row =3
     @sce.each do |sc|
-	    sc.ekids.each do |ek|
+	    sc.ekids.order('name ASC').each do |ek|
 	      diff =(Date.today.year*12+Date.today.month) - (ek.dob.year*12+ek.dob.month)
 	      year = diff/12
 	      mth = diff - year*12
-        sk = ek.skid
+        if (sk = ek.skid).blank?
+          sk = Skid.new
+        end
 	      if 1==1
 	        sheet.add_row [counter, 
 	                      ek.name, 
