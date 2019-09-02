@@ -5,6 +5,19 @@ class ScesController < ApplicationController
 	def scexls
 		@admin = current_admin
 		@sce = Sce.where(id: params[:id])
+		@ekids = nil
+		@sce.each do |sc|
+			if @ekids.blank?
+				@ekids = sc.ekids
+			else
+				@ekids = @ekids.or(sc.ekids)
+			end
+		end
+		skid = []
+		@ekids.each do |ek|
+			skid << ek.skid.id
+		end
+		@skids = Skid.where(id: skid)
 
 		respond_to do |format|
       #format.html

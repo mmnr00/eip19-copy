@@ -1,8 +1,10 @@
 wb = xlsx_package.workbook
 col_widths= [5,40,14,19,12,15,14,17,50,25,16,29,41,22,13,29,21,18,34,24,26,
             18,18,12,13,17,19,23,23,32]
+col_widths2= [20,10,14,19]
 wb.styles do |style|
   header_1 = style.add_style(sz: 20, b: true)
+  header_2 = style.add_style(sz: 18, b: true)
   dlt_cell = style.add_style(bg_color: "FF0000",
                             b: true,
                             fg_color: "FFFFFF",
@@ -23,11 +25,17 @@ wb.styles do |style|
                                   border: Axlsx::STYLE_THIN_BORDER,
                                   sz: 17,
                                    alignment: { horizontal: :center })
+  rep_cell = style.add_style(bg_color: "b2d8b2",
+                                  b: true,
+                                  border: Axlsx::STYLE_THIN_BORDER,
+                                  sz: 15,
+                                   alignment: { horizontal: :center })
   border_cell = style.add_style(border: Axlsx::STYLE_THIN_BORDER) 
   border_cell_eg = style.add_style(border: Axlsx::STYLE_THIN_BORDER,
                                   bg_color: "cce5cc",
-                                  i: true)       
-  wb.add_worksheet(name: "NAMELIST") do |sheet|
+                                  i: true)  
+
+  wb.add_worksheet(name: "MAKLUMAT PESERTA") do |sheet|
     sheet.add_row ["","MAKLUMAT PESERTA SARINGAN PERCUMA (#{Date.today.strftime('%d-%^b-%y')})"]
     sheet.add_row [""]
     sheet.add_row ["MAKLUMAT ANAK","","","","","","","","","","","","","","","","","","","",
@@ -68,34 +76,34 @@ wb.styles do |style|
     counter = 1
     row =3
     @sce.each do |sc|
-	    sc.ekids.order('name ASC').each do |ek|
-	      diff =(Date.today.year*12+Date.today.month) - (ek.dob.year*12+ek.dob.month)
-	      year = diff/12
-	      mth = diff - year*12
+      sc.ekids.order('name ASC').each do |ek|
+        diff =(Date.today.year*12+Date.today.month) - (ek.dob.year*12+ek.dob.month)
+        year = diff/12
+        mth = diff - year*12
         if (sk = ek.skid).blank?
           sk = Skid.new
         end
-	      if 1==1
-	        sheet.add_row [counter, 
-	                      ek.name, 
-	                      "#{ek.ic[0..5]}-#{ek.ic[6..7]}-#{ek.ic[8..11]}", 
-	                      ek.dob.strftime('%d/%m/%Y'),
+        if 1==1
+          sheet.add_row [counter, 
+                        ek.name, 
+                        "#{ek.ic[0..5]}-#{ek.ic[6..7]}-#{ek.ic[8..11]}", 
+                        ek.dob.strftime('%d/%m/%Y'),
                         ek.gdr,
-	                      "#{year} tahun, #{mth} bulan",
+                        "#{year} tahun, #{mth} bulan",
                         ek.dun,
-	                      "#{ek.mph[0..2]}-#{ek.mph[3..11]}",
-	                      ek.fname,
-	                      ek.fph,
+                        "#{ek.mph[0..2]}-#{ek.mph[3..11]}",
+                        ek.fname,
+                        ek.fph,
                         ek.fage,
                         ek.femail,
-	                      ek.mname,
-	                      ek.mmph,
+                        ek.mname,
+                        ek.mmph,
                         ek.mage,
                         ek.memail,
                         ek.fwork,
                         ek.mwork,
-	                      ek.pinc,
-	                      ek.sib,
+                        ek.pinc,
+                        ek.sib,
                         ek.sce.name,
                         sk.dely,
                         sk.delydesc,
@@ -106,14 +114,130 @@ wb.styles do |style|
                         sk.adap,
                         sk.reflt,
                         sk.otnt], style: [nil, border_cell]
-	        sheet.rows[row+counter].style = border_cell
-	        counter = counter +1
-	      end
-	    end
-	  end
-  sheet.merge_cells sheet.rows[2].cells[(0..19)]
-  sheet.merge_cells sheet.rows[2].cells[(20..29)]
-   sheet.column_widths *col_widths 
+          sheet.rows[row+counter].style = border_cell
+          counter = counter +1
+        end
+      end
+    end
+    sheet.merge_cells sheet.rows[2].cells[(0..19)]
+    sheet.merge_cells sheet.rows[2].cells[(20..29)]
+    sheet.column_widths *col_widths 
+  end     
+  
+
+  wb.add_worksheet(name: "LAPORAN") do |sheet|
+    sheet.add_row ["LAPORAN ANALISA PROGRAM SARINGAN PERCUMA (#{Date.today.strftime('%d-%^b-%y')})"]
+    if @sce.count > 1
+      jenis = "KESELURUHAN"
+    else
+      jenis = @sce.first.name
+    end
+    sheet.add_row ["JENIS LAPORAN: #{jenis}"]
+    sheet.add_row [""]
+    sheet.rows[0].style = header_1
+    sheet.rows[1].style = header_2
+    counter = 1
+    row =2
+
+    gdr = @ekids.group(:gdr).count 
+    sheet.add_row ["JANTINA PESERTA",""]
+    sheet.add_row ["JANTINA",
+                  "BIL"]
+    sheet.rows[row+counter].style = rep_cell
+    sheet.merge_cells sheet.rows[row+counter].cells[(0..1)]
+    counter = counter +  1
+    sheet.rows[row+counter].style = highlight_cell
+    counter = counter +  1
+    gdr.each do |k,v|
+      sheet.add_row [k,
+                    v]
+      sheet.rows[row+counter].style = border_cell
+      counter = counter +1
+    end
+
+    sheet.add_row [""]
+    sheet.add_row [""]
+    counter = counter +2
+    dun = @ekids.group(:dun).count
+    sheet.add_row ["DAERAH PESERTA",""]
+    sheet.add_row ["DAERAH",
+                  "BIL"]
+    sheet.rows[row+counter].style = rep_cell
+    sheet.merge_cells sheet.rows[row+counter].cells[(0..1)]
+    counter = counter +  1
+    sheet.rows[row+counter].style = highlight_cell
+    counter = counter +  1
+    dun.each do |k,v|
+      sheet.add_row [k,
+                    v]
+      sheet.rows[row+counter].style = border_cell
+      counter = counter +1
+    end
+
+    sheet.add_row [""]
+    sheet.add_row [""]
+    counter = counter +2
+    pinc = @ekids.group(:pinc).count
+    sheet.add_row ["PENDAPATAN(RM)",""]
+    sheet.add_row ["JULAT",
+                  "BIL"]
+    sheet.rows[row+counter].style = rep_cell
+    sheet.merge_cells sheet.rows[row+counter].cells[(0..1)]
+    counter = counter +  1
+    sheet.rows[row+counter].style = highlight_cell
+    counter = counter +  1
+    pinc.each do |k,v|
+      sheet.add_row [k,
+                    v]
+      sheet.rows[row+counter].style = border_cell
+      counter = counter +1
+    end
+
+    sheet.add_row [""]
+    sheet.add_row [""]
+    counter = counter +2
+    delay = @skids.group(:dely).count
+    sheet.add_row ["DIAGNOSIS PESERTA",""]
+    sheet.add_row ["KELEWATAN?",
+                  "BIL"]
+    sheet.rows[row+counter].style = rep_cell
+    sheet.merge_cells sheet.rows[row+counter].cells[(0..1)]
+    counter = counter +  1
+    sheet.rows[row+counter].style = highlight_cell
+    counter = counter +  1
+    delay.each do |k,v|
+      sheet.add_row [k,
+                    v]
+      sheet.rows[row+counter].style = border_cell
+      counter = counter +1
+    end
+
+    sheet.add_row [""]
+    sheet.add_row [""]
+    counter = counter +2
+    delaytp = {}
+    sheet.add_row ["JENIS KELEWATAN",""]
+    sheet.add_row ["JENIS",
+                  "BIL"]
+    sheet.rows[row+counter].style = rep_cell
+    sheet.merge_cells sheet.rows[row+counter].cells[(0..1)]
+    counter = counter +  1
+    sheet.rows[row+counter].style = highlight_cell
+    counter = counter +  1
+    delaytp["FIZIKAL"]=@skids.where(phy: "Yes").count
+    delaytp["KOGNITIF"]=@skids.where(cog: "Yes").count
+    delaytp["KOMUNIKASI"]=@skids.where(comm: "Yes").count
+    delaytp["SOSIAL/EMOSI"]=@skids.where(soc: "Yes").count
+    delaytp["PENYESUAIN DIRI"]=@skids.where(adap: "Yes").count
+    delaytp.each do |k,v|
+      sheet.add_row [k,
+                    v]
+      sheet.rows[row+counter].style = border_cell
+      counter = counter +1
+    end
+
+
+    sheet.column_widths *col_widths2 
   end
 end
 
