@@ -244,6 +244,33 @@ wb.styles do |style|
       chart.d_lbls.show_percent = true
     end
 
+    #REFER LETTER
+    sheet.add_row [""]
+    sheet.add_row [""]
+    counter = counter +2
+    reflt = @skids.group(:reflt).count
+    sheet.add_row ["RUJUKAN",""]
+    sheet.add_row ["TERIMA SURAT",
+                  "BIL"]
+    sheet.rows[row+counter].style = rep_cell
+    sheet.merge_cells sheet.rows[row+counter].cells[(0..1)]
+    counter = counter +  1
+    sheet.rows[row+counter].style = highlight_cell
+    counter = counter +  1
+    reflt.each do |k,v|
+      sheet.add_row [k,
+                    v]
+      sheet.rows[row+counter].style = border_cell
+      counter = counter +1
+    end
+    sheet.add_chart(Axlsx::Pie3DChart, :start_at => "I19", :end_at => "M30", :title => "PENERIMA SURAT RUJUKAN") do |chart|
+      b = reflt
+      chart.add_series :data => b.values, 
+                       :labels => b.keys
+      chart.d_lbls.show_val = true
+      chart.d_lbls.show_percent = true
+    end
+
     #JENIS KELEWATAN
     sheet.add_row [""]
     sheet.add_row [""]
