@@ -33,9 +33,9 @@ class EkidsController < ApplicationController
 		end
 		ekid.admloc = loc
 		if ekid.save
-			flash[:success] = "YEAY"
+			flash[:success] = "SUCCESS"
 		else
-			flash[:danger] = "DOWN"
+			flash[:danger] = "FAILED. PLEASE TRY AGAIN"
 		end
 		redirect_to ekidindex_path(stato: params[:stato])
 	end
