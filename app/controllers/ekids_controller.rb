@@ -101,6 +101,8 @@ class EkidsController < ApplicationController
 		   render pdf: "#{@ekid.name}",
 		   template: "ekids/_profile.html.erb",
 		   #disposition: "attachment",
+		   #save_to_file: Rails.root.join('pdfs', "#{filename}.pdf"),
+       #save_only: true, 
 		   #page_size: "A6",
 		   orientation: "portrait",
 		   layout: 'pdf.html.erb'

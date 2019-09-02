@@ -39,45 +39,37 @@
         <i class="fa fa-code-fork"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "NEW").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=NEW", style="color:#fff">New Registrations</a>
-          <br><font style="color:#fff">TOTAL:</font>
-          <br><font style="color:#fff">LIMIT:</font>
+          <a href="/ekidindex?stato=NEW", style="color:#fff">New</a>
         </span>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="card-counter danger">
-        <i class="fa fa-code-fork"></i>
+        <i class="fa fa-exclamation-circle"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "REJECT").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=REJECT", style="color:#fff">Disqualified/Rejected</a>
-          <br><font style="color:#fff">TOTAL:</font>
-          <br><font style="color:#fff">LIMIT:</font>
+          <a href="/ekidindex?stato=REJECT", style="color:#fff">Rejected</a>
         </span>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="card-counter success">
-        <i class="fa fa-code-fork"></i>
+        <i class="fa fa-pause"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "PENDING").count %></span>
         <span class="count-name">
           <a href="/ekidindex?stato=PENDING", style="color:#fff">Pending</a>
-          <br><font style="color:#fff">TOTAL:</font>
-          <br><font style="color:#fff">LIMIT:</font>
         </span>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="card-counter info">
-        <i class="fa fa-code-fork"></i>
+        <i class="fa fa-check-circle"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "CONFIRM").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=CONFIRM", style="color:#fff">Next Session</a>
-          <br><font style="color:#fff">TOTAL:</font>
-          <br><font style="color:#fff">LIMIT:</font>
+          <a href="/ekidindex?stato=CONFIRM", style="color:#fff">Confirm</a>
         </span>
       </div>
     </div>
