@@ -2,6 +2,7 @@ wb = xlsx_package.workbook
 col_widths= [5,40,14,19,12,15,14,17,50,25,16,29,41,22,13,29,21,18,34,24,26,
             18,18,12,13,17,19,23,23,32]
 col_widths2= [20,10,10,10,10,10,10]
+col_widths3= [5,33,13,18,19]
 wb.styles do |style|
   header_1 = style.add_style(sz: 20, b: true)
   header_2 = style.add_style(sz: 18, b: true)
@@ -34,6 +35,36 @@ wb.styles do |style|
   border_cell_eg = style.add_style(border: Axlsx::STYLE_THIN_BORDER,
                                   bg_color: "cce5cc",
                                   i: true)  
+  if @sce.count > 1
+    wb.add_worksheet(name: "SENARAI PROGRAM") do |sheet|
+      sheet.add_row ["","SENARAI PROGRAM SARINGAN PERCUMA (#{Date.today.strftime('%d-%^b-%y')})"]
+      sheet.add_row [""]
+      sheet.add_row ["NO",
+                    "NAMA PROGRAM",
+                    "TARIKH",
+                    "TEMPAT",
+                    "BIL PESERTA"]
+      sheet.rows[0].style = header_1
+      sheet.rows[2].style = highlight_cell
+      counter = 1
+      tot_ek = 0
+      row =2
+      @sce.order('date ASC').each do |sc|
+        sheet.add_row [counter, 
+                      sc.name,
+                      sc.date.strftime('%d/%m/%Y'),
+                      sc.venue,
+                      sc.ekids.count], style: [nil, border_cell]
+        sheet.rows[row+counter].style = border_cell
+        counter = counter +1
+        tot_ek = tot_ek + sc.ekids.count
+      end
+      sheet.add_row ["TOTAL PARTICIPANT","","","",tot_ek]
+      sheet.rows[row+counter].style = rep_cell
+      sheet.merge_cells sheet.rows[row+counter].cells[(0..3)]
+      sheet.column_widths *col_widths3 
+    end
+  end
 
   wb.add_worksheet(name: "MAKLUMAT PESERTA") do |sheet|
     sheet.add_row ["","MAKLUMAT PESERTA SARINGAN PERCUMA (#{Date.today.strftime('%d-%^b-%y')})"]
