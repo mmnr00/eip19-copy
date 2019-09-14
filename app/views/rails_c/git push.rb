@@ -1,3 +1,4 @@
+git checkout 1wip
 git add -A
 git commit -m "eip"
 git push
