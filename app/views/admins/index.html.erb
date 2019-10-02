@@ -67,9 +67,9 @@
     <div class="col-md-3">
       <div class="card-counter success">
         <i class="fa fa-pause"></i>
-        <span class="count-numbers"><%= @ekids.where(stat: "PENDING").count %></span>
+        <span class="count-numbers"><%= @ekids.where(stat: "MENTOR").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=PENDING", style="color:#fff">Mentor</a>
+          <a href="/ekidindex?stato=MENTOR", style="color:#fff">Mentor</a>
         </span>
       </div>
     </div>

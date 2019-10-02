@@ -5,6 +5,8 @@ szr = "sm"
 colr = "2"
 szp = "sm"
 colp = "2"
+szm = "sm"
+colm = "2"
 szc = "sm"
 colc = "2"
 ekidis = Ekid.where(admloc: $admloc[@admin.id])
@@ -18,6 +20,9 @@ elsif params[:stato] == "REJECT"
 elsif params[:stato] == "PENDING"
   szp = "lg"
   colp = "5"
+elsif params[:stato] == "MENTOR"
+  szm = "lg"
+  colm = "5"
 elsif params[:stato] == "CONFIRM"
   szc = "lg"
   colc = "5"
@@ -28,6 +33,7 @@ end
 <%= link_to "NEW (#{ekidis.where(stat: "NEW").count})", ekidindex_path(stato: "NEW"), class: "btn btn-#{szn} btn-primary col-md-#{coln}" %>
 <%= link_to "REJECTED (#{ekidis.where(stat: "REJECT").count})", ekidindex_path(stato: "REJECT"), class: "btn btn-#{szr} btn-danger col-md-#{colr}" %>
 <%= link_to "PENDING (#{ekidis.where(stat: "PENDING").count})", ekidindex_path(stato: "PENDING"), class: "btn btn-#{szp} btn-success col-md-#{colp}" %>
+<%= link_to "MENTOR (#{ekidis.where(stat: "MENTOR").count})", ekidindex_path(stato: "MENTOR"), class: "btn btn-#{szm} btn-success col-md-#{colm}" %>
 <%= link_to "CONFIRM (#{ekidis.where(stat: "CONFIRM").count})", ekidindex_path(stato: "CONFIRM"), class: "btn btn-#{szc} btn-info col-md-#{colc}" %>
 
 
@@ -77,7 +83,7 @@ end
               <div class="row">
                 <div class="col-md-4">
                   <%= select_tag :stat, options_for_select(
-                      ["NEW","REJECT","PENDING","CONFIRM"], selected: e.stat),
+                      ["NEW","REJECT","PENDING","MENTOR","CONFIRM"], selected: e.stat),
                       class: "form-control search-box input-lg"%>
                       <b>CATEGORY</b>
                   <%= hidden_field_tag :id, e.id %>

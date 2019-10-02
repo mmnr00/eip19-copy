@@ -1,5 +1,5 @@
 wb = xlsx_package.workbook
-col_widths= [5,40,15,15,8,17,55,18,55,15,18,18,13,30]
+col_widths= [5,10,40,15,15,8,17,55,18,55,15,18,18,13,30]
 wb.styles do |style|
   header_1 = style.add_style(sz: 20, b: true)
   dlt_cell = style.add_style(bg_color: "FF0000",
@@ -25,6 +25,7 @@ wb.styles do |style|
     sheet.add_row ["","SENARAI NAMA SARINGAN PERCUMA (#{params[:stato]}-#{@ekids.count})"]
     sheet.add_row [""]
     sheet.add_row ["NO",
+                  "ID",
                   "NAMA",
                   "MYKID",
                   "T/LAHIR",
@@ -48,6 +49,7 @@ wb.styles do |style|
       mth = diff - year*12
       if 1==1
         sheet.add_row [counter, 
+                      ek.id,
                       ek.name, 
                       "#{ek.ic[0..5]}-#{ek.ic[6..7]}-#{ek.ic[8..11]}", 
                       ek.dob.strftime('%d/%m/%Y'),
