@@ -17,6 +17,7 @@
   <%= link_to "VIEW REGISTRATION", proge_path(prg, tp: "reg"), class: 'btn btn-sm btn-success active' %>
   <%= link_to "VIEW ATTENDANCE", proge_path(prg, tp: "att"), class: 'btn btn-sm btn-success active' %>
   <%= link_to "VIEW SUMMARY", proge_path(prg, tp: "summ"), class: 'btn btn-sm btn-success active' %>
+  <%= link_to "SHOWATT", showatt_path(id: prg), class: 'btn btn-sm btn-success active' %>
   <%= link_to "EDIT", edit_proge_path(prg), class: 'btn btn-sm btn-success active' %>
   <%= link_to "DELETE", proge_path(prg), method: :delete, :data => {:confirm => 'Are you sure?'}, class: 'btn btn-sm btn-success active' %><br><br>
   <%= link_to "REGISTER", schperse_path(proge: prg.id, typ: "reg"), class: 'btn btn-sm btn-info active' %>
