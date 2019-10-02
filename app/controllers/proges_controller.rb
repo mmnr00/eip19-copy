@@ -176,6 +176,11 @@ class ProgesController < ApplicationController
 		render action: "show", layout: "eipblank"
 	end
 
+	def showatt
+		@proge = Proge.find(params[:id])
+		render action: "showatt", layout: "eipblank"
+	end
+
 	def new
 		@proge = Proge.new
 		render action: "new", layout: "eipblank"

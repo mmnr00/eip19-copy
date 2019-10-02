@@ -1,0 +1,3 @@
+<% (prg = Perproge.where(proge_id: @proge.id).where.not(stat: "REG")).count %>
+
+<h4 align="center">Jumlah Kehadiran Program: <%= prg.count %> peserta</h4>

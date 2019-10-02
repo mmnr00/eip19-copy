@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get '/newatt', to: 'proges#newatt'
   post '/crtnewatt', to: 'proges#crtnewatt'
   get '/namelistxls', to: 'proges#namelistxls'
+  get '/showatt', to: 'proges#showatt'
   
 
   #~~PERSE
