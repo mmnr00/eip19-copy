@@ -32,8 +32,8 @@ end
 
 <%= link_to "NEW (#{ekidis.where(stat: "NEW").count})", ekidindex_path(stato: "NEW"), class: "btn btn-#{szn} btn-primary col-md-#{coln}" %>
 <%= link_to "REJECTED (#{ekidis.where(stat: "REJECT").count})", ekidindex_path(stato: "REJECT"), class: "btn btn-#{szr} btn-danger col-md-#{colr}" %>
-<%= link_to "PENDING (#{ekidis.where(stat: "PENDING").count})", ekidindex_path(stato: "PENDING"), class: "btn btn-#{szp} btn-success col-md-#{colp}" %>
 <%= link_to "MENTOR (#{ekidis.where(stat: "MENTOR").count})", ekidindex_path(stato: "MENTOR"), class: "btn btn-#{szm} btn-success col-md-#{colm}" %>
+<%= link_to "PENDING (#{ekidis.where(stat: "PENDING").count})", ekidindex_path(stato: "PENDING"), class: "btn btn-#{szp} btn-primary col-md-#{colp}" %>
 <%= link_to "CONFIRM (#{ekidis.where(stat: "CONFIRM").count})", ekidindex_path(stato: "CONFIRM"), class: "btn btn-#{szc} btn-info col-md-#{colc}" %>
 
 
