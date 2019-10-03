@@ -31,7 +31,7 @@
   </div>
 <% end %>
 <% if params[:tp] == "att" %>
-<%= link_to "https://www.eipepic.my/attendance", class: "btn btn-sm btn-primary active" do %>
+<%= link_to schperse_path(proge: @perproge.proge.id, typ:"att"), class: "btn btn-sm btn-primary active" do %>
   <i class="fa fa-arrow-right"></i> NEXT
 <% end %>
 <% end %>
