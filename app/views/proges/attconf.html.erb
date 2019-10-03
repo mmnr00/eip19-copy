@@ -30,3 +30,8 @@
     </table>
   </div>
 <% end %>
+<% if params[:tp] == "att" %>
+<%= link_to "https://www.eipepic.my/attendance", class: "btn btn-sm btn-primary active" do %>
+  <i class="fa fa-arrow-right"></i> NEXT
+<% end %>
+<% end %>
