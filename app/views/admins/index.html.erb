@@ -34,7 +34,7 @@
 <div class="scontainer">
   <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="card-counter primary">
         <i class="fa fa-code-fork"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "NEW").count %></span>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="card-counter danger">
         <i class="fa fa-exclamation-circle"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "REJECT").count %></span>
@@ -54,9 +54,9 @@
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="card-counter primary">
-        <i class="fa fa-pause"></i>
+    <div class="col-md-4">
+      <div class="card-counter info">
+        <i class="fa fa-globe"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "MENTOR").count %></span>
         <span class="count-name">
           <a href="/ekidindex?stato=MENTOR", style="color:#fff">Mentor</a>
@@ -65,7 +65,7 @@
     </div>
 
 
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div class="card-counter success">
         <i class="fa fa-pause"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "PENDING").count %></span>
@@ -76,8 +76,8 @@
     </div>
 
     
-    <div class="col-md-3">
-      <div class="card-counter info">
+    <div class="col-md-6">
+      <div class="card-counter primary">
         <i class="fa fa-check-circle"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "CONFIRM").count %></span>
         <span class="count-name">

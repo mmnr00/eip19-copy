@@ -68,16 +68,17 @@ class ProgesController < ApplicationController
 
 	def crtreg
 		@perse = Perse.new(perse_params)
+		exs = Perse.where(ic: @perse.ic).first
+		@perse = exs unless exs.blank?
 		@proge = Proge.find(params[:perse][:proge])
-		if @perse.save
+
+		if @perse.save && Perproge.where(perse_id: @perse.id,proge_id: @proge.id,stat: "REG").blank?
 			Perproge.create(perse_id: @perse.id,
 											proge_id: @proge.id,
 											stat: "REG")
-			redirect_to regconf_path(proge: @proge.id, perse: @perse.id)
-		else
-			render @perse.errors.full_messages
-			render :new
+			#redirect_to regconf_path(proge: @proge.id, perse: @perse.id)
 		end
+		redirect_to regconf_path(proge: @proge.id, perse: @perse.id)
 	end
 
 	def cfmatt
@@ -96,7 +97,7 @@ class ProgesController < ApplicationController
 			@perproge.save
 		end
 		flash[:success] = "Thank you. Your attendance has been confirmed"
-		redirect_to attconf_path(id: @perproge.id)
+		redirect_to attconf_path(id: @perproge.id, tp: "att")
 	end
 
 	def regatt
@@ -115,7 +116,7 @@ class ProgesController < ApplicationController
 																	proge_id: @proge.id,
 																	stat: "ATT")
 		end
-		redirect_to attconf_path(id: @perproge.id)
+		redirect_to attconf_path(id: @perproge.id, tp: "att")
 	end
 
 	def newatt
@@ -131,7 +132,7 @@ class ProgesController < ApplicationController
 			@perproge = Perproge.create(perse_id: @perse.id,
 											proge_id: @proge.id,
 											stat: "ATT")
-			redirect_to attconf_path(id: @perproge.id)
+			redirect_to attconf_path(id: @perproge.id, tp: "att")
 		else
 			render @perse.errors.full_messages
 			render :new
@@ -167,7 +168,7 @@ class ProgesController < ApplicationController
 	## ~ Extract List
 
 	def index
-		@proges_index = Proge.all
+		@proges_index = Proge.all.order('date DESC')
 		render action: "index", layout: "eipblank"
 	end
 

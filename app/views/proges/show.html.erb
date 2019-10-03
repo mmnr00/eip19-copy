@@ -23,7 +23,7 @@
           <td><%= proge.perse.ic %></td>
           <td><%= proge.perse.ph %></td>
           <td>
-            <%= link_to attconf_path(id: proge.id), class: "btn btn-sm btn-primary active", target: "_blank" do %>
+            <%= link_to attconf_path(id: proge.id, tp: params[:tp]), class: "btn btn-sm btn-primary active", target: "_blank" do %>
               <i class="fa fa-eye"></i> VIEW
             <% end %>
           </td>
@@ -56,7 +56,7 @@
           <td><%= proge.perse.ic %></td>
           <td><%= proge.perse.ph %></td>
           <td>
-            <%= link_to attconf_path(id: proge.id), class: "btn btn-sm btn-primary active", target: "_blank" do %>
+            <%= link_to attconf_path(id: proge.id, tp: params[:tp]), class: "btn btn-sm btn-primary active", target: "_blank" do %>
               <i class="fa fa-eye"></i> VIEW
             <% end %>
           </td>

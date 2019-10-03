@@ -1,4 +1,8 @@
+<% if params[:tp] == "reg" %>
+<h2>REGISTRATION CONFIRMATION</h2>
+<% elsif params[:tp] == "att" %>
 <h2>ATTENDANCE CONFIRMATION</h2>
+<% end %>
 
 <% if @perproge.present? %>
   <div class="table-responsive">
