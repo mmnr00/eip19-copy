@@ -1,27 +1,39 @@
 #FREE SCREENING
-id=[7653,6330,6329,6314,7587,7582,6261,6256,6244,6253,6231,6215,6212,6213]
+id=[7829, 7057, 6182, 7097, 6224, 7161, 7187, 7203, 7199, 7198, 7209, 7231, 7223, 7238, 7248, 7241, 7257, 7254, 7826, 6156, 6166, 6173, 6163, 6168, 6160, 6776, 6609, 6648, 6765, 7182, 7234]
 
 @ekids = Ekid.where(id: id)
 @ekids.each do |ek|
 @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_KEY"])
+dt= "20 Oktober 2019"
 @client.messages.create(
+#to: "+60174151556",
 to: "+60#{ek.mph}", 
 from: ENV["TWILIO_PHONE_NO"], 
 body: "\n\n MBI Selangor Incorporated 
 \n Terima kasih kerana mendaftar untuk Program Saringan Percuma anjuran MBI Selangor (INC).
-\n Tahniah! #{ek.name} telah disenaraipendek untuk proses pemilihan seterusnya. Untuk makluman, program seterusnya akan diadakan pada 22 September 2019 di Denai Alam.
-\n Sila whatsapp maklumat dibawah kepada urusetia Program, Pn Rusmina Sukim di 019-6072688
-\n 1. Nama Anak
-\n 2. Umur Anak dan No MyKid
-\n 3. No yang boleh dihubungi
+\n Tahniah! #{ek.name} telah disenaraipendek untuk proses pemilihan seterusnya. Untuk makluman, program seterusnya akan diadakan pada #{dt} di Denai Alam.
+\n Klik link ini https://wa.me/60196072688?text=#{ek.name} dan klik send pada whatsapp untuk sahkan kehadiran.
+\n Untuk pertanyaan lanjut sila hubungi urusetia Program, Pn Rusmina Sukim di 019-6072688
 \n TEMPAT ADALAH AMAT TERHAD. Terima kasih atas kerjasama anda."
 )
+end
+
+#Change Mentoring to Pending
+Ekid.where(stat:"MENTOR").each do |ek|
+ek.stat="PENDING"
+ek.save
+end
+
+#Sort first 40
+Ekid.where(stat: "NEW").order('created_at ASC').first(40).each do |ek|
+ek.stat="MENTOR"
+ek.save
 end
 
 #MENTORING
 id=[7566, 6182, 6224, 6156, 6166, 6174, 6173, 6168, 6163, 6160]  
 
-@ekids = Ekid.where(id: id)
+@ekids = Ekid.where(stat: "MENTOR")
 @ekids.each do |ek|
 @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_KEY"])
 @client.messages.create(
@@ -30,8 +42,8 @@ from: ENV["TWILIO_PHONE_NO"],
 body: "\n\n MBI Selangor Incorporated 
 \n Terima kasih kerana mendaftar untuk Program Saringan Percuma anjuran MBI Selangor (INC).
 \n Tahniah! #{ek.name} telah disenaraipendek untuk program mentoring dan coaching. Untuk makluman, program seterusnya akan diadakan seperti berikut:
-\n 22 September 2019 (Ahad)
-\n 8.30am- 5.30ptg
+\n 13 Oktober 2019 (Ahad)
+\n 9.30am- 2.00pm
 \n SACC MALL, Shah Alam.
 \n Sila whatsapp maklumat dibawah kepada urusetia Program, Pn Zaiha di 013-668 9376
 \n 1. Nama Anak
