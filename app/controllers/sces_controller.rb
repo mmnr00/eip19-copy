@@ -15,7 +15,7 @@ class ScesController < ApplicationController
 		end
 		skid = []
 		@ekids.each do |ek|
-			skid << ek.skid.id
+			skid << ek.skid.id unless ek.skid.blank?
 		end
 		@skids = Skid.where(id: skid)
 
