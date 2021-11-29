@@ -1,3 +1,5 @@
+<a style="color: red">*</a> Perlu Dilengkapkan
+
 <div class='row'>
   <div class='col-lg-8 col-12'>
     <%= form_for(@ekid,:html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
@@ -9,7 +11,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>NAMA ANAK</strong>
+            <strong>NAMA ANAK<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -22,7 +24,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>NO MYKID</strong>
+            <strong>NO MYKID<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -30,11 +32,11 @@
             <% 
               if @ekid.ic.present?
                 icval = @ekid.ic
-              else
+r              else
                 icval = params[:ic]
               end 
             %>
-            <%= f.text_field :ic, class: "form-control", placeholder: "cth: 141201035647 (tiada dash)", autofocus: true, required: true, value: icval %>
+            <%= f.text_field :ic, class: "form-control", placeholder: "cth: 141201035647 (tiada dash)", autofocus: true, required: true, value: icval, readonly: true %>
           </div>
         </div>
       </div>
@@ -42,7 +44,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>JANTINA</strong>
+            <strong>JANTINA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -58,7 +60,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>TARIKH LAHIR</strong>
+            <strong>TARIKH LAHIR<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -80,7 +82,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>ALAMAT KEDIAMAN</strong>
+            <strong>ALAMAT KEDIAMAN<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -93,7 +95,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>DAERAH YANG DIDIAMI SEKARANG</strong>
+            <strong>DAERAH YANG DIDIAMI SEKARANG<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -117,7 +119,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>LOKASI PILIHAN</strong>
+            <strong>LOKASI PILIHAN<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -133,7 +135,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>NO TELEFON UNTUK DIHUBUNGI</strong>
+            <strong>NO TELEFON UNTUK DIHUBUNGI<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -148,7 +150,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>NAMA BAPA</strong>
+            <strong>NAMA BAPA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -161,7 +163,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>UMUR BAPA (TAHUN)</strong>
+            <strong>UMUR BAPA (TAHUN)<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -174,7 +176,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>NO TELEFON BAPA</strong>
+            <strong>NO TELEFON BAPA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -188,7 +190,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>EMAIL BAPA</strong>
+            <strong>EMAIL BAPA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -201,7 +203,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>TAHAP PENDIDIKAN BAPA</strong>
+            <strong>TAHAP PENDIDIKAN BAPA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -214,7 +216,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>ADAKAH BAPA BEKERJA?</strong>
+            <strong>ADAKAH BAPA BEKERJA?<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -244,7 +246,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>NAMA IBU</strong>
+            <strong>NAMA IBU<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -257,7 +259,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>UMUR IBU (TAHUN)</strong>
+            <strong>UMUR IBU (TAHUN)<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -270,7 +272,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>NO TELEFON IBU</strong>
+            <strong>NO TELEFON IBU<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -284,7 +286,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>EMAIL IBU</strong>
+            <strong>EMAIL IBU<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -297,7 +299,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>TAHAP PENDIDIKAN IBU</strong>
+            <strong>TAHAP PENDIDIKAN IBU<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -310,7 +312,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>ADAKAH IBU BEKERJA?</strong>
+            <strong>ADAKAH IBU BEKERJA?<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -326,7 +328,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>PEKERJAAN IBU JIKA BEKERJA</strong>
+            <strong>PEKERJAAN IBU JIKA BEKERJA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -339,7 +341,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>BILANGAN ADIK BERADIK</strong>
+            <strong>BILANGAN ADIK BERADIK<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -353,7 +355,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-12">
-            <strong>ADAKAH IBU/BAPA MEMPUNYAI SEJARAH LEWAT PERKEMBANGAN?</strong>
+            <strong>ADAKAH IBU/BAPA MEMPUNYAI SEJARAH LEWAT PERKEMBANGAN?<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -382,7 +384,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>PENDAPATAN ISI RUMAH SEBULAN (RM)</strong>
+            <strong>PENDAPATAN ISI RUMAH SEBULAN (RM)<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -403,7 +405,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-12 col-12">
-            <strong>ADAKAH ANAK ANDA MEMPEROLEH RUJUKAN PAKAR SEBELUM INI?</strong>
+            <strong>ADAKAH ANAK ANDA MEMPEROLEH RUJUKAN PAKAR SEBELUM INI?<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -432,7 +434,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-12 col-12">
-            <strong>LEWAT PERKEMBANGAN YANG DIALAMI ANAK ANDA</strong>
+            <strong>LEWAT PERKEMBANGAN YANG DIALAMI ANAK ANDA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -452,7 +454,7 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>JIKA LAIN-LAIN, SILA NYATAKAN KELEWATAN YANG DIALAMI</strong>
+            <strong>JIKA LAIN-LAIN, SILA NYATAKAN KELEWATAN YANG DIALAMI<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">

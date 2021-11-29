@@ -25,6 +25,7 @@
   <i class="fa fa-arrow-circle-left"></i> KEMBALI KE PROFIL ANAK
 <% end %><br><br>
 
+<a style="color: red">*</a> Perlu Dilengkapkan
 <div class='row'>
   <div class='col-lg-8 col-12'>
     <%= form_for(:pkid,:url => {:controller => "pkids", :action => "#{act}"}, :html => {multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
@@ -45,7 +46,7 @@
             <div class="form-group"> <!-- name -->
               <div class="row">
                 <div class="control-label col-sm-8">
-                  <strong><%= ent %></strong>
+                  <strong><%= ent %><a style="color: red">*</a></strong>
                 </div>
               </div>
               <div class="row">
@@ -70,7 +71,7 @@
             <div class="form-group"> <!-- name -->
               <div class="row">
                 <div class="control-label col-sm-8">
-                  <strong><%= ent %></strong>
+                  <strong><%= ent %><a style="color: red">*</a></strong>
                 </div>
               </div>
               <div class="row">
@@ -117,7 +118,7 @@
             <div class="form-group"> <!-- name -->
               <div class="row">
                 <div class="control-label col-sm-8">
-                  <strong><%= ent %></strong>
+                  <strong><%= ent %><a style="color: red">*</a></strong>
                 </div>
               </div>
               <div class="row">
@@ -149,7 +150,7 @@
             <div class="form-group"> <!-- name -->
               <div class="row">
                 <div class="control-label col-sm-8">
-                  <strong><%= ent %></strong>
+                  <strong><%= ent %><a style="color: red">*</a></strong>
                 </div>
               </div>
               <div class="row">
@@ -179,7 +180,7 @@
             <div class="form-group"> <!-- name -->
               <div class="row">
                 <div class="control-label col-sm-8">
-                  <strong><%= ent %></strong>
+                  <strong><%= ent %><a style="color: red">*</a></strong>
                 </div>
               </div>
               <div class="row">
@@ -210,7 +211,7 @@
         <% end %>
 
         <div class="col-sm-12" style="background-color:blue">
-          <font color="white"><h4>KEBENARAN UNTUK PENILAIAN DAN INTERVENSI</h4></font>
+          <font color="white"><h4>KEBENARAN UNTUK PENILAIAN DAN INTERVENSI<a style="color: red">*</a></h4></font>
         </div>
 
         <%= f.fields_for :agr do |h| %>
