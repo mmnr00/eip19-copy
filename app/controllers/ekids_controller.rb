@@ -131,13 +131,14 @@ class EkidsController < ApplicationController
 			dob = @ekid.dob
 			@age = (Date.today.year*12+Date.today.month) - (dob.year*12+dob.month)
 			year = @age/12
-			if @ekid.pinc == "Lebih dari 10,000" || (year >= 4)
-				@ekid.stat = "REJECT"
-			elsif @ekid.pinc == "5,000 hingga 10,000" && ((@ekid.sib.to_f) < 3)
-				@ekid.stat = "REJECT"
-			else
-				@ekid.stat = "NEW"
-			end
+			@ekid.stat = "NEW"
+			# if @ekid.pinc == "Lebih dari 10,000" || (year >= 4)
+			# 	@ekid.stat = "REJECT"
+			# elsif @ekid.pinc == "5,000 hingga 10,000" && ((@ekid.sib.to_f) < 3)
+			# 	@ekid.stat = "REJECT"
+			# else
+			# 	@ekid.stat = "NEW"
+			# end
 			if @ekid.save 
 				redirect_to new_pkid_path(ekid: @ekid.id)
 			else
