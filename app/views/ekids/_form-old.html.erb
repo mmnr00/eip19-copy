@@ -88,12 +88,50 @@
         <div class="row">
           <div class="col-sm-8 col-12">
             <%= f.text_area :addr, class: "form-control", placeholder: "Pastikan ada memasukkan poskod, daerah dan negeri", autofocus: true, required: true %>
-            Ujian Saringan akan diadakan disekitar lokasi diatas
           </div>
         </div>
       </div>
 
-      
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>DAERAH YANG DIDIAMI SEKARANG<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.select :dun, options_for_select(["Petaling",
+                                                  "Hulu Langat",
+                                                  "Klang",
+                                                  "Gombak",
+                                                  "Kuala Langat",
+                                                  "Sepang",
+                                                  "Kuala Selangor",
+                                                  "Hulu Selangor",
+                                                  "Sabak Bernam",
+                                                  "Lain-lain"], 
+                                                  selected: @ekid.dun), 
+            {include_blank: "SILA PILIH"}, {required: true} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>LOKASI PILIHAN<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.select :prefloc, options_for_select(["Shah Alam"], 
+                                                  selected: @ekid.prefloc), 
+            {include_blank: "SILA PILIH"}, {required: true} %>
+            <br>Ujian Saringan akan diadakan disekitar lokasi diatas
+          </div>
+        </div>
+      </div>
+
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
@@ -178,7 +216,23 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>PEKERJAAN BAPA</strong>
+            <strong>ADAKAH BAPA BEKERJA?<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.select :fwork, options_for_select(["Ya", 
+                                                  "Tidak"], 
+                                                  selected: @ekid.fwork), 
+            {include_blank: "SILA PILIH"}, {required: true} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>PEKERJAAN BAPA JIKA BEKERJA</strong>
           </div>
         </div>
         <div class="row">
@@ -258,7 +312,23 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>PEKERJAAN IBU<a style="color: red">*</a></strong>
+            <strong>ADAKAH IBU BEKERJA?<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.select :mwork, options_for_select(["Ya", 
+                                                  "Tidak"], 
+                                                  selected: @ekid.mwork), 
+            {include_blank: "SILA PILIH"}, {required: true} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>PEKERJAAN IBU JIKA BEKERJA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -331,31 +401,10 @@
       <br><div class="col-sm-12" style="background-color:blue">
         <font color="white"><h4>MAKLUMAT PERKEMBANGAN ANAK</h4></font>
       </div> 
-
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-12 col-12">
-            <strong>MASALAH PERKEMBANGAN ANAK YANG DIALAMI<a style="color: red">*</a></strong>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-8 col-12">
-            <%= f.select :prbtp, options_for_select(["Lambat Bercakap",
-                                                    "Lambat Berjalan",
-                                                    "Lambat Belajar",
-                                                    "Autism",
-                                                    "ADHD",
-                                                    "Lain-lain"], 
-                                                  selected: @ekid.prbtp), 
-            {include_blank: "SILA PILIH"}, {required: true} %>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group"> 
-        <div class="row">
-          <div class="control-label col-sm-12 col-12">
-            <strong>SUDAKAH ANDA MEMBAWA ANAK ANDA BERJUMPA MANA-MANA DOKTOR/TERAPI UNTUK MASALAH TERSEBUT?<a style="color: red">*</a></strong>
+            <strong>ADAKAH ANAK ANDA SUDAH DIRUJUK OLEH DOKTOR/HOSPITAL SEBELUM INI?<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
@@ -384,15 +433,19 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-12 col-12">
-            <strong>ADAKAH ANAK ANDA MASIH MEMPUNYAI TEMUJANJI SUSULAN UNTUK MASALAH TERSEBUT?</strong>
+            <strong>LEWAT PERKEMBANGAN YANG DIALAMI ANAK ANDA<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-8 col-12">
-            <%= f.select :reflw, options_for_select(["Ya", 
-                                                  "Tidak"], 
-                                                  selected: @ekid.reflw), 
-            {include_blank: "SILA PILIH"} %>
+            <%= f.select :prbtp, options_for_select(["Lambat Bercakap",
+                                                    "Lambat Berjalan",
+                                                    "Lambat Belajar",
+                                                    "Autism",
+                                                    "ADHD",
+                                                    "Lain-lain"], 
+                                                  selected: @ekid.prbtp), 
+            {include_blank: "SILA PILIH"}, {required: true} %>
           </div>
         </div>
       </div>
@@ -400,86 +453,15 @@
       <div class="form-group"> 
         <div class="row">
           <div class="control-label col-sm-8">
-            <strong>ADAKAH ANAK ANDA MEMPUNYAI MASALAH PERUBATAN LAIN? SILA NYATAKAN</strong>
+            <strong>JIKA LAIN-LAIN, SILA NYATAKAN KELEWATAN YANG DIALAMI<a style="color: red">*</a></strong>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-8 col-12">
-            <%= f.text_field :prbotmed, class: "form-control", placeholder: "", autofocus: true %>
+            <%= f.text_field :prbot, class: "form-control", placeholder: "", autofocus: true %>
           </div>
         </div>
       </div>
-
-      <div class="form-group"> 
-        <div class="row">
-          <div class="control-label col-sm-8">
-            <strong>ADAKAH ANDA MEMPUNYAI MASALAH SEPANJANG TEMPOH MENGANDUNG DAN SEMASA DILAHIRKAN? SILA NYATAKAN</strong>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-8 col-12">
-            <%= f.text_field :prbpreg, class: "form-control", placeholder: "", autofocus: true %>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group"> 
-        <div class="row">
-          <div class="control-label col-sm-8">
-            <strong>SILA NYATAKAN LAIN LAIN MAKLUMAT MENGENAI ANAK ANDA</strong>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-8 col-12">
-            <%= f.text_field :infot, class: "form-control", placeholder: "", autofocus: true %>
-          </div>
-        </div>
-      </div>
-
-      
-
-
-        <div class="col-sm-12" style="background-color:blue">
-          <font color="white"><h4>KEBENARAN UNTUK PENILAIAN DAN INTERVENSI<a style="color: red">*</a></h4></font>
-        </div>
-
-        <%= f.fields_for :agr do |h| %>
-          <% $agr.each do |ent| %>
-            <div class="form-group"> <!-- name -->
-              <div class="row">
-                <div class="control-label col-sm-12">
-                  <strong><%= ent %></strong>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-12">
-                  <% if ent == "Saya:"  %>
-                    <%= h.text_field :"#{ent}", class: "form-control",placeholder: "Nama Ibu/Bapa/Penjaga", value: @ekid.agr[ent], autofocus: true, required: true %>
-                  <% elsif ent == "membenarkan pasukan Early Intervention Program untuk menilai dan menjalankan intervensi atau terapi yang diperlukan dan disarankan untuk"  %>
-                    <%= h.text_field :"#{ent}", class: "form-control",placeholder: "Nama Anak/Klien", value: @ekid.agr[ent], autofocus: true, required: true %>
-                  <% elsif ent == "Tarikh Pengesahan Kebenaran"  %>
-                    <%= h.date_field :"#{ent}", class: "form-control",placeholder: "Nama Anak/Klien", value: @ekid.agr[ent], autofocus: true, required: true %>
-                  <% elsif ent == "SAYA MENGESAHKAN MAKLUMAT YANG DIBERIKAN DI ATAS ADALAH BENAR"  %>
-                    <%= h.select :"#{ent}", options_for_select(["Ya", 
-                                                              "Tidak"], 
-                                                              selected: @ekid.agr[ent]), 
-                        {include_blank: "SILA PILIH"}, {required: true} %><br>
-                    <font color="grey" size="2">Pakar kami memerlukan maklumat yang tepat dari ibu-bapa untuk memastikan proses saringan berjalan dengan lancar</font>
-
-                  <% elsif ent == "Saya faham dengan kenyataan dibawah dan memberikan kebenaran untuk menggunakan maklumat diatas untuk mencapai tujuan program:" %>
-                    <%= h.select :"#{ent}", options_for_select(["Setuju", 
-                                                              "Tidak Setuju"], 
-                                                              selected: @ekid.agr[ent]), 
-                        {include_blank: "SILA PILIH"}, {required: true} %><br>
-                    <font color="grey" size="2">Kami memahami bahawa penggunaan data atau maklumat peribadi adalah dianggap sebagai data peribadi sensiif yang tertakluk di bawah Akta Perlindungan Data Peribadi 2010 (Personal Data Protection Act 2010 - PDPA). SILA AMBIL PERHATIAN bahawa dengan memberikan semua maklumat yang terkandung di sini dan maklumat peribadi lain yang diperolehi daripada sebarang komunikasi dan / atau interaksi di antara pihak kami dan pihak anda (Subjek Data) dengan ini memberi persetujuan kepada MBI untuk mengumpul, memproses dan/atau menggunakan data peribadi untuk tujuan yang berkaitan dengan, atau selaras dengan (Early Intervention Program) di bawah inisiatif Smart Selangor (EIP) yang dikendalikan oleh MBI. MBI bersetuju untuk meyimpan data peribadi yang diterima daripada Subjek Data secara sulit dan mengikut peruntukan-peruntukan di bawah PDPA.</font>
-                  <% else %>
-                    <%= h.text_field :"#{ent}", class: "form-control",placeholder: "", value: @ekid.agr[ent], autofocus: true, required: true %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
 
 
 

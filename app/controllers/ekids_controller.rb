@@ -505,7 +505,12 @@ class EkidsController < ApplicationController
 																:refloc,
 																:prbtp,
 																:prbot,
-																:prefloc)
+																:prefloc,
+																:reflw,
+																:prbotmed,
+																:prbpreg,
+																:infot,
+																:agr)
 	end
 
 	def set_all
