@@ -117,6 +117,10 @@ class EkidsController < ApplicationController
 
 	def create
 		@ekid = Ekid.new(ekid_params)
+		par = params[:ekid]
+		par[:agr].each do |k,v|
+			@ekid.agr[k]=v
+		end
 		#double entry
 		if (exs=Ekid.where(ic: @ekid.ic)).present?
 			flash[:danger] = "NAMA ANAK SUDAH DIDAFTARKAN DALAM SISTEM"
@@ -140,7 +144,8 @@ class EkidsController < ApplicationController
 			# 	@ekid.stat = "NEW"
 			# end
 			if @ekid.save 
-				redirect_to new_pkid_path(ekid: @ekid.id)
+				#redirect_to new_pkid_path(ekid: @ekid.id)
+				redirect_to ekidconf_path(id: @ekid.id)
 			else
 				render @ekid.errors.full_messages
 				render :new
@@ -155,18 +160,23 @@ class EkidsController < ApplicationController
 
 	def update
 		@ekid = Ekid.find(params[:id])
+		par = params[:ekid]
 		if @ekid.update(ekid_params)
+			par[:agr].each do |k,v|
+				@ekid.agr[k]=v
+			end
 			if @ekid.prefloc == "Shah Alam"
 				@ekid.admloc = "sha"
 			elsif @ekid.prefloc == "Serdang"
 				@ekid.admloc = "srd"
 			end
 			@ekid.save
-			if (pkid = @ekid.pkid).present?
-				redirect_to edit_pkid_path(pkid,ekid: @ekid.id)
-			else
-				redirect_to new_pkid_path(ekid: @ekid.id)
-			end
+			# if (pkid = @ekid.pkid).present?
+			# 	redirect_to edit_pkid_path(pkid,ekid: @ekid.id)
+			# else
+			# 	redirect_to new_pkid_path(ekid: @ekid.id)
+			# end
+			redirect_to ekidconf_path(id: @ekid.id)
 		else
 			render @ekid.errors.full_messages
 			render :edit
