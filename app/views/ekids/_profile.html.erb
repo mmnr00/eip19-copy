@@ -34,10 +34,6 @@
     </tbody>
     <tbody>
       <tr>
-        <td style="background-color:#548235" ><font color="white">DAERAH YANG DIDIAMI</font></td>
-        <td style="background-color:#E2EFDA"><%= @ekid.dun %></td>
-      </tr>
-      <tr>
         <td style="background-color:#548235" ><font color="white">ALAMAT TERKINI</font></td>
         <td style="background-color:#E2EFDA"><%= @ekid.addr %></td>
       </tr>
@@ -66,10 +62,6 @@
         <td style="background-color:#E2EFDA"><%= @ekid.fedu %></td>
       </tr>
       <tr>
-        <td style="background-color:#548235" ><font color="white">ADAKAH BAPA BEKERJA</font></td>
-        <td style="background-color:#E2EFDA"><%= @ekid.fwork %></td>
-      </tr>
-      <tr>
         <td style="background-color:#548235" ><font color="white">PEKERJAAN BAPA</font></td>
         <td style="background-color:#E2EFDA"><%= @ekid.fworktp %></td>
       </tr>
@@ -92,10 +84,6 @@
       <tr>
         <td style="background-color:#548235" ><font color="white">TAHAP PENDIDIKAN IBU</font></td>
         <td style="background-color:#E2EFDA"><%= @ekid.medu %></td>
-      </tr>
-      <tr>
-        <td style="background-color:#548235" ><font color="white">ADAKAH IBU BEKERJA</font></td>
-        <td style="background-color:#E2EFDA"><%= @ekid.mwork %></td>
       </tr>
       <tr>
         <td style="background-color:#548235" ><font color="white">PEKERJAAN IBU</font></td>
@@ -126,29 +114,33 @@
     </tbody>
     <tbody>
       <tr>
-        <td style="background-color:#C65911" ><font color="white">Adakah Anak Anda Sudah Dirujuk Oleh Doktor/Hospital Sebelum Ini?</font></td>
-        <td style="background-color:#FCE4D6"><%= @ekid.ref %></td>
-      </tr>
-      <tr>
-        <td style="background-color:#C65911" ><font color="white">Jika Ya, dimanakah anak anda dirujuk?</font></td>
-        <td style="background-color:#FCE4D6"><%= @ekid.refloc %></td>
-      </tr>
-      <tr>
-        <td style="background-color:#C65911" ><font color="white">Lewat perkembangan yang dialami</font></td>
+        <td style="background-color:#C65911" ><font color="white">Masalah Perkembangan Anak Yang Dialami</font></td>
         <td style="background-color:#FCE4D6"><%= @ekid.prbtp %></td>
       </tr>
       <tr>
-        <td style="background-color:#C65911" ><font color="white">Maklumat perkembangan jika lain-lain</font></td>
-        <td style="background-color:#FCE4D6"><%= @ekid.prbot %></td>
+        <td style="background-color:#C65911" ><font color="white">Rujukan Anak Oleh Doktor/Hospital</font></td>
+        <td style="background-color:#FCE4D6"><%= @ekid.ref %></td>
       </tr>
-      <% if pk.present? %>
-        <% pk.devkid.each do |k,v| %>
-          <tr>
-            <td style="background-color:#C65911" ><font color="white"><%= k %></font></td>
-            <td style="background-color:#FCE4D6"><%= v %></td>
-          </tr>
-        <% end %>
-      <% end %>
+      <tr>
+        <td style="background-color:#C65911" ><font color="white">Dimanakan Anak Anda Dirujuk</font></td>
+        <td style="background-color:#FCE4D6"><%= @ekid.refloc %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#C65911" ><font color="white">Susulan Temujanji Anak Untuk Masalah Tersebut</font></td>
+        <td style="background-color:#FCE4D6"><%= @ekid.reflw %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#C65911" ><font color="white">Masalah Perubatan Lain Anak</font></td>
+        <td style="background-color:#FCE4D6"><%= @ekid.prbotmed %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#C65911" ><font color="white">Masalah Anak Sepanjang Tempoh Mengandung</font></td>
+        <td style="background-color:#FCE4D6"><%= @ekid.prbpreg %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#C65911" ><font color="white">Maklumat Lain Berkenaan Anak</font></td>
+        <td style="background-color:#FCE4D6"><%= @ekid.infot %></td>
+      </tr>
     </tbody>
 
 
