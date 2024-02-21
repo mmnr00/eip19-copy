@@ -45,7 +45,7 @@ class EkidsController < ApplicationController
 		if params[:sce].present?
 			@ekids = Ekid.where(sce_id: params[:sce]).order('name ASC')
 		else
-			@ekids = Ekid.where(admloc: $admloc[@admin.id],stat: params[:stato]).order('name ASC')
+			@ekids = Ekid.where(stat: params[:stato]).order('name ASC')
 		end
 		respond_to do |format|
       #format.html
@@ -78,7 +78,8 @@ class EkidsController < ApplicationController
 	
 	def index
 		@admin = current_admin
-		@ekids = Ekid.where(admloc: $admloc[@admin.id],stat: params[:stato])
+		#@ekids = Ekid.where(admloc: $admloc[@admin.id],stat: params[:stato])
+		@ekids = Ekid.where(stat: params[:stato])
 		#render action: "index", layout: "eipblank"
 	end
 

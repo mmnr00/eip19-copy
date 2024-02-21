@@ -3,7 +3,8 @@ class AdminsController < ApplicationController
 
 	def index
 		@admin = current_admin
-		@ekids = Ekid.where(admloc: $admloc[@admin.id])
+		#@ekids = Ekid.where(admloc: $admloc[@admin.id])
+		@ekids = Ekid.all
 		# if @admin.id == 1
 		# 	@ekids = Ekid.all
 		# elsif @admin.id == 2
