@@ -72,8 +72,9 @@ class EkidsController < ApplicationController
 	    flash.now[:danger] = "TIADA DALAM REKOD" unless @ekid.present?
 	  end
   	respond_to do |format|
-		  format.js { render partial: 'ekids/result' } 
+		  format.js { render 'ekids/result' } 
 		end 
+		
 	end
 	
 	def index
