@@ -114,6 +114,7 @@ class EkidsController < ApplicationController
 
 	def new
 		@ekid = Ekid.new
+		@ekid.fotos.build
 		render action: "new", layout: "eipblank"
 	end
 
@@ -522,7 +523,12 @@ class EkidsController < ApplicationController
 																:prbotmed,
 																:prbpreg,
 																:infot,
-																:agr)
+																:agr,
+																:fic,
+																:fdun,
+																:mic,
+																:mdun,
+																fotos_attributes: [:foto, :picture, :foto_name])
 	end
 
 	def set_all

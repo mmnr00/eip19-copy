@@ -75,6 +75,73 @@
         </div>
       </div>
 
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong>SIJIL KELAHIRAN ANAK</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "BIRTH CERT ANAK").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "BIRTH CERT ANAK" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong>SALINAN AKUAN ANAK ANGKAT</strong><br>
+            *Jika berkenaan*
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "ANAK ANGKAT").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "ANAK ANGKAT" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf' %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
       <br><div class="col-sm-12" style="background-color:blue">
         <font color="white"><h4>MAKLUMAT KELUARGA</h4></font>
       </div>
@@ -118,6 +185,133 @@
         <div class="row">
           <div class="col-sm-8 col-12">
             <%= f.text_field :fname, class: "form-control", placeholder: "", autofocus: true, required: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>NO MYKAD BAPA<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.text_field :fic, class: "form-control", placeholder: "e.g 870829355432(No dash)", autofocus: true, required: true %>
+          </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong> SALINAN MYKAD BAPA</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "MYKAD BAPA").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "MYKAD BAPA" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong>SALINAN SLIP SPR BAPA</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "SPR BAPA").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "SPR BAPA" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong>SLIP GAJI/AKUAN PENDAPATAN BAPA</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "GAJI BAPA").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "GAJI BAPA" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>DUN MENGUNDI BAPA<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.select :fdun, options_for_select($dun_list, 
+                                                  selected: @ekid.fdun), 
+            {include_blank: "SILA PILIH"}, {required: true} %>
           </div>
         </div>
       </div>
@@ -198,6 +392,133 @@
         <div class="row">
           <div class="col-sm-8 col-12">
             <%= f.text_field :mname, class: "form-control", placeholder: "", autofocus: true, required: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>NO MYKAD IBU<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.text_field :mic, class: "form-control", placeholder: "e.g 870829355432(No dash)", autofocus: true, required: true %>
+          </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong> SALINAN MYKAD IBU</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "MYKAD IBU").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "MYKAD IBU" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong>SALINAN SLIP SPR IBU</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "SPR IBU").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "SPR IBU" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong>SLIP GAJI/AKUAN PENDAPATAN IBU</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "GAJI IBU").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "GAJI IBU" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <strong>DUN MENGUNDI IBU<a style="color: red">*</a></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-12">
+            <%= f.select :mdun, options_for_select($dun_list, 
+                                                  selected: @ekid.mdun), 
+            {include_blank: "SILA PILIH"}, {required: true} %>
           </div>
         </div>
       </div>
@@ -325,6 +646,39 @@
                                                   selected: @ekid.pinc), 
             {include_blank: "SILA PILIH"}, {required: true} %>
           </div>
+        </div>
+      </div>
+
+      <% m = 0 %> <!-- Stop loop at 1 -->
+      <div class="form-group"> 
+        <div class="row">
+          <div class="control-label col-sm-8">
+            <i class="fas fa-cloud-upload-alt"></i><strong>SALINAN SIJIL/PERAKUAN NIKAH</strong>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-8 col-5">
+        <% image = @ekid.fotos.where(foto_name: "CERT NIKAH").first %>
+        <% if image.present? %>
+          <%= image_tag(image.picture.url, size: "200x200") if image.picture? %>
+            <div class="row">
+            <div class="col-sm-8 col-5">
+              <strong><%= link_to "EDIT", edit_foto_path(image.id), class: "btn btn-sm btn-success active" %></strong>
+            </div>
+            </div>  
+        <% else %>
+          <%= f.fields_for :fotos do |h| %>
+            <% break if m==1 %>
+              <div class="row">
+                <div class="col-sm-8 col-8">
+                  <%= h.hidden_field :foto_name, value: "CERT NIKAH" %>
+                  <%= h.file_field :picture, accept: 'image/jpeg,image/gif,image/png,application/pdf', required: true %>
+                </div>
+              </div>
+              <% m = 1 %>
+            <% end %>
+          <% end %>
+        </div>
         </div>
       </div>
 
