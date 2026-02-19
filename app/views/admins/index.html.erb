@@ -34,27 +34,27 @@
 <div class="scontainer">
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="card-counter primary">
         <i class="fa fa-code-fork"></i>
-        <span class="count-numbers"><%= @ekids.where(stat: "NEW").count %></span>
+        <span class="count-numbers"><%= @ekids.where(stat: "PERMOHONAN DITERIMA").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=NEW", style="color:#fff">New</a>
+          <a href="/ekidindex?stato=PERMOHONAN DITERIMA", style="color:#fff">PERMOHONAN DITERIMA</a>
         </span>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="card-counter danger">
         <i class="fa fa-exclamation-circle"></i>
-        <span class="count-numbers"><%= @ekids.where(stat: "REJECT").count %></span>
+        <span class="count-numbers"><%= @ekids.where(stat: "PERMOHONAN GAGAL").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=REJECT", style="color:#fff">Rejected</a>
+          <a href="/ekidindex?stato=PERMOHONAN GAGAL", style="color:#fff">PERMOHONAN GAGAL</a>
         </span>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <div class="card-counter info">
         <i class="fa fa-globe"></i>
         <span class="count-numbers"><%= @ekids.where(stat: "MENTOR").count %></span>
@@ -62,26 +62,26 @@
           <a href="/ekidindex?stato=MENTOR", style="color:#fff">Mentor</a>
         </span>
       </div>
-    </div>
+    </div> -->
 
 
     <div class="col-md-6">
-      <div class="card-counter success">
+      <div class="card-counter info">
         <i class="fa fa-pause"></i>
-        <span class="count-numbers"><%= @ekids.where(stat: "PENDING").count %></span>
+        <span class="count-numbers"><%= @ekids.where(stat: "PERMOHONAN DALAM PROSES").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=PENDING", style="color:#fff">Pending</a>
+          <a href="/ekidindex?stato=PERMOHONAN DALAM PROSES", style="color:#fff">PERMOHONAN DALAM PROSES</a>
         </span>
       </div>
     </div>
 
     
     <div class="col-md-6">
-      <div class="card-counter primary">
+      <div class="card-counter success">
         <i class="fa fa-check-circle"></i>
-        <span class="count-numbers"><%= @ekids.where(stat: "CONFIRM").count %></span>
+        <span class="count-numbers"><%= @ekids.where(stat: "PERMOHONAN BERJAYA").count %></span>
         <span class="count-name">
-          <a href="/ekidindex?stato=CONFIRM", style="color:#fff">Confirm</a>
+          <a href="/ekidindex?stato=PERMOHONAN BERJAYA", style="color:#fff">PERMOHONAN BERJAYA</a>
         </span>
       </div>
     </div>

@@ -89,6 +89,7 @@ class EkidsController < ApplicationController
 		@diff = (Date.today.year*12+Date.today.month) - (@ekid.dob.year*12+@ekid.dob.month)
 		@year = @diff/12
 		@month = @diff - @year*12
+		@fotos = @ekid.fotos
 		render action: "ekidconf", layout: "eipblank"
 	end
 
