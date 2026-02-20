@@ -25,6 +25,40 @@
         <td style="background-color:#0070C0" ><font color="white">UMUR</font></td>
         <td style="background-color:#D9E1F2"><%= "#{@year} Tahun, #{@month} Bulan" %></td>
       </tr>
+      <tr>
+        <td style="background-color:#0070C0" ><font color="white">SIJIL KELAHIRAN ANAK</font></td>
+        <td style="background-color:#D9E1F2">
+          <%
+            image = @ekid.fotos.where(foto_name: "BIRTH CERT ANAK").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+      
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color:#0070C0" ><font color="white">SALINAN AKUAN ANAK ANGKAT</font></td>
+        <td style="background-color:#D9E1F2">
+          <%
+            image = @ekid.fotos.where(foto_name: "ANAK ANGKAT").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+          
+        </td>
+      </tr>
     </tbody>
 
     <tbody>
@@ -44,6 +78,65 @@
       <tr>
         <td style="background-color:#548235" ><font color="white">NAMA BAPA</font></td>
         <td style="background-color:#E2EFDA"><%= @ekid.fname %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">NO MYMAD BAPA</font></td>
+        <td style="background-color:#E2EFDA"><%= @ekid.fic %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">SALINAN MYKAD BAPA</font></td>
+        <td style="background-color:#E2EFDA">
+         <%
+            image = @ekid.fotos.where(foto_name: "MYKAD BAPA").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+            
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">SALINAN SPR BAPA</font></td>
+        <td style="background-color:#E2EFDA">
+         <%
+            image = @ekid.fotos.where(foto_name: "SPR BAPA").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+            
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">SLIP GAJI/AKUAN PENDAPATAN BAPA</font></td>
+        <td style="background-color:#E2EFDA">
+         <%
+            image = @ekid.fotos.where(foto_name: "GAJI BAPA").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+            
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">DUN MENGUNDI BAPA</font></td>
+        <td style="background-color:#E2EFDA"><%= @ekid.fdun %></td>
       </tr>
       <tr>
         <td style="background-color:#548235" ><font color="white">UMUR BAPA</font></td>
@@ -68,6 +161,65 @@
       <tr>
         <td style="background-color:#548235" ><font color="white">NAMA IBU</font></td>
         <td style="background-color:#E2EFDA"><%= @ekid.mname %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">NO MYKAD IBU</font></td>
+        <td style="background-color:#E2EFDA"><%= @ekid.mic %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">SALINAN MYKAD IBU</font></td>
+        <td style="background-color:#E2EFDA">
+          <%
+            image = @ekid.fotos.where(foto_name: "MYKAD IBU").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+            
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">SALINAN SLIP SPR IBU</font></td>
+        <td style="background-color:#E2EFDA">
+          <%
+            image = @ekid.fotos.where(foto_name: "SPR IBU").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+            
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">SLIP GAJI/AKUAN PENDAPATAN IBU</font></td>
+        <td style="background-color:#E2EFDA">
+          <%
+            image = @ekid.fotos.where(foto_name: "GAJI IBU").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+            
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">DUN MENGUNDI IBU</font></td>
+        <td style="background-color:#E2EFDA"><%= @ekid.mdun %></td>
       </tr>
       <tr>
         <td style="background-color:#548235" ><font color="white">UMUR IBU</font></td>
@@ -104,6 +256,22 @@
       <tr>
         <td style="background-color:#548235" ><font color="white">PENDAPATAN ISI RUMAH SEBULAN (RM)</font></td>
         <td style="background-color:#E2EFDA"><%= @ekid.pinc %></td>
+      </tr>
+      <tr>
+        <td style="background-color:#548235" ><font color="white">SALINAN SIJIL/PERAKUAN NIKAH</font></td>
+        <td style="background-color:#E2EFDA">
+          <%
+            image = @ekid.fotos.where(foto_name: "CERT NIKAH").first
+            if image.present? && image.picture.present?
+              url = image.picture.url
+              desc = "DOKUMEN"
+            else
+              url = ""
+              desc = "TIADA"
+            end
+          %>
+          <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= desc %></btn></a><br>
+        </td>
       </tr>
     </tbody>
 
@@ -142,6 +310,7 @@
         <td style="background-color:#FCE4D6"><%= @ekid.infot %></td>
       </tr>
     </tbody>
+
 
 
     <tbody>
