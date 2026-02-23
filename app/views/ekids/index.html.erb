@@ -80,7 +80,7 @@ end
             
             <%= form_tag ekidchg_path, method: :get do %>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <%= select_tag :stat, options_for_select(
                       ["PERMOHONAN DITERIMA","PERMOHONAN GAGAL","PERMOHONAN DALAM PROSES","PERMOHONAN BERJAYA"], selected: e.stat),
                       class: "form-control search-box input-lg"%>
@@ -88,20 +88,23 @@ end
                   <%= hidden_field_tag :id, e.id %>
                   <%= hidden_field_tag :stato, params[:stato] %>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <%= select_tag :loc, options_for_select(
                       ["Shah Alam","Serdang"], selected: e.prefloc),
                       class: "form-control search-box input-lg"%>
                       <b>LOCATION</b>
                 </div>
-                <div class="col-md-4">
-                  <%= button_tag(type: :submit, class: "btn btn-sm btn-primary active", id: "submit_expense") do %>
-                    <i class="fa fa-sync"></i> UPDATE
-                  <% end %>
-                </div><br>
-
-                
               </div>
+              <div class="row"><div class="col-md-12">
+              <%= text_area_tag :admcmt, e.admcmt,
+                      class: "form-control search-box input-lg"%>
+                      <b>KOMEN ADMIN</b><br><br>
+              </div></div>
+               
+
+              <%= button_tag(type: :submit, class: "btn btn-sm btn-primary active", id: "submit_expense") do %>
+                  <i class="fa fa-sync"></i> UPDATE
+                <% end %>
               
                 
             <% end %>

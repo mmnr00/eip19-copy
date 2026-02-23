@@ -26,6 +26,7 @@ class EkidsController < ApplicationController
 	def ekidchg
 		ekid = Ekid.find(params[:id])
 		ekid.stat = params[:stat]
+		ekid.admcmt = params[:admcmt]
 		if params[:loc] == "Shah Alam"
 			loc = "sha"
 		elsif params[:loc] == "Serdang"
