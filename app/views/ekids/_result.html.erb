@@ -71,7 +71,7 @@
             <% if (sce=prs.sce).present? %>
               <%= sce.name.upcase %></h6>
             <% else %>
-              <%= $statekid[prs.stat] %></h6>
+              <% $statekid[prs.stat] %> <%= prs.stat %></h6>
             <% end %>
 
            

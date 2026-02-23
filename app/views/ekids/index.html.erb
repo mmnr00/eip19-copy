@@ -102,19 +102,7 @@ end
 
                 
               </div>
-              <% fotos = e.fotos; [["SIJIL KELAHIRAN ANAK","BIRTH CERT ANAK"],["SALINAN AKUAN ANAK ANGKAT","SALINAN AKUAN ANAK ANGKAT"],["SALINAN MYKAD BAPA","MYKAD BAPA"],["SALINAN SPR BAPA","SPR BAPA"],["SLIP GAJI/AKUAN PENDAPATAN BAPA","GAJI BAPA"],["SALINAN MYKAD IBU","MYKAD IBU"],["SALINAN SLIP SPR IBU","SPR IBU"],["SLIP GAJI/AKUAN PENDAPATAN IBU","GAJI IBU"],["SALINAN SIJIL/PERAKUAN NIKAH","CERT NIKAH"]].each do |n| %>
-                <% 
-                  image = fotos.where(foto_name: n[1]).first
-                  if image.present? && image.picture.present?
-                    url = image.picture.url
-                    desc = n[0]
-                  else
-                    url = ""
-                    desc = "TIADA"
-                  end
-                %>
-                <a href="<%= url %>" target="_blank"><btn class="badge badge-pill badge-secondary"><%= n[0] %></btn></a><br>
-              <% end %>
+              
                 
             <% end %>
               
