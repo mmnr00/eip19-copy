@@ -142,7 +142,7 @@ class EkidsController < ApplicationController
 			dob = @ekid.dob
 			@age = (Date.today.year*12+Date.today.month) - (dob.year*12+dob.month)
 			year = @age/12
-			@ekid.stat = "NEW"
+			@ekid.stat = "PERMOHONAN DITERIMA"
 			# if @ekid.pinc == "Lebih dari 10,000" || (year >= 4)
 			# 	@ekid.stat = "REJECT"
 			# elsif @ekid.pinc == "5,000 hingga 10,000" && ((@ekid.sib.to_f) < 3)
